@@ -2,7 +2,6 @@
 
 session_start();
 include "../Database/connection.php";
-include "../Database/sessionUserData.php";
 ?>
 
 <!DOCTYPE html>
@@ -56,6 +55,7 @@ include "../Database/sessionUserData.php";
                         </div>";
                             // Profile Section appear when there is session.
                         } else {
+                            include "../Database/sessionUserData.php";
                             echo "
                             <div class='dropdown text-end'>
                                 <a href='#' class='d-block link-body-emphasis text-decoration-none dropdown-toggle'

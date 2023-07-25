@@ -18,6 +18,28 @@ include "../Database/connection.php";
     <!-- Bootstrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
         integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
+
+    <style>
+        .carousel-item {
+            height: 60vh;
+            min-height: 350px;
+            /* Optional: you can set a minimum height */
+            max-height: 600px;
+            /* Optional: you can set a maximum height */
+            overflow: hidden;
+        }
+
+        .carousel-item img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            min-height: 100%;
+            min-width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -94,11 +116,6 @@ include "../Database/connection.php";
                             ensuring prompt and reliable care. Trust in our commitment to providing top-notch medical
                             services, expert guidance, and a seamless user experience.
                         </p>
-
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                            <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Primary</button>
-                            <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -108,19 +125,17 @@ include "../Database/connection.php";
                 <div class="row justify-content-center">
                     <div class="col-md-2">
                         <div class="card">
-                            <img src="../logo/3.avif" class="card-img-top" alt="Image 1">
+                            <img src="../logo/3.jpg" class="card-img-top" alt="Image 1">
                             <div class="card-body">
-                                <h5 class="card-title">Card 2</h5>
-                                <p class="card-text">Text for Card 2 goes here.</p>
+                                <h5 class="card-title">Doctor Appoinments</h5>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="card">
-                            <img src="../logo/4.avif" class="card-img-top" alt="Image 2">
+                            <img src="../logo/4.jpg" class="card-img-top" alt="Image 2">
                             <div class="card-body">
-                                <h5 class="card-title">Card 2</h5>
-                                <p class="card-text">Text for Card 2 goes here.</p>
+                                <h5 class="card-title">Blood Bank</h5><br>
                             </div>
                         </div>
                     </div>
@@ -128,8 +143,7 @@ include "../Database/connection.php";
                         <div class="card">
                             <img src="../logo/5.jpg" class="card-img-top" alt="Image 3">
                             <div class="card-body">
-                                <h5 class="card-title">Card 3</h5>
-                                <p class="card-text">Text for Card 3 goes here.</p>
+                                <h5 class="card-title">Pharmacy</h5><br>
                             </div>
                         </div>
                     </div>
@@ -137,13 +151,151 @@ include "../Database/connection.php";
                         <div class="card">
                             <img src="../logo/6.jpg" class="card-img-top" alt="Image 4">
                             <div class="card-body">
-                                <h5 class="card-title">Card 4</h5>
-                                <p class="card-text">Text for Card 4 goes here.</p>
+                                <h5 class="card-title">Self-Diagnosis</h5><br>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Carousel Section -->
+            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="../logo/7.jpg" class="d-block w-100" alt="..."
+                            style="object-fit: cover; height: 60%;">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>First slide label</h5>
+                            <p>Some representative placeholder content for the first slide.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../logo/8.jpg" class="d-block w-100" alt="..."
+                            style="object-fit: cover; height: 60%;">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Second slide label</h5>
+                            <p>Some representative placeholder content for the second slide.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../logo/9.jpg" class="d-block w-100" alt="..."
+                            style="object-fit: cover; height: 60%;">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Third slide label</h5>
+                            <p>Some representative placeholder content for the third slide.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+            <!-- Footer Section -->
+            <footer class="text-center text-lg-start text-white" style="background-color: rgba(0, 0, 0, 0.2)">
+                <!-- Grid container -->
+                <div class="container p-4 pb-0">
+                    <!-- Section: Links -->
+                    <section class="">
+                        <!--Grid row-->
+                        <div class="row">
+                            <!-- Grid column -->
+                            <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                                <h6 class="text-uppercase mb-4 font-weight-bold">
+                                    Company name
+                                </h6>
+                                <p>
+                                    Here you can use rows and columns to organize your footer
+                                    content. Lorem ipsum dolor sit amet, consectetur adipisicing
+                                    elit.
+                                </p>
+                            </div>
+                            <!-- Grid column -->
+
+                            <hr class="w-100 clearfix d-md-none" />
+
+                            <!-- Grid column -->
+                            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                                <h6 class="text-uppercase mb-4 font-weight-bold">Products</h6>
+                                <p>
+                                    <a class="text-white">MDBootstrap</a>
+                                </p>
+                                <p>
+                                    <a class="text-white">MDWordPress</a>
+                                </p>
+                                <p>
+                                    <a class="text-white">BrandFlow</a>
+                                </p>
+                                <p>
+                                    <a class="text-white">Bootstrap Angular</a>
+                                </p>
+                            </div>
+                            <!-- Grid column -->
+
+                            <hr class="w-100 clearfix d-md-none" />
+
+                            <!-- Grid column -->
+                            <hr class="w-100 clearfix d-md-none" />
+
+                            <!-- Grid column -->
+                            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                                <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+                                <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
+                                <p><i class="fas fa-envelope mr-3"></i> info@gmail.com</p>
+                                <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
+                                <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+                            </div>
+                            <!-- Grid column -->
+
+                            <!-- Grid column -->
+                            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                                <h6 class="text-uppercase mb-4 font-weight-bold">Follow us</h6>
+
+                                <!-- Facebook -->
+                                <a class="btn btn-primary btn-floating m-1" style="background-color: #3b5998" href="#!"
+                                    role="button"><i class="fab fa-facebook-f"></i></a>
+
+                                <!-- Twitter -->
+                                <a class="btn btn-primary btn-floating m-1" style="background-color: #55acee" href="#!"
+                                    role="button"><i class="fab fa-twitter"></i></a>
+
+                                <!-- Google -->
+                                <a class="btn btn-primary btn-floating m-1" style="background-color: #dd4b39" href="#!"
+                                    role="button"><i class="fab fa-google"></i></a>
+
+                                <!-- Instagram -->
+                                <a class="btn btn-primary btn-floating m-1" style="background-color: #ac2bac" href="#!"
+                                    role="button"><i class="fab fa-instagram"></i></a>
+
+                                <!-- Linkedin -->
+                                <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca" href="#!"
+                                    role="button"><i class="fab fa-linkedin-in"></i></a>
+                                <!-- Github -->
+                                <a class="btn btn-primary btn-floating m-1" style="background-color: #333333" href="#!"
+                                    role="button"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <!--Grid row-->
+                    </section>
+                    <!-- Section: Links -->
+                </div>
+                <!-- Grid container -->
+
+                <!-- Copyright -->
+                <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+                    © 2023 Copyright:
+                    <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+                </div>
+                <!-- Copyright -->
+            </footer>
+            <!-- Footer -->
     </section>
 
 

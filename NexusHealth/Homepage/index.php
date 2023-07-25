@@ -104,51 +104,46 @@ include "../Database/connection.php";
             </div>
 
             <!-- Features Section -->
-            <div class="d-flex justify-content-center">
-                <div class="container-fluid align-items-center p-5" style="background-color: #212539;">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <div class="card">
-                                <img src="../logo/3.avif" class="card-img-top" alt="Image 1">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card 2</h5>
-                                    <p class="card-text">Text for Card 2 goes here.</p>
-                                </div>
+            <div class="container-fluid align-items-center p-5" style="background-color: #212539;">
+                <div class="row justify-content-center">
+                    <div class="col-md-2">
+                        <div class="card">
+                            <img src="../logo/3.avif" class="card-img-top" alt="Image 1">
+                            <div class="card-body">
+                                <h5 class="card-title">Card 2</h5>
+                                <p class="card-text">Text for Card 2 goes here.</p>
                             </div>
                         </div>
-                        <div class="col-md-2">
-                            <div class="card">
-                                <img src="../logo/4.avif" class="card-img-top" alt="Image 2">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card 2</h5>
-                                    <p class="card-text">Text for Card 2 goes here.</p>
-                                </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="card">
+                            <img src="../logo/4.avif" class="card-img-top" alt="Image 2">
+                            <div class="card-body">
+                                <h5 class="card-title">Card 2</h5>
+                                <p class="card-text">Text for Card 2 goes here.</p>
                             </div>
                         </div>
-                        <div class="col-md-2">
-                            <div class="card">
-                                <img src="../logo/5.jpg" class="card-img-top" alt="Image 3">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card 3</h5>
-                                    <p class="card-text">Text for Card 3 goes here.</p>
-                                </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="card">
+                            <img src="../logo/5.jpg" class="card-img-top" alt="Image 3">
+                            <div class="card-body">
+                                <h5 class="card-title">Card 3</h5>
+                                <p class="card-text">Text for Card 3 goes here.</p>
                             </div>
                         </div>
-                        <div class="col-md-2">
-                            <div class="card">
-                                <img src="../logo/6.jpg" class="card-img-top" alt="Image 4">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card 4</h5>
-                                    <p class="card-text">Text for Card 4 goes here.</p>
-                                </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="card">
+                            <img src="../logo/6.jpg" class="card-img-top" alt="Image 4">
+                            <div class="card-body">
+                                <h5 class="card-title">Card 4</h5>
+                                <p class="card-text">Text for Card 4 goes here.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
-
     </section>
 
 

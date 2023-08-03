@@ -5,7 +5,7 @@ include "../Database/connection.php";
 ?>
 
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -23,9 +23,7 @@ include "../Database/connection.php";
         .carousel-item {
             height: 60vh;
             min-height: 350px;
-            /* Optional: you can set a minimum height */
             max-height: 600px;
-            /* Optional: you can set a maximum height */
             overflow: hidden;
         }
 
@@ -33,10 +31,19 @@ include "../Database/connection.php";
             position: absolute;
             top: 0;
             left: 0;
-            min-height: 100%;
-            min-width: 100%;
             height: 100%;
-            object-fit: contain;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        #heroes {
+            background: rgb(255, 255, 255);
+            background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(12, 14, 104, 1) 100%);
+        }
+
+        .transparent-input {
+            background-color: transparent;
+            outline: none;
         }
     </style>
 
@@ -46,13 +53,13 @@ include "../Database/connection.php";
 
     <!-- Heroes Section -->
     <section>
-        <div style="background-color: #2e68eb;">
+        <div id="heroes">
             <header class="p-3">
                 <div class="container">
                     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                         <a href="index.php"
                             class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                            <img src="../logo/1.png" alt="logo1" style="width: 210px;">
+                            <img src="../logo/reglogo.png" alt="logo1" style="width: 250px;">
                         </a>
 
                         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
@@ -63,8 +70,8 @@ include "../Database/connection.php";
                         </ul>
 
                         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                            <input type="search" class="form-control form-control-dark text-bg-dark"
-                                placeholder="Search..." aria-label="Search">
+                            <input type="search" class="form-control transparent-input" placeholder="Search..."
+                                aria-label="Search">
                         </form>
 
                         <!-- Login-Signup visible when there is no session. -->
@@ -101,21 +108,20 @@ include "../Database/connection.php";
             </header>
 
             <!-- Welcome Section -->
-            <div class="container col-xxl-8 px-4 py-5">
-                <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-                    <div class="col-10 col-sm-8 col-lg-6">
-                        <img src="../logo/7.png" alt="Bootstrap Themes" width="700">
-                    </div>
-                    <div class="col-lg-6">
-                        <h4 class="fw-bold text-body-emphasis lh-1 mb-3">Welcome to NexusHealth, your
-                            one-stop destination for comprehensive healthcare services.</h4>
-                        <p class="fs-6 lead" style="text-align: justify;">
-                            Discover a world of convenience at your fingertips, where you can seamlessly
+            <div class="container my-5">
+                <div class="row pb-0 pe-lg-0 pt-lg-5 align-items-center">
+                    <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+                        <h1 class="display-6 fw-bold lh-1">Welcome to NexusHealth, your
+                            one-stop destination for comprehensive healthcare services
+                        </h1>
+                        <p class="lead">Discover a world of convenience at your fingertips, where you can seamlessly
                             book doctor appointments, access a well-stocked pharmacy, and find vital support from our
                             blood bank. Our user-friendly platform is designed to simplify your healthcare journey,
                             ensuring prompt and reliable care. Trust in our commitment to providing top-notch medical
-                            services, expert guidance, and a seamless user experience.
-                        </p>
+                            services, expert guidance, and a seamless user experience.</p>
+                    </div>
+                    <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden">
+                        <img class="rounded-lg-3" src="../logo/17715715-removebg.png" alt="" width="400">
                     </div>
                 </div>
             </div>
@@ -162,24 +168,21 @@ include "../Database/connection.php";
             <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="../logo/7.jpg" class="d-block w-100" alt="..."
-                            style="object-fit: cover; height: 60%;">
+                        <img src="../logo/7.jpg" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>First slide label</h5>
                             <p>Some representative placeholder content for the first slide.</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="../logo/8.jpg" class="d-block w-100" alt="..."
-                            style="object-fit: cover; height: 60%;">
+                        <img src="../logo/8.jpg" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Second slide label</h5>
                             <p>Some representative placeholder content for the second slide.</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="../logo/9.jpg" class="d-block w-100" alt="..."
-                            style="object-fit: cover; height: 60%;">
+                        <img src="../logo/9.jpg" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Third slide label</h5>
                             <p>Some representative placeholder content for the third slide.</p>
@@ -200,9 +203,13 @@ include "../Database/connection.php";
 
             <!-- Footer Section -->
             <footer class="text-center text-lg-start text-white" style="background-color: rgba(0, 0, 0, 0.2)">
+                <!-- Grid container -->
                 <div class="container p-4 pb-0">
+                    <!-- Section: Links -->
                     <section class="">
+                        <!--Grid row-->
                         <div class="row">
+                            <!-- Grid column -->
                             <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
                                 <h6 class="text-uppercase mb-4 font-weight-bold">
                                     NexusHealth
@@ -213,69 +220,86 @@ include "../Database/connection.php";
                                     elit.
                                 </p>
                             </div>
+                            <!-- Grid column -->
 
                             <hr class="w-100 clearfix d-md-none" />
 
+                            <!-- Grid column -->
                             <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                                 <h6 class="text-uppercase mb-4 font-weight-bold">Products</h6>
                                 <p>
-                                    <a class="text-white">MDBootstrap</a>
+                                    <a class="text-white">Blood donor</a>
                                 </p>
                                 <p>
-                                    <a class="text-white">MDWordPress</a>
+                                    <a class="text-white">Doctor list</a>
                                 </p>
                                 <p>
-                                    <a class="text-white">BrandFlow</a>
+                                    <a class="text-white">Seasonal flu</a>
                                 </p>
                                 <p>
-                                    <a class="text-white">Bootstrap Angular</a>
+                                    <a class="text-white">First aid</a>
                                 </p>
                             </div>
+                            <!-- Grid column -->
 
                             <hr class="w-100 clearfix d-md-none" />
 
+                            <!-- Grid column -->
                             <hr class="w-100 clearfix d-md-none" />
 
+                            <!-- Grid column -->
                             <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
                                 <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
-                                <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
+                                <p><i class="fas fa-home mr-3"></i> Sylhet, Bangladesh</p>
                                 <p><i class="fas fa-envelope mr-3"></i> info@gmail.com</p>
-                                <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
-                                <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+                                <p><i class="fas fa-phone mr-3"></i> + 01942446088</p>
                             </div>
+                            <!-- Grid column -->
 
+                            <!-- Grid column -->
                             <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
                                 <h6 class="text-uppercase mb-4 font-weight-bold">Follow us</h6>
 
+                                <!-- Facebook -->
                                 <a class="btn btn-primary btn-floating m-1" style="background-color: #3b5998" href="#!"
                                     role="button"><i class="fab fa-facebook-f"></i></a>
 
+                                <!-- Twitter -->
                                 <a class="btn btn-primary btn-floating m-1" style="background-color: #55acee" href="#!"
                                     role="button"><i class="fab fa-twitter"></i></a>
 
+                                <!-- Google -->
                                 <a class="btn btn-primary btn-floating m-1" style="background-color: #dd4b39" href="#!"
                                     role="button"><i class="fab fa-google"></i></a>
 
+                                <!-- Instagram -->
                                 <a class="btn btn-primary btn-floating m-1" style="background-color: #ac2bac" href="#!"
                                     role="button"><i class="fab fa-instagram"></i></a>
 
+                                <!-- Linkedin -->
                                 <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca" href="#!"
                                     role="button"><i class="fab fa-linkedin-in"></i></a>
-
+                                <!-- Github -->
                                 <a class="btn btn-primary btn-floating m-1" style="background-color: #333333" href="#!"
                                     role="button"><i class="fab fa-github"></i></a>
                             </div>
                         </div>
+                        <!--Grid row-->
                     </section>
+                    <!-- Section: Links -->
                 </div>
+                <!-- Grid container -->
 
+                <!-- Copyright -->
                 <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
                     © 2023 Copyright:
                     <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
                 </div>
+                <!-- Copyright -->
             </footer>
-        </div>
+            <!-- Footer -->
     </section>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"

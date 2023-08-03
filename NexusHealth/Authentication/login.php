@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -10,57 +10,55 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <style>
-        .font {
-            font-family: 'Dancing Script', cursive;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <section class="vh-100">
-        <div class="container-fluid h-custom py-5">
-            <div class="row d-flex justify-content-center align-items-center h-100">
+    <br><br><br><br><br>
+    <section>
+        <div class="container-fluid py-5">
+            <div class="row d-flex justify-content-center align-items-center">
                 <div class="mt-5 col-md-9 col-lg-6 col-xl-5">
-                    <img src="../logo/1.png" class="img-fluid" alt="Sample image">
+                    <a href="../Homepage/index.php"><img src="../logo/1.png" class="img-fluid" alt="Sample image"></a>
                 </div>
 
-                <div class="col-md-8 col-lg-6 col-xl-4 pt-5">
-                    <form action="loginAction.php" method="POST">
-                        <div class="py-5 text-center">
-                            <h1 class="font" class="my-4 display-6">Sign-In</h1>
-                        </div>
-
-                        <!-- Email input -->
-                        <div class="form-outline mb-4">
-                            <label class="form-label">Username</label>
-                            <input type="text" name="l_userName" class="form-control form-control-lg" placeholder="Enter Username" required>
-                        </div>
-
-                        <!-- Password input -->
-                        <div class="form-outline mb-3">
-                            <label class="form-label">Password</label>
-                            <input type="password" name="l_pass" class="form-control form-control-lg" placeholder="Enter password" required>
-                        </div>
-
-                        <div class="d-flex justify-content-between align-items-center">
-                            <!-- Checkbox -->
-                            <div class="form-check mb-0">
-                                <input class="form-check-input me-2" type="checkbox" value="" />
-                                <label class="form-check-label">
-                                    Remember me
-                                </label>
+                <div class="col-md-8 col-lg-6 col-xl-4 pt-2">
+                    <div class="border border-2 border-info-subtle rounded p-5 shadow-lg">
+                        <form action="loginAction.php" method="POST">
+                            <div class="py-5 text-center">
+                                <span class="font" style="font-size: 35px; padding: 10px 185px;">Sign-In</span>
                             </div>
-                            <a href="#!" class="text-body">Forgot password?</a>
-                        </div>
 
-                        <div class="text-center text-lg-start mt-4 pt-2">
-                            <button type="submit" class="btn btn-primary btn-lg" name="btn_signIn"
-                                style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
-                            <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="register.php"
-                                    class="link-danger">Register</a></p>
-                        </div>
-                    </form>
+                            <div class="form-outline">
+                                <input type="text" id="form12" class="form-control" />
+                                <label class="form-label" for="form12">Example label</label>
+                            </div>
+
+                            <div class="form-outline mb-3">
+                                <label class="form-label">Password</label>
+                                <input type="password" name="l_pass" class="form-control form-control-lg"
+                                    placeholder="Enter password" required>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="form-check mb-0">
+                                    <input class="form-check-input me-2" type="checkbox" value="" />
+                                    <label class="form-check-label">
+                                        Remember me
+                                    </label>
+                                </div>
+                                <a href="#!" class="text-body">Forgot password?</a>
+                            </div>
+
+                            <div class="text-center text-lg-start mt-4 pt-2">
+                                <button type="submit" class="btn btn-outline-primary btn-lg" name="btn_signIn"
+                                    style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+                                <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="register.php"
+                                        class="link-danger">Register</a></p>
+                            </div>
+                        </form>
+                    </div>
+
                 </div>
             </div>
         </div>

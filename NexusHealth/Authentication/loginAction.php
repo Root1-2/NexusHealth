@@ -4,11 +4,14 @@ session_start();
 if (isset($_POST['btn_signIn'])) {
     include '../Database/connection.php';
 
-    $log_user_email = $_POST['l_userName'];
+    $log_user_email = $_POST['l_username'];
     $log_password = $_POST['l_pass'];
 
     $result = mysqli_query($conn, "SELECT * FROM `register` 
-        WHERE userName = '$log_user_email' OR email='$log_user_email' AND BINARY pass = '$log_password' AND verifystatus = '1'");
+        WHERE userName = '$log_user_email' OR email = '$log_user_email' AND BINARY pass = '$log_password' AND verifystatus = '1'");
+
+        echo $log_user_email;
+        echo $log_password;
 
     if (mysqli_num_rows($result) > 0) {
         

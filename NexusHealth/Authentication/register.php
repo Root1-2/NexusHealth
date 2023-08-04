@@ -18,7 +18,7 @@
     <div class="container-fluid">
         <main>
             <div class="py-5 text-center">
-                <a href="../Homepage/index.php"><img src="../logo/reglogo.jpg" class="mb-4" alt="Logo"
+                <a href="../Homepage/index.php"><img src="../logo/reglogo.png" class="mb-4 img-fluid" alt="Logo"
                         style="width: 400px;"></a><br>
 
                 <span class="font" style="font-size: 35px; padding: 10px 141px;">Sign-Up</span>

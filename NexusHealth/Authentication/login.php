@@ -19,19 +19,19 @@
         <div class="container-fluid py-5">
             <div class="row d-flex justify-content-center align-items-center">
                 <div class="mt-5 col-md-9 col-lg-6 col-xl-5">
-                    <a href="../Homepage/index.php"><img src="../logo/1.png" class="img-fluid" alt="Sample image"></a>
+                    <a href="../Homepage/index.php"><img src="../logo/1w.jpg" class="img-fluid" alt="Sample image" style="width:450px"></a>
                 </div>
 
                 <div class="col-md-8 col-lg-6 col-xl-4 pt-2">
                     <div class="border border-2 border-info-subtle rounded p-5 shadow-lg">
                         <form action="loginAction.php" method="POST">
                             <div class="py-5 text-center">
-                                <span class="font" style="font-size: 35px; padding: 10px 185px;">Sign-In</span>
+                                <span class="font" style="font-size: 30px; padding: 10px 140px;">Sign-In</span>
                             </div>
 
                             <div class="form-outline">
-                                <input type="text" id="form12" class="form-control" />
-                                <label class="form-label" for="form12">Example label</label>
+                            <label class="form-label" for="form12">Username or Email</label>
+                                <input type="text" id="form12" class="form-control" name="l_username"/>
                             </div>
 
                             <div class="form-outline mb-3">

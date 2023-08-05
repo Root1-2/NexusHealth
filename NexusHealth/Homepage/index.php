@@ -29,11 +29,8 @@ include "../Database/connection.php";
     <style>
         .carousel-image {
             object-fit: contain;
-            /* Change to "contain" if you want to see the whole image */
             height: 500px;
             padding: 2% 5%;
-
-            /* Adjust height as needed */
         }
 
         #heroes {
@@ -175,8 +172,9 @@ include "../Database/connection.php";
             <!-- Feature Section 2 -->
             <section>
                 <div class="d-flex justify-content-center features">
+                    <!-- Horizontal Cards -->
                     <div class="p-5">
-                        <div class="card mb-3 rounded-5" style="width: 35rem;">
+                        <div class="card horizontal-card mb-3 rounded-5" style="width: 35rem;">
                             <div class="row g-0">
                                 <div class="col-md-8">
                                     <div class="card-body">
@@ -194,7 +192,7 @@ include "../Database/connection.php";
                                 </div>
                             </div>
                         </div>
-                        <div class="card mb-3 rounded-5" style="width: 35rem;">
+                        <div class="card horizontal-card mb-3 rounded-5" style="width: 35rem;">
                             <div class="row g-0">
                                 <div class="col-md-4">
                                     <img src="../logo/4.jpg" class="img-fluid rounded-start" alt="...">
@@ -210,12 +208,12 @@ include "../Database/connection.php";
                                                 ago</small></p>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
+                    <!-- Vertical Cards -->
                     <div class="d-flex px-3 py-5">
-                        <div class="card rounded-5" style="width: 16rem;">
+                        <div class="card vertical-card rounded-5" style="width: 16rem;">
                             <img src="../logo/5.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="cardh card-title">Med Corner</h5>
@@ -224,7 +222,7 @@ include "../Database/connection.php";
                                     bulk of the card's content.</p>
                             </div>
                         </div>
-                        <div class="card ms-5 rounded-5" style="width: 16rem;">
+                        <div class="card vertical-card ms-5 rounded-5" style="width: 16rem;">
                             <img src="../logo/6.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="cardh card-title">Self-Diagnosis</h5>
@@ -235,8 +233,8 @@ include "../Database/connection.php";
                         </div>
                     </div>
                 </div>
-
             </section>
+
 
             <!-- Carousel Section -->
             <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">

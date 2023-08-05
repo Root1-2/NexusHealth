@@ -1,16 +1,9 @@
-/* Card Animation */
 .card {
     overflow: hidden;
     cursor: pointer;
     position: relative;
     box-shadow: 0 10px 30px 5px rgba(0, 0, 0, 0.2);
 }
-
-/* img {
-    position: absolute;
-    opacity: 0.9;
-    transition: opacity .2s ease-out;
-} */
 
 .cardh {
     position: absolute;
@@ -36,21 +29,62 @@ a {
     text-decoration: none;
 }
 
-&:hover .cardh {
-    inset: auto auto 220px 30px;
-    transition: inset .3s ease-out;
+/* Horizontal Cards */
+.horizontal-card .cardh {
+    left: -200px; /* Move the text outside the card area initially */
+    transition: left .3s ease-out;
 }
 
-&:hover .cardp {
+.horizontal-card .cardp {
+    opacity: 0;
+    transition: opacity .5s .1s ease-in;
+}
+
+.horizontal-card img {
+    filter: blur(0); /* No blur effect initially */
+    transition: filter .3s ease-in;
+}
+
+.horizontal-card:hover .cardh {
+    left: 30px; /* Move the text inside the card area on hover */
+    transition: left .3s ease-out;
+}
+
+.horizontal-card:hover .cardp {
     opacity: 1;
     transition: opacity .5s .1s ease-in;
 }
 
-&:hover img {
-    transition: opacity .3s ease-in;
-    opacity: 1;
+.horizontal-card:hover img {
+    filter: blur(3px); /* Add blur effect on hover */
 }
 
-.material-symbols-outlined {
-    vertical-align: middle;
+/* Vertical Cards */
+.vertical-card .cardh {
+    top: 200px; /* Move the text below the card area initially */
+    transition: top .3s ease-out;
+}
+
+.vertical-card .cardp {
+    opacity: 0;
+    transition: opacity .5s .1s ease-in;
+}
+
+.vertical-card img {
+    filter: blur(0); /* No blur effect initially */
+    transition: filter .3s ease-in;
+}
+
+.vertical-card:hover .cardh {
+    top: 30px; /* Move the text inside the card area on hover */
+    transition: top .3s ease-out;
+}
+
+.vertical-card:hover .cardp {
+    opacity: 1;
+    transition: opacity .5s .1s ease-in;
+}
+
+.vertical-card:hover img {
+    filter: blur(3px); /* Add blur effect on hover */
 }

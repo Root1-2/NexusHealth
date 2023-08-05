@@ -29,13 +29,16 @@ include "../Database/connection.php";
     <style>
         .carousel-image {
             object-fit: contain;
+            /* Change to "contain" if you want to see the whole image */
             height: 500px;
             padding: 2% 5%;
+
+            /* Adjust height as needed */
         }
 
         #heroes {
-            background: rgb(252, 252, 235);
-            background: linear-gradient(90deg, rgba(252, 252, 235, 1) 14%, rgba(255, 255, 236, 1) 31%, rgba(255, 255, 247, 1) 88%, rgba(255, 255, 243, 1) 100%);
+            background: rgb(255, 255, 255);
+            background: linear-gradient(54deg, rgba(255, 255, 255, 1) 6%, rgba(255, 255, 255, 1) 100%);
         }
 
         .transparent-input {
@@ -74,17 +77,12 @@ include "../Database/connection.php";
                             <li><a href="#" class="nav-link px-2 text-dark">About</a></li>
                         </ul>
 
-                        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                            <input type="search" class="form-control transparent-input" placeholder="Search..."
-                                aria-label="Search">
-                        </form>
-
                         <!-- Login-Signup visible when there is no session. -->
                         <?php
                         if (!isset($_SESSION['userName'])) {
                             echo "<div class='text-end'>
                             <a href='../Authentication/login.php'><button type='button'
-                                    class='btn btn-outline-light me-2'>Login</button></a>
+                                    class='btn me-2' style='background-color: #2fbfbf;'>Login</button></a>
                             <a href='../Authentication/register.php'><button type='button' class='btn btn-warning'>Sign-up</button></a>
                         </div>";
                             // Profile Section appear when there is session.
@@ -116,10 +114,11 @@ include "../Database/connection.php";
             <div class="container my-5">
                 <div class="row pb-0 pe-lg-0 pt-lg-5 align-items-center">
                     <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
-                        <h1 class="font">Welcome to NexusHealth, your
-                            one-stop destination for comprehensive healthcare services
-                        </h1>
-                        <p class="lead">Discover a world of convenience at your fingertips, where you can seamlessly
+                        <h1 class="font slide-in-from-left">Welcome to NexusHealth, your one-stop destination for
+                            comprehensive healthcare services</h1>
+
+                        <p class="lead slide-in-from-bottom">Discover a world of convenience at your fingertips, where
+                            you can seamlessly
                             book doctor appointments, access a well-stocked pharmacy, and find vital support from our
                             blood bank. Our user-friendly platform is designed to simplify your healthcare journey,
                             ensuring prompt and reliable care. Trust in our commitment to providing top-notch medical
@@ -192,24 +191,28 @@ include "../Database/connection.php";
                                 </div>
                             </div>
                         </div>
-                        <div class="card horizontal-card mb-3 rounded-5" style="width: 35rem;">
-                            <div class="row g-0">
-                                <div class="col-md-4">
-                                    <img src="../logo/4.jpg" class="img-fluid rounded-start" alt="...">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="cardh card-title">Blood Bank</h5>
-                                        <p class="cardp card-text">This is a wider card with supporting text below as a
-                                            natural
-                                            lead-in to additional content. This content is a little bit longer.</p>
-                                        <p class="cardp card-text"><small class="text-body-secondary">Last updated 3
-                                                mins
-                                                ago</small></p>
+                        <a href="../Blood Bank/bloodhome.php">
+                            <div class="card horizontal-card mb-3 rounded-5" style="width: 35rem;">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="../logo/4.jpg" class="img-fluid rounded-start" alt="...">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="cardh card-title">Blood Bank</h5>
+                                            <p class="cardp card-text">This is a wider card with supporting text below
+                                                as a
+                                                natural
+                                                lead-in to additional content. This content is a little bit longer.</p>
+                                            <p class="cardp card-text"><small class="text-body-secondary">Last updated 3
+                                                    mins
+                                                    ago</small></p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
+
                     </div>
                     <!-- Vertical Cards -->
                     <div class="d-flex px-3 py-5">
@@ -234,7 +237,6 @@ include "../Database/connection.php";
                     </div>
                 </div>
             </section>
-
 
             <!-- Carousel Section -->
             <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">

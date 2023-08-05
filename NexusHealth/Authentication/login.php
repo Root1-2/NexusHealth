@@ -26,7 +26,7 @@
                     <div class="border border-2 border-info-subtle rounded p-5 shadow-lg">
                         <form action="loginAction.php" method="POST">
                             <div class="py-5 text-center">
-                                <span class="font" style="font-size: 30px; padding: 10px 140px;">Sign-In</span>
+                                <span class="font" style="font-size: 30px; padding: 10px 130px;">Sign-In</span>
                             </div>
 
                             <div class="form-outline">

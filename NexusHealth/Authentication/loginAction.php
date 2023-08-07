@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 if (isset($_POST['btn_signIn'])) {
     include '../Database/connection.php';
@@ -8,18 +7,15 @@ if (isset($_POST['btn_signIn'])) {
     $log_password = $_POST['l_pass'];
 
     $result = mysqli_query($conn, "SELECT * FROM `register` 
-        WHERE userName = '$log_user_email' OR email = '$log_user_email' AND BINARY pass = '$log_password' AND verifystatus = '1'");
-
-        echo $log_user_email;
-        echo $log_password;
+        WHERE (userName = '$log_user_email' OR email = '$log_user_email') AND BINARY pass = '$log_password' AND verifystatus = '1'");
 
     if (mysqli_num_rows($result) > 0) {
-        
+        session_start();
         $_SESSION['userName'] = $log_user_email;
         echo "<script>location.href='../Homepage/index.php'</script>";
     } else {
         $result1 = mysqli_query($conn, "SELECT * FROM `register` 
-            WHERE username = '$log_user_email' OR email='$log_user_email' AND BINARY pass = '$log_password' AND verifystatus = '0'");
+            WHERE (userName = '$log_user_email' OR email = '$log_user_email') AND BINARY pass = '$log_password' AND verifystatus = '0'");
         if (mysqli_num_rows($result1) > 0) {
             echo "<script>alert('Your Account has not been verified yet. A verification link has been sent to your registered email address!')</script>";
             echo "<script>location.href='login.php'</script>";

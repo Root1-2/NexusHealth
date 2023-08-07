@@ -18,13 +18,47 @@ include '../Database/connection.php'
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <style>
-        body {
-            background: rgb(1, 9, 28);
-            background: linear-gradient(90deg, rgba(1, 9, 28, 1) 8%, rgba(0, 23, 64, 1) 31%, rgba(6, 54, 100, 1) 65%, rgba(2, 11, 26, 1) 88%);
-        }
-    </style>
+
 </head>
+
+<style>
+    .container1 {
+        background: #fafafa;
+
+    }
+
+    h3 {
+        color: #e74c3c;
+        margin-left: 30px;
+    }
+    h2{
+        margin-left: 30px;
+    }
+
+    img {
+        transition: transform .2s;
+
+    }
+
+    img:hover {
+        transform: scale(1.1);
+    }
+
+    .benefits-list {
+        list-style-type: none;
+        padding: ;
+    }
+
+    .benefits-list>li::before {
+        content: "✔️";
+        color: #2ecc71;
+        margin-right: 5px;
+    }
+
+    .justify {
+        text-align: justify;
+    }
+</style>
 
 <body>
 
@@ -39,31 +73,68 @@ include '../Database/connection.php'
     </div>
 
     <!-- Benefits Section -->
-    <div class="container col-xxl-8 px-4 py-5">
-        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-            <div class="col-10 col-sm-8 col-lg-6">
-                <img src="../logo/Benefits-of-blood-donation-removebg-preview.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="1000"
-                    height="500" loading="lazy">
+    <div class="container1 my-5 py-5 px-5">
+        <div class="row pt-lg-5 d-flex flex-lg-row flex-column align-items-center">
+            <div class="col-lg-5 offset-lg-1 p-0 mb-4">
+                <img class="rounded-lg-3 img-fluid" src="../logo/Benefitsdonation.jpg" alt="Benefits of donation">
             </div>
-            <div class="col-lg-6">
-                <h1 class="display-5 text-info fw-bold lh-1 mb-3">Responsive left-aligned hero with image</h1>
-                <p class="lead">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s
-                    most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid
-                    system, extensive prebuilt components, and powerful JavaScript plugins.</p>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                    <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Primary</button>
-                    <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
-                </div>
+            <div class="col-lg-6 ">
+                <h3>Key benefits of blood donation</h3>
+                <ul class="benefits-list lead mt-4 justify ">
+                    <li>Saves Lives: Each blood donation can help up to three people who need blood or blood products.
+                    </li>
+                    <li>Health Checkup: Before donating blood, donors receive a mini-physical and health screening.
+                    </li>
+                    <li>Promotes Cardiovascular Health: Regular blood donations may help keep iron levels in check and
+                        prevent the buildup of iron in the blood </li>
+                    <li>Burns Calories: Although it's not a replacement for exercise, donating blood can burn
+                        approximately 650 calories per donation according to some estimates. </li>
+                    <li>Psychological Benefit: Many people report feeling a sense of satisfaction after donating blood,
+                        knowing they've made a significant difference in someone's life. </li>
+                    <li>Rare Blood Identification: During blood testing, if your blood is found to be a rare type, you
+                        could be instrumental in saving lives of those who require that particular type. </li>
+                    <li>Faster Regeneration of Blood Cells: When you donate blood, the body works to replenish the blood
+                        loss which in turn stimulates the production of new blood cells. </li>
+                </ul>
+
             </div>
         </div>
     </div>
+
+    <!-- Benefits Section  2-->
+    <div class="container1 my-5 py-5 px-5">
+        <div class="row pt-lg-5 d-flex flex-lg-row flex-column align-items-center">
+        <div class="col-lg-6 ">
+                <h3>POST-DONATION</h3>
+                <h2>Please call our Hotline immediately if you:</h2>
+                <ul class="benefits-list lead mt-4 justify ">
+                    <li>feel that your blood should not be given to a patient;
+                    </li>
+                    <li>are not sure that your blood is safe
+                    </li>
+                    <li>are not sure that your blood is safe
+                        develop a fever within 24 hours after donating; </li>
+                    <li>have any illness within two (2) weeks of your donation; or </li>
+                    <li>are diagnosed by a physician as having West Nile, dengue, chikungunya, Zika, or Ebola virus
+                        Infection. </li>
+
+                </ul>
+
+            </div>
+            <div class="col-lg-5 offset-lg-1 p-0 mb-4">
+                <img class="rounded-lg-3 img-fluid" src="../logo/after donation.jpg" alt="Benefits of donation">
+            </div>
+           
+        </div>
+    </div>
+
 
 
     <!-- Donor List -->
     <?php include '../Database/registerdata.php'; ?>
 
     <div class="m-5 rounded">
-        <table class="table table-dark table-striped border border-secondary rounded">
+        <table class="table  table-striped border border-secondary rounded">
             <thead>
                 <tr>
                     <th scope="col">Name</th>

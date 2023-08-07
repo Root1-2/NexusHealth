@@ -29,16 +29,13 @@ include "../Database/connection.php";
     <style>
         .carousel-image {
             object-fit: contain;
-            /* Change to "contain" if you want to see the whole image */
             height: 500px;
             padding: 2% 5%;
-
-            /* Adjust height as needed */
         }
 
         #heroes {
-            background: rgb(255, 255, 255);
-            background: linear-gradient(54deg, rgba(255, 255, 255, 1) 6%, rgba(255, 255, 255, 1) 100%);
+            background: rgb(252, 252, 235);
+            background: linear-gradient(90deg, rgba(252, 252, 235, 1) 14%, rgba(255, 255, 236, 1) 31%, rgba(255, 255, 247, 1) 88%, rgba(255, 255, 243, 1) 100%);
         }
 
         .transparent-input {
@@ -59,7 +56,6 @@ include "../Database/connection.php";
 </head>
 
 <body>
-
     <!-- Heroes Section -->
     <section>
         <div id="heroes">
@@ -77,12 +73,17 @@ include "../Database/connection.php";
                             <li><a href="#" class="nav-link px-2 text-dark">About</a></li>
                         </ul>
 
+                        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                            <input type="search" class="form-control transparent-input" placeholder="Search..."
+                                aria-label="Search">
+                        </form>
+
                         <!-- Login-Signup visible when there is no session. -->
                         <?php
                         if (!isset($_SESSION['userName'])) {
                             echo "<div class='text-end'>
                             <a href='../Authentication/login.php'><button type='button'
-                                    class='btn me-2' style='background-color: #2fbfbf;'>Login</button></a>
+                                    class='btn btn-outline-light me-2'>Login</button></a>
                             <a href='../Authentication/register.php'><button type='button' class='btn btn-warning'>Sign-up</button></a>
                         </div>";
                             // Profile Section appear when there is session.
@@ -129,9 +130,11 @@ include "../Database/connection.php";
                     </div>
                 </div>
             </div>
+    </section>
+    <hr>
 
-            <!-- Features Section -->
-            <!-- <div class="container-fluid align-items-center p-5" style="background-color: #212539;">
+    <!-- Features Section -->
+    <!-- <div class="container-fluid align-items-center p-5" style="background-color: #212539;">
                 <div class="row justify-content-center">
                     <div class="col-md-2">
                         <div class="card">
@@ -168,123 +171,116 @@ include "../Database/connection.php";
                 </div>
             </div> -->
 
-            <!-- Feature Section 2 -->
-            <section>
-                <div class="d-flex justify-content-center features">
-                    <!-- Horizontal Cards -->
-                    <div class="p-5">
-                        <div class="card horizontal-card mb-3 rounded-5" style="width: 35rem;">
-                            <div class="row g-0">
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="cardh card-title">Doctor Appointment</h5>
-                                        <p class="cardp card-text">This is a wider card with supporting text below as a
-                                            natural
-                                            lead-in to additional content. This content is a little bit longer.</p>
-                                        <p class="cardp card-text"><small class="text-body-secondary">Last updated 3
-                                                mins
-                                                ago</small></p>
-                                    </div>
+    <!-- Feature Section 2 -->
+    <section>
+        <div class="d-flex justify-content-center features">
+            <!-- Horizontal Cards -->
+            <div class="p-5">
+                <a href="../Doctor Appointment/doctorhome.php">
+                    <div class="card horizontal-card mb-3 rounded-5" style="width: 35rem;">
+                        <div class="row g-0">
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="cardh card-title text-primary">Doctor Appointment</h5>
+                                    <p class="cardp card-text">This is a wider card with supporting text below
+                                        as a
+                                        natural lead-in to additional content. This content is a little bit
+                                        longer.
+                                    </p>
                                 </div>
-                                <div class="col-md-4">
-                                    <img src="../logo/3.jpg" class="img-fluid rounded-start" alt="...">
-                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <img src="../logo/3.jpg" class="img-fluid rounded-start" alt="...">
                             </div>
                         </div>
-                        <a href="../Blood Bank/bloodhome.php">
-                            <div class="card horizontal-card mb-3 rounded-5" style="width: 35rem;">
-                                <div class="row g-0">
-                                    <div class="col-md-4">
-                                        <img src="../logo/4.jpg" class="img-fluid rounded-start" alt="...">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body">
-                                            <h5 class="cardh card-title">Blood Bank</h5>
-                                            <p class="cardp card-text">This is a wider card with supporting text below
-                                                as a
-                                                natural
-                                                lead-in to additional content. This content is a little bit longer.</p>
-                                            <p class="cardp card-text"><small class="text-body-secondary">Last updated 3
-                                                    mins
-                                                    ago</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-
+                </a>
+            </div>
+            <div class="card horizontal-card mb-3 rounded-5" style="width: 35rem;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="../logo/4.jpg" class="img-fluid rounded-start" alt="...">
                     </div>
-                    <!-- Vertical Cards -->
-                    <div class="d-flex px-3 py-5">
-                        <div class="card vertical-card rounded-5" style="width: 16rem;">
-                            <img src="../logo/5.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="cardh card-title">Med Corner</h5>
-                                <p class="cardp card-text">Some quick example text to build on the card title and make
-                                    up the
-                                    bulk of the card's content.</p>
-                            </div>
-                        </div>
-                        <div class="card vertical-card ms-5 rounded-5" style="width: 16rem;">
-                            <img src="../logo/6.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="cardh card-title">Self-Diagnosis</h5>
-                                <p class="cardp card-text">Some quick example text to build on the card title and make
-                                    up the
-                                    bulk of the card's content.</p>
-                            </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="cardh bloodh card-title text-danger">Blood Bank</h5>
+                            <p class="cardp bloodp card-text">This is a wider card with supporting text
+                                below as a
+                                natural lead-in to additional content. This content is a little bit longer.
+                            </p>
                         </div>
                     </div>
                 </div>
-            </section>
-
-            <!-- Carousel Section -->
-            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="d-block w-100 carousel-image" src="../logo/7.jpg" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>First slide label</h5>
-                            <p>Some representative placeholder content for the first slide.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100 carousel-image" src="../logo/8.jpg" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Second slide label</h5>
-                            <p>Some representative placeholder content for the second slide.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100 carousel-image" src="../logo/9.jpg" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Third slide label</h5>
-                            <p>Some representative placeholder content for the third slide.</p>
-                        </div>
-                    </div>
+            </div>
+        </div>
+        <!-- Vertical Cards -->
+        <div class="d-flex px-3 py-5">
+            <div class="card vertical-card rounded-5" style="width: 16rem;">
+                <img src="../logo/5.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="cardh card-title text-success">Med Corner</h5>
+                    <p class="cardp card-text">Some quick example text to build on the card title and make
+                        up the
+                        bulk of the card's content.</p>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
             </div>
-            <hr>
-            <!-- Footer Section -->
-            <div class="container">
-                <footer class="py-3 my-4">
-                    <div class="row justify-content-center pb-3 mb-3">
-                        <img src="../logo/reglogo.png" alt="" style="width: 250px;">
-                    </div>
-                    <p class="text-center text-body-secondary">© 2023 NexusHealth, Inc</p>
-                </footer>
+            <div class="card vertical-card ms-5 rounded-5" style="width: 16rem;">
+                <img src="../logo/6.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="cardh card-title text-primary">Self-Diagnosis</h5>
+                    <p class="cardp card-text">Some quick example text to build on the card title and make
+                        up the
+                        bulk of the card's content.</p>
+                </div>
             </div>
+        </div>
     </section>
+
+    <!-- Carousel Section -->
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100 carousel-image" src="../logo/7.jpg" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>First slide label</h5>
+                    <p>Some representative placeholder content for the first slide.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100 carousel-image" src="../logo/8.jpg" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Second slide label</h5>
+                    <p>Some representative placeholder content for the second slide.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100 carousel-image" src="../logo/9.jpg" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Third slide label</h5>
+                    <p>Some representative placeholder content for the third slide.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <hr>
+    <!-- Footer Section -->
+    <div class="container">
+        <footer class="py-3 my-4">
+            <div class="row justify-content-center pb-3 mb-3">
+                <img src="../logo/reglogo.png" alt="" style="width: 250px;">
+            </div>
+            <p class="text-center text-body-secondary">© 2023 NexusHealth, Inc</p>
+        </footer>
+    </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

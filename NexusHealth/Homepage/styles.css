@@ -33,7 +33,6 @@
     animation: slide-in-from-bottom 2s forwards;
 }
 
-
 /* Card Animation */
 .card {
     overflow: hidden;
@@ -58,6 +57,7 @@
     max-width: 80%;
     transition: opacity .3s ease-out;
     inset: auto auto 80px 30px;
+    z-index: 1;
 }
 
 a {
@@ -66,8 +66,9 @@ a {
     text-decoration: none;
 }
 
+/* Horizontal Cards */
 .horizontal-card .cardh {
-    left: -200px; /* Move the text outside the card area initially */
+    left: 10px; /* Move the text more to the left side of the card */
     transition: left .3s ease-out;
 }
 
@@ -76,9 +77,26 @@ a {
     transition: opacity .5s .1s ease-in;
 }
 
+.horizontal-card .card-body {
+    text-align: left; /* Align text to the left side */
+}
+
 .horizontal-card img {
     filter: blur(0); /* No blur effect initially */
     transition: filter .3s ease-in;
+}
+
+.horizontal-card .bloodh {
+    right: 10px;
+    transition: right .3s ease-out; /* Use "right" instead of "left" in the transition property */
+    inset: 150px 30px 80px auto; /* Adjust the positioning of the text */
+}
+
+.horizontal-card .bloodp {
+    opacity: 0;
+    right: 10px;
+    transition: right opacity .5s .1s ease-in; /* Use "right" instead of "left" in the transition property */
+    inset: auto 30px 80px auto; /* Adjust the positioning of the text */
 }
 
 .horizontal-card:hover .cardh {
@@ -91,18 +109,31 @@ a {
     transition: opacity .5s .1s ease-in;
 }
 
+.horizontal-card:hover .bloodh {
+    right: 50px; /* Move the text inside the card area on hover */
+    transition: .3s ease-out;
+    inset: 150px 50px 80px auto; /* Adjust the positioning of the text */
+}
+
+.horizontal-card:hover .bloodp {
+    opacity: 1;
+    transition: opacity .5s .1s ease-in;
+}
+
 .horizontal-card:hover img {
     filter: blur(3px); /* Add blur effect on hover */
 }
 
+/* Vertical Cards */
 .vertical-card .cardh {
-    top: 200px; /* Move the text below the card area initially */
+    top: 260px; /* Move the text below the card area initially */
     transition: top .3s ease-out;
 }
 
 .vertical-card .cardp {
     opacity: 0;
     transition: opacity .5s .1s ease-in;
+    bottom: 50px;
 }
 
 .vertical-card img {
@@ -111,11 +142,12 @@ a {
 }
 
 .vertical-card:hover .cardh {
-    top: 30px; /* Move the text inside the card area on hover */
+    top: 20px; /* Move the text inside the card area on hover */
     transition: top .3s ease-out;
 }
 
 .vertical-card:hover .cardp {
+    bottom: 50px;
     opacity: 1;
     transition: opacity .5s .1s ease-in;
 }

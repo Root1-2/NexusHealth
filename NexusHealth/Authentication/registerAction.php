@@ -62,10 +62,12 @@ if (isset($_POST['signup'])) {
     $reg_height = $_POST['height'];
     $reg_blood = $_POST['blood'];
     $verifytoken = md5(rand());
-
-    $userName_pattern = "/^(?=.*[a-z])(?=.*\d)[a-z\d!@#$%^&*_\-]{5,10}$/";
+    
+    $firstName_pattern = "/^[A-Za-z .]{2,}$/";
+    $lastName_pattern = "/^[A-Za-z]{2,}$/";
+    $userName_pattern = "/^(?=.*[a-z])[a-z!@#$%^&*_\-]{5,10}$/";
     $phoneNumber_pattern = "/(\+88)?-?01[3-9]\d{8}/";
-    $email_pattern = "/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/";
+    $email_pattern = "/^[a-z0-9_.+-]+@(gmail\.com|yahoo\.com|hotmail\.com|outlook\.com|icloud\.com|zoho\.com)$/";
     $pass_pattern = "/(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%&*()]).{6,20}/";
 
     $insert_query = "INSERT INTO `register`(`firstName`,`lastName`,`userName`,`email`,`pass`,`pNumber`,`dob`,`weight`,`height`,`sex`,`bloodGroup`,`address`,`city`,`verifytoken`) 
@@ -75,7 +77,14 @@ if (isset($_POST['signup'])) {
     $dupe_email = mysqli_query($conn, "SELECT * FROM `register` WHERE email = '$reg_email'");
 
 
-    if (!preg_match($userName_pattern, $reg_userName)) { //userName Match
+
+    if (!preg_match($firstName_pattern, $reg_firstName)) { //firstName Match
+        echo "<script>alert('Invalid Firstname!!')</script>";
+        echo "<script>location.href='register.php'</script>";
+    }else if (!preg_match($lastName_pattern, $reg_lastName)) { //lastName Match
+        echo "<script>alert('Invalid Lastname!!')</script>";
+        echo "<script>location.href='register.php'</script>";                                                      
+    }else if (!preg_match($userName_pattern, $reg_userName)) { //userName Match
         echo "<script>alert('Invalid Username!!')</script>";
         echo "<script>location.href='register.php'</script>";
     } else if (!preg_match($email_pattern, $reg_email)) { //Email Match

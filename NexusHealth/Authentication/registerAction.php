@@ -15,7 +15,7 @@ function sendemail($reg_email, $reg_username, $verifytoken)
 {
     //Create an instance; passing `true` enables exceptions
     $mail = new PHPMailer(true);
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER; //Enable verbose debug output
+    // $mail->SMTPDebug = SMTP::DEBUG_SERVER; //Enable verbose debug output
     $mail->isSMTP(); //Send using SMTP
     $mail->SMTPAuth = true; //Enable SMTP authentication
 

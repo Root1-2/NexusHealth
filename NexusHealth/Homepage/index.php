@@ -33,11 +33,6 @@ include "../Database/connection.php";
             padding: 2% 5%;
         }
 
-        #heroes {
-            background: rgb(252, 252, 235);
-            background: linear-gradient(90deg, rgba(252, 252, 235, 1) 14%, rgba(255, 255, 236, 1) 31%, rgba(255, 255, 247, 1) 88%, rgba(255, 255, 243, 1) 100%);
-        }
-
         .transparent-input {
             background-color: transparent;
             outline: none;
@@ -67,7 +62,7 @@ include "../Database/connection.php";
                         </a>
 
                         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                            <li><a href="#" class="nav-link px-2 text-dark">Features</a></li>
+                            <li><a href="#features" class="nav-link px-2 text-dark">Features</a></li>
                             <li><a href="#" class="nav-link px-2 text-dark">Pricing</a></li>
                             <li><a href="#" class="nav-link px-2 text-dark">FAQs</a></li>
                             <li><a href="#" class="nav-link px-2 text-dark">About</a></li>
@@ -97,7 +92,7 @@ include "../Database/connection.php";
                                 </a>
                                 <ul class='dropdown-menu text-small'>
                                     <li><a class='dropdown-item' href='#'>Settings</a></li>
-                                    <li><a class='dropdown-item' href='#'>Profile</a></li>
+                                    <li><a class='dropdown-item' href='profile.php'>Profile</a></li>
                                     <li>
                                     <hr class='dropdown-divider'>
                                     </li>
@@ -133,46 +128,8 @@ include "../Database/connection.php";
     </section>
     <hr>
 
-    <!-- Features Section -->
-    <!-- <div class="container-fluid align-items-center p-5" style="background-color: #212539;">
-                <div class="row justify-content-center">
-                    <div class="col-md-2">
-                        <div class="card">
-                            <img src="../logo/3.jpg" class="card-img-top" alt="Image 1">
-                            <div class="card-body">
-                                <h5 class="card-title">Doctor Appoinments</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="card">
-                            <img src="../logo/4.jpg" class="card-img-top" alt="Image 2">
-                            <div class="card-body">
-                                <h5 class="card-title">Blood Bank</h5><br>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="card">
-                            <img src="../logo/5.jpg" class="card-img-top" alt="Image 3">
-                            <div class="card-body">
-                                <h5 class="card-title">Pharmacy</h5><br>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="card">
-                            <img src="../logo/6.jpg" class="card-img-top" alt="Image 4">
-                            <div class="card-body">
-                                <h5 class="card-title">Self-Diagnosis</h5><br>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
-    <!-- Feature Section 2 -->
-    <section>
+    <!-- Feature Section v2 -->
+    <section id="features">
         <div class="d-flex justify-content-center features">
             <!-- Horizontal Cards -->
             <div class="p-5">
@@ -193,24 +150,28 @@ include "../Database/connection.php";
                                 <img src="../logo/3.jpg" class="img-fluid rounded-start" alt="...">
                             </div>
                         </div>
+
                 </a>
             </div>
-            <div class="card horizontal-card mb-3 rounded-5" style="width: 35rem;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="../logo/4.jpg" class="img-fluid rounded-start" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="cardh bloodh card-title text-danger">Blood Bank</h5>
-                            <p class="cardp bloodp card-text">This is a wider card with supporting text
-                                below as a
-                                natural lead-in to additional content. This content is a little bit longer.
-                            </p>
+            <a href="../Blood Bank/bloodhome.php">
+                <div class="card horizontal-card mb-3 rounded-5" style="width: 35rem;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="../logo/4.jpg" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="cardh bloodh card-title text-danger">Blood Bank</h5>
+                                <p class="cardp bloodp card-text">This is a wider card with supporting text
+                                    below as a natural lead-in to additional content. This content is a little bit
+                                    longer.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
+
         </div>
         <!-- Vertical Cards -->
         <div class="d-flex px-3 py-5">

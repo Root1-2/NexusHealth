@@ -35,10 +35,10 @@
     <div class="dropdown">
         <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle='dropdown'
             aria-expanded='false'>
-            <img src=" <?php $row['profilepic'] ?>  " alt="" width="32" height="32" class="rounded-circle">
+            <img src=" <?php echo $row['profilepic'] ?>  " alt="" width="32" height="32" class="rounded-circle">
         </a>
         <ul class="dropdown-menu text-small">
-            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="../Homepage/profile.php">Profile</a></li>
             <li>
                 <hr class="dropdown-divider">
             </li>

@@ -1,12 +1,15 @@
 <?php
 
 session_start();
+
 if (!isset($_SESSION['userName'])) {
     echo "<script>alert('You have to Login First!!!')</script>";
     echo "<script>location.href='../Authentication/login.php'</script>";
 }
-include '../Database/connection.php'
-    ?>
+
+include '../Database/connection.php';
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,14 +27,14 @@ include '../Database/connection.php'
 <style>
     .container1 {
         background: #fafafa;
-
     }
 
     h3 {
         color: #e74c3c;
         margin-left: 30px;
     }
-    h2{
+
+    h2 {
         margin-left: 30px;
     }
 
@@ -46,7 +49,6 @@ include '../Database/connection.php'
 
     .benefits-list {
         list-style-type: none;
-        padding: ;
     }
 
     .benefits-list>li::before {
@@ -65,7 +67,7 @@ include '../Database/connection.php'
     <!-- Heroes Section -->
     <div class="bg-image img-fluid " style="
         background-image: url('../logo/Blood-Donation-1.jpg');
-        background-size: 100% auto;
+        background-size: 100%;
         height: 100vh;
     ">
         <?php include 'header.php' ?>
@@ -104,7 +106,7 @@ include '../Database/connection.php'
     <!-- Benefits Section  2-->
     <div class="container1 my-5 py-5 px-5">
         <div class="row pt-lg-5 d-flex flex-lg-row flex-column align-items-center">
-        <div class="col-lg-6 ">
+            <div class="col-lg-6 ">
                 <h3>POST-DONATION</h3>
                 <h2>Please call our Hotline immediately if you:</h2>
                 <ul class="benefits-list lead mt-4 justify ">
@@ -114,7 +116,7 @@ include '../Database/connection.php'
                     </li>
                     <li>are not sure that your blood is safe
                         develop a fever within 24 hours after donating; </li>
-                    <li>have any illness within two (2) weeks of your donation; or </li>
+                    <li>have any illness within two (2) weeks of your donation; </li>
                     <li>are diagnosed by a physician as having West Nile, dengue, chikungunya, Zika, or Ebola virus
                         Infection. </li>
 
@@ -124,11 +126,9 @@ include '../Database/connection.php'
             <div class="col-lg-5 offset-lg-1 p-0 mb-4">
                 <img class="rounded-lg-3 img-fluid" src="../logo/after donation.jpg" alt="Benefits of donation">
             </div>
-           
+
         </div>
     </div>
-
-
 
     <!-- Donor List -->
     <?php include '../Database/registerdata.php'; ?>
@@ -152,13 +152,14 @@ include '../Database/connection.php'
                 <td>" . $row['pNumber'] . "</td>
             </tr>";
                 }
-
                 ?>
             </tbody>
         </table>
     </div>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

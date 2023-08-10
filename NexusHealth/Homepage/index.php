@@ -171,8 +171,8 @@ include "../Database/connection.php";
                     </div>
                 </div>
             </a>
-
         </div>
+                    
         <!-- Vertical Cards -->
         <div class="d-flex px-3 py-5">
             <div class="card vertical-card rounded-5" style="width: 16rem;">

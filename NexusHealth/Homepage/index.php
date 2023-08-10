@@ -78,7 +78,7 @@ include "../Database/connection.php";
                         if (!isset($_SESSION['userName'])) {
                             echo "<div class='text-end'>
                             <a href='../Authentication/login.php'><button type='button'
-                                    class='btn btn-outline-light me-2'>Login</button></a>
+                                    class='btn me-2' style='background-color: #2fbfbf;'>Login</button></a>
                             <a href='../Authentication/register.php'><button type='button' class='btn btn-warning'>Sign-up</button></a>
                         </div>";
                             // Profile Section appear when there is session.

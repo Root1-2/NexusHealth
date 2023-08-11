@@ -44,7 +44,7 @@ include '../Database/sessionUserData.php'
                             
                     
                             <div class="d-flex justify-content-center mb-2">
-                                <button type="button" class="btn btn-outline-primary ms-1">Upload Profile</button>
+                                <button type="button" class="btn btn-outline-primary ms-1 disabled">Upload Profile</button>
                             </div>
                         </div>
                     </div>
@@ -134,7 +134,7 @@ include '../Database/sessionUserData.php'
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <p class="mb-0">Bload Group</p>
+                                    <p class="mb-0">Blood Group</p>
                                 </div>
                                 <div class="col-sm-9">
                                     <p class="text-muted mb-0"><?php echo $row['bloodGroup']?></p>

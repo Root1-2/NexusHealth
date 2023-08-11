@@ -14,30 +14,30 @@
 </head>
 
 <body>
-    <br><br><br><br><br>
+    <br><br><br>
     <section>
-        <div class="container-fluid py-5">
+        <div class="container-fluid ">
             <div class="row d-flex justify-content-center align-items-center">
-                <div class="mt-5 col-md-9 col-lg-6 col-xl-5">
-                    <a href="../Homepage/index.php"><img src="../logo/1w.jpg" class="img-fluid" alt="Sample image" style="width:450px"></a>
+                <div class="mt-0 col-md-9 col-lg-6 col-xl-5">
+                    <a href="../Homepage/index.php"><img src="../logo/1w.jpg" class="img-fluid" alt="Sample image"
+                            style="width:450px"></a>
                 </div>
 
                 <div class="col-md-8 col-lg-6 col-xl-4 pt-2">
                     <div class="border border-2 border-info-subtle rounded p-5 shadow-lg">
                         <form action="loginAction.php" method="POST">
                             <div class="py-5 text-center">
-                                <span class="font" style="font-size: 30px; padding: 10px 140px;">Sign-In</span>
+                                <span class="font" style="font-size: 30px; padding: 10px 130px;">Sign-In</span>
                             </div>
 
                             <div class="form-outline">
-                            <label class="form-label" for="form12">Username or Email</label>
-                                <input type="text" id="form12" class="form-control" name="l_username"/>
+                                <label class="form-label">Username or Email</label>
+                                <input type="text" id="form12" class="form-control" name="l_username" />
                             </div>
 
                             <div class="form-outline mb-3">
                                 <label class="form-label">Password</label>
-                                <input type="password" name="l_pass" class="form-control form-control-lg"
-                                    placeholder="Enter password" required>
+                                <input type="password" name="l_pass" class="form-control" required>
                             </div>
 
                             <div class="d-flex justify-content-between align-items-center">

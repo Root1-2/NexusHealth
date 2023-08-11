@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 if(!isset($_SESSION['userName'])) {
     echo "<script>alert('Please Login First!')</script>";
@@ -7,7 +6,6 @@ if(!isset($_SESSION['userName'])) {
 }
 include "../Database/connection.php";
 include "../Database/sessionUserData.php";
-
 ?>
 
 <!DOCTYPE html>
@@ -39,11 +37,11 @@ include "../Database/sessionUserData.php";
 
 <body>
     <div class="container-fluid">
-        <div class="d-flex flew-row flex-wrap">
+        <div class="d-flex flew-row">
             <?php include 'sidebar.php'; ?>
 
             <!-- Dashboard Section -->
-            <div class="px-3 px-lg-5 py-3" style="flex: 1;">
+            <div class="px-5 py-3" style="width: 100%;">
                 <div>
                     <i class="bi bi-speedometer dashicon display-6 me-2"></i>
                     <span class="display-5 slide-in-from-left">Dashboard Overview</span>
@@ -91,7 +89,12 @@ include "../Database/sessionUserData.php";
                         </div>
                     </div>
                 </div>
+
+
             </div>
+
+
+
         </div>
     </div>
 

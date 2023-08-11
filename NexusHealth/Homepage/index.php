@@ -46,6 +46,15 @@ include "../Database/connection.php";
         .card {
             opacity: .8;
         }
+
+        .img1 {
+            transition: transform .2s;
+
+        }
+
+        .img1:hover {
+            transform: scale(1.1);
+        }
     </style>
 
 </head>
@@ -68,10 +77,7 @@ include "../Database/connection.php";
                             <li><a href="#" class="nav-link px-2 text-dark">About</a></li>
                         </ul>
 
-                        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                            <input type="search" class="form-control transparent-input" placeholder="Search..."
-                                aria-label="Search">
-                        </form>
+
 
                         <!-- Login-Signup visible when there is no session. -->
                         <?php
@@ -172,7 +178,7 @@ include "../Database/connection.php";
                 </div>
             </a>
         </div>
-                    
+
         <!-- Vertical Cards -->
         <div class="d-flex px-3 py-5">
             <div class="card vertical-card rounded-5" style="width: 16rem;">
@@ -197,7 +203,7 @@ include "../Database/connection.php";
     </section>
 
     <!-- Carousel Section -->
-    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+    <!-- <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img class="d-block w-100 carousel-image" src="../logo/7.jpg" alt="...">
@@ -232,29 +238,32 @@ include "../Database/connection.php";
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-    <hr>
-     <!-- About us section -->
+    <hr> -->
+    <!-- About us section -->
     <section id="about">
         <div class="container my-5">
-            <div class="row p- pb-0 pe-lg-0 pt-lg-4 align-items-center rounded-3 border shadow-lg">
-            <div class="col-lg-6 ">
-                <h3>Dengue Symptoms:</h3>
-                <ul class="benefits-list lead mt-4 justify ">
-                    <li>High fever, which might be continuous or intermittent.
-                    </li>
-                    <li>Severe headaches.
-                    </li>
-                    <li>Pain behind the eyes </li>
-                    <li>Nausea and vomiting. </li>
-                    <li>Fatigue and tiredness. </li>
-                    <li>Muscle, bone, and joint pain.</li>
-                    <li>Skin rash, which might spread to most parts of the body. </li>
-                    <li>Mild bleeding, such as nosebleeds, gum bleeding, or easy bruising.</li>
-                </ul>
 
-            </div>
+            <div class="row pt-lg-3 align-items-center rounded-3 border shadow-lg">
+
+            <h3>Currently Widepread Health Condition</h3>
+                <div class="col-lg-6 ">
+                    <h4>Dengue Symptoms:</h4>
+                    <ul class="benefits-list lead mt-4 justify ">
+                        <li>High fever, which might be continuous or intermittent.
+                        </li>
+                        <li>Severe headaches.
+                        </li>
+                        <li>Pain behind the eyes </li>
+                        <li>Nausea and vomiting. </li>
+                        <li>Fatigue and tiredness. </li>
+                        <li>Muscle, bone, and joint pain.</li>
+                        <li>Skin rash, which might spread to most parts of the body. </li>
+                        <li>Mild bleeding, such as nosebleeds, gum bleeding, or easy bruising.</li>
+                    </ul>
+
+                </div>
                 <div class="col-lg-4 offset-lg-1 p-0 mb-4">
-                <img class="rounded-lg-3 img-fluid" src="../logo/dengue prevention.jpg" alt="dengue prevention">
+                    <img class="rounded-lg-3 img-fluid img1" src="../logo/dengue prevention.jpg" alt="dengue prevention">
                 </div>
             </div>
         </div>

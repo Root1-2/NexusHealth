@@ -1,7 +1,18 @@
 <?php
+include '../Database/connection.php';
 
-if(!isset($_GET['token'])) {
+if (!isset($_GET['token'])) {
     echo "<script>alert('Not Accessible!')</script>";
+    echo "<script>location.href='login.php'</script>";
+}
+
+
+
+$userDataQuery = mysqli_query($conn, "SELECT * FROM register WHERE email = '{$_GET['email']}'");
+$row = mysqli_fetch_array($userDataQuery);
+
+if ($_GET['token'] !== $row['verifytoken']) {
+    echo "<script>alert('Link Has Been Expired. Please Reset Again!')</script>";
     echo "<script>location.href='login.php'</script>";
 }
 
@@ -39,11 +50,12 @@ if(!isset($_GET['token'])) {
 
                         <div class="col-lg-8 mb-3">
                             <label>Email Address</label>
-                            <input class="form-control mt-3" type="email" name="email" value="<?php echo $_GET['email'] ?>" readonly Required>
+                            <input class="form-control mt-3" type="email" name="email"
+                                value="<?php echo $_GET['email'] ?>" readonly Required>
                         </div>
 
                         <div class="col-lg-8 mb-3">
-                            <label>Password</label>
+                            <label>New Password</label>
                             <input class="form-control mt-3" type="password" name="newPass" Required>
                         </div>
 
@@ -53,7 +65,8 @@ if(!isset($_GET['token'])) {
                         </div>
                         <hr class="my-4">
 
-                        <button class="w-100 btn btn-outline-success btn-lg" type="submit" name="updatebtn">Update Password</button>
+                        <button class="w-100 btn btn-outline-success btn-lg" type="submit" name="updatebtn">Update
+                            Password</button>
                     </form>
                 </div>
 

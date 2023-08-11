@@ -233,6 +233,35 @@ include "../Database/connection.php";
         </button>
     </div>
     <hr>
+     <!-- About us section -->
+    <section id="about">
+        <div class="container my-5">
+            <div class="row p- pb-0 pe-lg-0 pt-lg-4 align-items-center rounded-3 border shadow-lg">
+            <div class="col-lg-6 ">
+                <h3>Dengue Symptoms:</h3>
+                <ul class="benefits-list lead mt-4 justify ">
+                    <li>High fever, which might be continuous or intermittent.
+                    </li>
+                    <li>Severe headaches.
+                    </li>
+                    <li>Pain behind the eyes </li>
+                    <li>Nausea and vomiting. </li>
+                    <li>Fatigue and tiredness. </li>
+                    <li>Muscle, bone, and joint pain.</li>
+                    <li>Skin rash, which might spread to most parts of the body. </li>
+                    <li>Mild bleeding, such as nosebleeds, gum bleeding, or easy bruising.</li>
+                </ul>
+
+            </div>
+                <div class="col-lg-4 offset-lg-1 p-0 mb-4">
+                <img class="rounded-lg-3 img-fluid" src="../logo/dengue prevention.jpg" alt="dengue prevention">
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+    <hr>
     <!-- Footer Section -->
     <div class="container">
         <footer class="py-3 my-4">

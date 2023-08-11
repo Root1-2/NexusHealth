@@ -9,8 +9,6 @@ img {
     --c: #4ECDC4;         /* the color */
 
     width: var(--s);
-    outline: calc(var(--s)/2) solid #0009;
-    outline-offset: calc(var(--s)/-2);
     cursor: pointer;
     transition: .3s;
 }
@@ -18,10 +16,6 @@ img {
 img:hover {
     outline: var(--b) solid var(--c);
     outline-offset: var(--g);
-}
-
-img+img {
-    border-radius: 50%;
 }
 
 /* Text Animation */

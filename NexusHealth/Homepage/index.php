@@ -145,10 +145,9 @@ include "../Database/connection.php";
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <h5 class="cardh card-title text-primary">Doctor Appointment</h5>
-                                    <p class="cardp card-text">This is a wider card with supporting text below
-                                        as a
-                                        natural lead-in to additional content. This content is a little bit
-                                        longer.
+                                    <p class="cardp card-text text-dark">Offer dedicated time with
+                                        medical professionals for comprehensive health assessments, diagnosis, and
+                                        treatment recommendations.
                                     </p>
                                 </div>
                             </div>
@@ -156,7 +155,6 @@ include "../Database/connection.php";
                                 <img src="../logo/3.jpg" class="img-fluid rounded-start" alt="...">
                             </div>
                         </div>
-
                 </a>
             </div>
             <a href="../Blood Bank/bloodhome.php">
@@ -168,9 +166,9 @@ include "../Database/connection.php";
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="cardh bloodh card-title text-danger">Blood Bank</h5>
-                                <p class="cardp bloodp card-text">This is a wider card with supporting text
-                                    below as a natural lead-in to additional content. This content is a little bit
-                                    longer.
+                                <p class="cardp bloodp card-text">Collect, store, and distribute donated
+                                    blood to hospitals, ensuring a vital supply for surgeries, trauma care, and medical
+                                    conditions.
                                 </p>
                             </div>
                         </div>
@@ -178,6 +176,27 @@ include "../Database/connection.php";
                 </div>
             </a>
         </div>
+
+        <!-- Vertical Cards -->
+        <div class="d-flex px-3 py-5">
+            <div class="card vertical-card rounded-5" style="width: 16rem;">
+                <img src="../logo/5.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="cardh card-title text-success">Med Corner</h5>
+                    <p class="cardp card-text">Offer the convenience of ordering prescription and
+                        medications from the comfort of one's home</p>
+                </div>
+            </div>
+            <div class="card vertical-card ms-5 rounded-5" style="width: 16rem;">
+                <img src="../logo/6.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="cardh card-title text-primary">Self-Diagnosis</h5>
+                    <p class="cardp card-text">Provides individuals with digital tools to assess their symptoms and
+                        potential health conditions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
         <!-- Vertical Cards -->
         <div class="d-flex px-3 py-5">

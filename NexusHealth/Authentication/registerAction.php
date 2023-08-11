@@ -2,50 +2,6 @@
 
 include '../Database/connection.php';
 
-//Import PHPMailer classes into the global namespace
-//These must be at the top of your script, not inside a function
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-
-//Load Composer's autoloader
-require '../vendor/autoload.php';
-
-function sendemail($reg_email, $reg_username, $verifytoken)
-{
-    //Create an instance; passing `true` enables exceptions
-    $mail = new PHPMailer(true);
-    // $mail->SMTPDebug = SMTP::DEBUG_SERVER; //Enable verbose debug output
-    $mail->isSMTP(); //Send using SMTP
-    $mail->SMTPAuth = true; //Enable SMTP authentication
-
-    $mail->Host = 'smtp.gmail.com'; //Set the SMTP server to send through
-    $mail->Username = 'masterseo.aak@gmail.com'; //SMTP username
-    $mail->Password = 'djkcatfvlhxlpdvz'; //SMTP password
-
-    $mail->SMTPSecure = 'ssl'; //Enable implicit TLS encryption
-    $mail->Port = 465; //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-
-    //Recipients
-    $mail->setFrom('from@example.com', 'NEXUSHEALTH');
-    $mail->addAddress($reg_email); //Add a recipient
-
-    //Content
-    $mail->isHTML(true); //Set email format to HTML
-    $mail->Subject = 'Email Verfification';
-    $email_template = "
-         <h2>You have create an account successfully</h2>
-         <h4>Verify your email address using the below given Link</h4>
-         <br><br>
-         <a href='http://localhost/Auth/verifyemail.php?token=$verifytoken'>Verification Link</a>
-     ";
-
-    $mail->Body = $email_template;
-
-    $mail->send();
-    echo 'Message has been sent';
-}
-
 if (isset($_POST['signup'])) {
     $reg_firstName = ucwords($_POST['fname']);
     $reg_lastName = ucfirst($_POST['lname']);
@@ -59,7 +15,7 @@ if (isset($_POST['signup'])) {
     $reg_address = $_POST['address'];
     $reg_city = $_POST['city'];
     $reg_weight = $_POST['weight'] . "kg";
-    $reg_height = $_POST['height'];
+    $reg_height = $_POST['ftheight'] . "ft" . $_POST['inheight'] . "in";
     $reg_blood = $_POST['blood'];
     $verifytoken = md5(rand());
     
@@ -75,8 +31,6 @@ if (isset($_POST['signup'])) {
 
     $dupe_userName = mysqli_query($conn, "SELECT * FROM `register` WHERE userName = '$reg_userName'");
     $dupe_email = mysqli_query($conn, "SELECT * FROM `register` WHERE email = '$reg_email'");
-
-
 
     if (!preg_match($firstName_pattern, $reg_firstName)) { //firstName Match
         echo "<script>alert('Invalid Firstname!!')</script>";
@@ -110,7 +64,6 @@ if (isset($_POST['signup'])) {
             die("Not Inserted!!");
         } else {
             include 'sendmail.php';
-            // sendemail("$reg_email", "$reg_userName", "$verifytoken");
             echo "<script>alert('Account Created Successfully!')</script>";
             echo "<script>location.href='login.php'</script>";
         }

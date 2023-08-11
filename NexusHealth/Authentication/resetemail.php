@@ -24,17 +24,17 @@ $mail->Port = 465; //TCP port to connect to; use 587 if you have set `SMTPSecure
 
 //Recipients
 $mail->setFrom('from@example.com', 'NEXUSHEALTH');
-$mail->addAddress($reg_email); //Add a recipient
+$mail->addAddress($email); //Add a recipient
 
 //Content
 $mail->isHTML(true); //Set email format to HTML
 $mail->Subject = 'Email Verfification';
 $email_template = "
-         <h2>You have create an account successfully</h2>
-         <h4>Verify your email address using the below given Link</h4>
+         <h3>You are receiving this email because you requested for a reset password for your account</h3>
+         <h3>If you haven't request for a reset password, please ignore this email or delete it.</h3>
          <br><br>
-         <a href='http://localhost/NexusHealth/Authentication/verifytoken.php?token=$verifytoken'>Verification Link</a>
-     ";
+         <a href='http://localhost/NexusHealth/Authentication/forgotPassChange.php?token=$forgetToken&email=$email'>Click for Resetting your Password</a>
+        ";
 
 $mail->Body = $email_template;
 

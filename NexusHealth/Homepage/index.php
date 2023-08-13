@@ -197,30 +197,6 @@ include "../Database/connection.php";
             </div>
         </div>
     </section>
-
-        <!-- Vertical Cards -->
-        <div class="d-flex px-3 py-5">
-            <div class="card vertical-card rounded-5" style="width: 16rem;">
-                <img src="../logo/5.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="cardh card-title text-success">Med Corner</h5>
-                    <p class="cardp card-text">Some quick example text to build on the card title and make
-                        up the
-                        bulk of the card's content.</p>
-                </div>
-            </div>
-            <div class="card vertical-card ms-5 rounded-5" style="width: 16rem;">
-                <img src="../logo/6.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="cardh card-title text-primary">Self-Diagnosis</h5>
-                    <p class="cardp card-text">Some quick example text to build on the card title and make
-                        up the
-                        bulk of the card's content.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Carousel Section -->
     <!-- <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">

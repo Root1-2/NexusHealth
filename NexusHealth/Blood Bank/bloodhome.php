@@ -1,15 +1,12 @@
 <?php
 
 session_start();
-
 if (!isset($_SESSION['userName'])) {
     echo "<script>alert('You have to Login First!!!')</script>";
     echo "<script>location.href='../Authentication/login.php'</script>";
 }
-
-include '../Database/connection.php';
-
-?>
+include '../Database/connection.php'
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,57 +15,56 @@ include '../Database/connection.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blood Bank</title>
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
 
-</head>
+    <style>
+        .container1 {
+            background: #fafafa;
 
-<style>
-    .container1 {
-        background: #fafafa;
-    }
+        }
 
-    h3 {
-        color: #e74c3c;
-        margin-left: 30px;
-    }
+        h3 {
+            color: #e74c3c;
+            margin-left: 30px;
+        }
 
-    h2 {
-        margin-left: 30px;
-    }
+        h2 {
+            margin-left: 30px;
+        }
 
-    img {
-        transition: transform .2s;
+        img {
+            transition: transform .2s;
 
-    }
+        }
 
-    img:hover {
-        transform: scale(1.1);
-    }
+        img:hover {
+            transform: scale(1.1);
+        }
 
-    .benefits-list {
-        list-style-type: none;
-    }
+        .benefits-list {
+            list-style-type: none;
+            padding: ;
+        }
 
-    .benefits-list>li::before {
-        content: "✔️";
-        color: #2ecc71;
-        margin-right: 5px;
-    }
+        .benefits-list>li::before {
+            content: "✔️";
+            color: #2ecc71;
+            margin-right: 5px;
+        }
 
-    .justify {
-        text-align: justify;
-    }
-</style>
+        .justify {
+            text-align: justify;
+        }
+    </style>
 
 <body>
 
     <!-- Heroes Section -->
-    <div class="bg-image img-fluid " style="
+    <div class="bg-image img-fluid" style="
         background-image: url('../logo/Blood-Donation-1.jpg');
-        background-size: 100%;
+        background-size: 100% auto;
         height: 100vh;
     ">
         <?php include 'header.php' ?>
@@ -113,7 +109,7 @@ include '../Database/connection.php';
     </section>
 
     <!-- Benefits Section -->
-    <div class="container1 my-5 py-5 px-5">
+    <div class="container1 py-5 px-5">
         <div class="row pt-lg-5 d-flex flex-lg-row flex-column align-items-center">
             <div class="col-lg-5 offset-lg-1 p-0 mb-4">
                 <img class="rounded-lg-3 img-fluid" src="../logo/Benefitsdonation.jpg" alt="Benefits of donation">
@@ -142,7 +138,7 @@ include '../Database/connection.php';
     </div>
 
     <!-- Benefits Section  2-->
-    <div class="container1 my-5 py-5 px-5">
+    <div class="container1  py-5 px-5">
         <div class="row pt-lg-5 d-flex flex-lg-row flex-column align-items-center">
             <div class="col-lg-6 ">
                 <h3>POST-DONATION</h3>
@@ -154,7 +150,7 @@ include '../Database/connection.php';
                     </li>
                     <li>are not sure that your blood is safe
                         develop a fever within 24 hours after donating; </li>
-                    <li>have any illness within two (2) weeks of your donation; </li>
+                    <li>have any illness within two (2) weeks of your donation; or </li>
                     <li>are diagnosed by a physician as having West Nile, dengue, chikungunya, Zika, or Ebola virus
                         Infection. </li>
 
@@ -167,6 +163,8 @@ include '../Database/connection.php';
 
         </div>
     </div>
+
+
 
     <!-- Donor List -->
     <?php include '../Database/registerdata.php'; ?>
@@ -190,14 +188,16 @@ include '../Database/connection.php';
                 <td>" . $row['pNumber'] . "</td>
             </tr>";
                 }
+
                 ?>
             </tbody>
         </table>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
+
 </body>
 
 </html>

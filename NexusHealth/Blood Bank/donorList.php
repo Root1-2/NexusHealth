@@ -1,3 +1,15 @@
+<?php
+
+session_start();
+
+if (!isset($_SESSION['userName'])) {
+    echo "<script>alert('You have to Login First!!!')</script>";
+    echo "<script>location.href='../Authentication/login.php'</script>";
+}
+
+include '../Database/connection.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,28 +19,38 @@
     <title>Donor List</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 </head>
 
 <body>
     <?php include 'header.php' ?>
 
-    <?php include '../Database/connection.php' ?>
-    <?php include '../Database/donordata.php' ?>
-
     <!-- Blood Group Category -->
-    <section class="p-5 mt-2 ms-2 d-flex flex-wrap gap-3">
-        <button type="button" class="btn btn-outline-danger rounded-pill">A+</button>
-        <button type="button" class="btn btn-outline-danger rounded-pill">A-</button>
-        <button type="button" class="btn btn-outline-danger rounded-pill">B+</button>
-        <button type="button" class="btn btn-outline-danger rounded-pill">B-</button>
-        <button type="button" class="btn btn-outline-danger rounded-pill">AB+</button>
-        <button type="button" class="btn btn-outline-danger rounded-pill">AB-</button>
-        <button type="button" class="btn btn-outline-danger rounded-pill">O+</button>
-        <button type="button" class="btn btn-outline-danger rounded-pill">O-</button>
-    </section>
+    <form id="filterForm" method="post">
+        <section class="p-5 mt-2 ms-2 d-flex flex-wrap gap-3">
+            <button type="submit" class="btn btn-outline-danger rounded-pill filter-button" name="bloodGroup"
+                value="A+">A+</button>
+            <button type="submit" class="btn btn-outline-danger rounded-pill filter-button" name="bloodGroup"
+                value="A-">A-</button>
+            <button type="submit" class="btn btn-outline-danger rounded-pill filter-button" name="bloodGroup"
+                value="B+">B+</button>
+            <button type="submit" class="btn btn-outline-danger rounded-pill filter-button" name="bloodGroup"
+                value="B-">B-</button>
+            <button type="submit" class="btn btn-outline-danger rounded-pill filter-button" name="bloodGroup"
+                value="AB+">AB+</button>
+            <button type="submit" class="btn btn-outline-danger rounded-pill filter-button" name="bloodGroup"
+                value="AB-">AB-</button>
+            <button type="submit" class="btn btn-outline-danger rounded-pill filter-button" name="bloodGroup"
+                value="O+">O+</button>
+            <button type="submit" class="btn btn-outline-danger rounded-pill filter-button" name="bloodGroup"
+                value="O-">O-</button>
+        </section>
+    </form>
 
     <div class="p-5">
-        <table class="table align-middle mb-0 bg-white">
+        <table id="dtBasicExample" class="table align-middle mb-0 bg-white">
             <thead class="bg-light">
                 <tr>
                     <th>Name</th>
@@ -38,37 +60,88 @@
                 </tr>
             </thead>
             <tbody>
-                <?php while ($row = mysqli_fetch_array($donordata)) {
-                    echo "<tr>
-                    <td>
-                        <div class='d-flex align-items-center'>
-                            <div>
-                                <p class='fw-bold mb-1'>" . $row['Name'] . " </p>
-                                <p class='text-muted mb-0'>" . $row['Phone number'] . " </p>
+                <?php
+                if (isset($_POST['bloodGroup'])) {
+                    $bloodGroup = $_POST['bloodGroup'];
+                    $donordata = mysqli_query($conn, "SELECT * FROM `donor_list` WHERE `BloodGroup` = '$bloodGroup' ORDER By Name");
+                } else {
+                    $donordata = mysqli_query($conn, "SELECT * FROM `donor_list` ORDER By Name");
+                }
+
+                while ($row = mysqli_fetch_array($donordata)) {
+                    echo "
+                    <tr>
+                        <td>
+                            <div class='d-flex align-items-center'>
+                                <div>
+                                    <p class='fw-bold mb-1'>" . $row['Name'] . " </p>
+                                    <p class='text-muted mb-0'>" . $row['Phone number'] . " </p>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                    <td>
-                        <p class='fw-normal badge text-bg-danger rounded-pill d-inline mb-1'>" . $row['BloodGroup'] . " </p>
-                    </td>
-                    <td>" . $row['Address'] . "</td>
-                    <td>
-                        <span class='badge text-bg-success rounded-pill d-inline'>" . $row['Address'] . "</span>
-                    </td>
-                    
-                </tr> ";
+                        </td>
+                        <td>
+                            <p class='fw-normal badge text-bg-danger rounded-pill d-inline mb-1'>" . $row['BloodGroup'] . " </p>
+                        </td>
+                        <td>" . $row['Address'] . "</td>
+                        <td>
+                            <span class='badge text-bg-success rounded-pill d-inline'></span>
+                        </td>
+                    </tr> ";
                 }
 
                 ?>
-
             </tbody>
         </table>
     </div>
 
-
-    <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const filterButtons = document.querySelectorAll('.filter-button');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const bloodGroup = this.value; // Use 'value' instead of 'data-bloodgroup'
+
+                    // Send an AJAX request to fetch data based on the selected blood group
+                    sendAjaxRequest(bloodGroup);
+                });
+            });
+
+            function sendAjaxRequest(bloodGroup = '') {
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', 'filter_donors.php', true);
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        // Update the table with the filtered data using DataTables
+                        $('#donorTable').DataTable().destroy(); // Destroy the previous DataTable instance
+                        const tableBody = document.querySelector('tbody');
+                        tableBody.innerHTML = xhr.responseText;
+                        $('#donorTable').DataTable(); // Reinitialize DataTable
+                    }
+                };
+
+                // Include 'bloodGroup' as a parameter in the request
+                xhr.send('bloodGroup=' + bloodGroup);
+            }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#dtBasicExample').DataTable();
+        });
+    </script>
+
+    <script>
+        var $ = jQuery.noConflict();
+    </script>
 </body>
 
 </html>

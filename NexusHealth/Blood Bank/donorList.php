@@ -17,40 +17,49 @@ include '../Database/connection.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donor List</title>
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-    <script type="text/javascript" charset="utf8"
-        src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <!-- DataTable -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" />
+    <script defer src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script defer src="temp.js"></script>
 </head>
 
 <body>
     <?php include 'header.php' ?>
 
     <!-- Blood Group Category -->
-    <form id="filterForm" method="post">
-        <section class="p-5 mt-2 ms-2 d-flex flex-wrap gap-3">
-            <button type="submit" class="btn btn-outline-danger rounded-pill filter-button" name="bloodGroup"
-                value="A+">A+</button>
-            <button type="submit" class="btn btn-outline-danger rounded-pill filter-button" name="bloodGroup"
-                value="A-">A-</button>
-            <button type="submit" class="btn btn-outline-danger rounded-pill filter-button" name="bloodGroup"
-                value="B+">B+</button>
-            <button type="submit" class="btn btn-outline-danger rounded-pill filter-button" name="bloodGroup"
-                value="B-">B-</button>
-            <button type="submit" class="btn btn-outline-danger rounded-pill filter-button" name="bloodGroup"
-                value="AB+">AB+</button>
-            <button type="submit" class="btn btn-outline-danger rounded-pill filter-button" name="bloodGroup"
-                value="AB-">AB-</button>
-            <button type="submit" class="btn btn-outline-danger rounded-pill filter-button" name="bloodGroup"
-                value="O+">O+</button>
-            <button type="submit" class="btn btn-outline-danger rounded-pill filter-button" name="bloodGroup"
-                value="O-">O-</button>
-        </section>
-    </form>
+    <div class="container">
+        <form id="filterForm" method="post">
+            <section class="pt-5 pb-4 d-flex flex-wrap gap-3">
+                <button type="submit" class="btn btn-outline-danger rounded-pill filter-button" name="bloodGroup"
+                    value="A+">A+</button>
+                <button type="submit" class="btn btn-outline-danger rounded-pill filter-button" name="bloodGroup"
+                    value="A-">A-</button>
+                <button type="submit" class="btn btn-outline-danger rounded-pill filter-button" name="bloodGroup"
+                    value="B+">B+</button>
+                <button type="submit" class="btn btn-outline-danger rounded-pill filter-button" name="bloodGroup"
+                    value="B-">B-</button>
+                <button type="submit" class="btn btn-outline-danger rounded-pill filter-button" name="bloodGroup"
+                    value="AB+">AB+</button>
+                <button type="submit" class="btn btn-outline-danger rounded-pill filter-button" name="bloodGroup"
+                    value="AB-">AB-</button>
+                <button type="submit" class="btn btn-outline-danger rounded-pill filter-button" name="bloodGroup"
+                    value="O+">O+</button>
+                <button type="submit" class="btn btn-outline-danger rounded-pill filter-button" name="bloodGroup"
+                    value="O-">O-</button>
+            </section>
+        </form>
+    </div>
 
-    <div class="p-5">
-        <table id="dtBasicExample" class="table align-middle mb-0 bg-white">
+
+
+    <div class="container">
+        <table id="donorTable" class="table align-middle mb-0 bg-white">
             <thead class="bg-light">
                 <tr>
                     <th>Name</th>
@@ -94,11 +103,6 @@ include '../Database/connection.php';
         </table>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-        crossorigin="anonymous"></script>
-
-
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -133,15 +137,9 @@ include '../Database/connection.php';
         });
     </script>
 
-    <script>
-        $(document).ready(function () {
-            $('#dtBasicExample').DataTable();
-        });
-    </script>
-
-    <script>
-        var $ = jQuery.noConflict();
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

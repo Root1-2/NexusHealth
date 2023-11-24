@@ -6,6 +6,9 @@ if(!isset($_SESSION['userName'])) {
 }
 include "../Database/connection.php";
 include "../Database/sessionUserData.php";
+
+unset($_SESSION['doctorList']);
+$_SESSION['doctorHome'] = 1;
 ?>
 
 <!DOCTYPE html>

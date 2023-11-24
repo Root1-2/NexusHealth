@@ -7,35 +7,37 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-            <a href="#" class="nav-link active" aria-current="page">
-                <i class="bi bi-speedometer me-2" width="16" height="16"></i>
-                <span>Dashboard</span>
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link link-body-emphasis">
-                <i class="bi bi bi-calendar3 me-2" width="16" height="16"></i>
-                Appointments
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link link-body-emphasis">
-                <i class="bi bi-file-medical me-2" width="16" height="16"></i>
-                Doctors
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link link-body-emphasis">
-                <i class="bi bi-speedometer me-2" width="16" height="16"></i>
-                Customers
-            </a>
-        </li>
-    </ul>
-    <hr>
-    <div class="dropdown">
-        <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle='dropdown'
-            aria-expanded='false'>
-            <img src=" <?php echo $row['profilepic'] ?>  " alt="" width="32" height="32" class="rounded-circle">
+            <a href="doctorhome.php" class="nav-link <?php if (isset($_SESSION['doctorHome']))
+                echo "active" ?>" aria-current="page">
+                    <i class="bi bi-speedometer me-2" width="16" height="16"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-body-emphasis">
+                    <i class="bi bi bi-calendar3 me-2" width="16" height="16"></i>
+                    Appointments
+                </a>
+            </li>
+            <li>
+                <a href="doctorList.php" class="nav-link link-body-emphasis <?php if (isset($_SESSION['doctorList']))
+                echo "active" ?>">
+                    <i class="bi bi-file-medical me-2" width="16" height="16"></i>
+                    Doctors
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-body-emphasis">
+                    <i class="bi bi-speedometer me-2" width="16" height="16"></i>
+                    Customers
+                </a>
+            </li>
+        </ul>
+        <hr>
+        <div class="dropdown">
+            <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle='dropdown'
+                aria-expanded='false'>
+                <img src=" <?php echo $row['profilepic'] ?>  " alt="" width="32" height="32" class="rounded-circle">
         </a>
         <ul class="dropdown-menu text-small">
             <li><a class="dropdown-item" href="../Homepage/profile.php">Profile</a></li>

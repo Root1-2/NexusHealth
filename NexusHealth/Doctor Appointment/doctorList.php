@@ -76,74 +76,70 @@ $_SESSION['doctorList'] = 1;
                             Select Department
                         </button>
                         <ul class="dropdown-menu" style="max-height: 30rem; overflow-y: auto;">
-                            <li><a class="dropdown-item" href="#">Anaesthesia</a></li>
-                            <li><a class="dropdown-item" href="#">Blood Bank</a></li>
-                            <li><a class="dropdown-item" href="#">Breast, Colorectal & Laparoscopic Surgery</a></li>
-                            <li><a class="dropdown-item" href="#">Cardiac surgery</a></li>
-                            <li><a class="dropdown-item" href="#">Cardiology</a></li>
-                            <li><a class="dropdown-item" href="#">Clinical Hematology</a></li>
-                            <li><a class="dropdown-item" href="#">Colorectal Surgery</a></li>
-                            <li><a class="dropdown-item" href="#">Corporate Affairs Department</a></li>
-                            <li><a class="dropdown-item" href="#">Dental and Maxillofacial Surgery</a></li>
-                            <li><a class="dropdown-item" href="#">Dermatology</a></li>
-                            <li><a class="dropdown-item" href="#">Diabetes & Endocrinology</a></li>
-                            <li><a class="dropdown-item" href="#">EMERGENCY</a></li>
-                            <li><a class="dropdown-item" href="#">ENT, Head & Neck Surgery</a></li>
-                            <li><a class="dropdown-item" href="#">Gastroenterology & Hepatology</a></li>
-                            <li><a class="dropdown-item" href="#">General & Laparoscopic Surgery</a></li>
-                            <li><a class="dropdown-item" href="#">Health Check Up</a></li>
-                            <li><a class="dropdown-item" href="#">Hepatobiliary & Pancreatic Surgery</a></li>
-                            <li><a class="dropdown-item" href="#">ICU</a></li>
-                            <li><a class="dropdown-item" href="#">Internal Medicine</a></li>
-                            <li><a class="dropdown-item" href="#">Laboratory Medicine</a></li>
-                            <li><a class="dropdown-item" href="#">MRD SERVICES</a></li>
-                            <li><a class="dropdown-item" href="#">Nephrology Neurology</a></li>
-                            <li><a class="dropdown-item" href="#">Neurosurgery</a></li>
-                            <li><a class="dropdown-item" href="#">NICU</a></li>
-                            <li><a class="dropdown-item" href="#">Nutrition & Dietetic Department</a></li>
-                            <li><a class="dropdown-item" href="#">Obstetrics & Gynecology</a></li>
-                            <li><a class="dropdown-item" href="#">Oncology</a></li>
-                            <li><a class="dropdown-item" href="#">Orthopedics, Arthoscopy & Joint Replacement</a>
-                            </li>
-                            <li><a class="dropdown-item" href="#">Pediatric & Neonatology</a></li>
-                            <li><a class="dropdown-item" href="#">Pediatric Surgery</a></li>
-                            <li><a class="dropdown-item" href="#">Physical Medicine</a></li>
-                            <li><a class="dropdown-item" href="#">Plastic & Aesthetic Surgery</a></li>
-                            <li><a class="dropdown-item" href="#">Psychiatry</a></li>
-                            <li><a class="dropdown-item" href="#">Radiology & Imaging</a></li>
-                            <li><a class="dropdown-item" href="#">Respiratory Medicine</a></li>
-                            <li><a class="dropdown-item" href="#">Rheumatology</a></li>
-                            <li><a class="dropdown-item" href="#">Surgical Oncology</a></li>
-                            <li><a class="dropdown-item" href="#">Thoracic Surgery</a></li>
-                            <li><a class="dropdown-item" href="#">Urology</a></li>
-                            <li><a class="dropdown-item" href="#">Vaccination Center</a></li>
-                            <li><a class="dropdown-item" href="#">Vascular Surgery</a></li>
+                            <li><a class="dropdown-item" value="Anesthesiology">Anesthesiology</a></li>
+                            <li><a class="dropdown-item" value="Cardiac surgery">Cardiac surgery</a></li>
+                            <li><a class="dropdown-item" value="Cardiology">Cardiology</a></li>
+                            <li><a class="dropdown-item" value="Hematology">Hematology</a></li>
+                            <li><a class="dropdown-item" value="Colorectal Surgery">Colorectal Surgery</a></li>
+                            <li><a class="dropdown-item" value="Dental">Dental</a></li>
+                            <li><a class="dropdown-item" value="Dermatology">Dermatology</a></li>
+                            <li><a class="dropdown-item" value="Diabetes">Diabetes</a></li>
+                            <li><a class="dropdown-item" value="ENT">ENT</a></li>
+                            <li><a class="dropdown-item" value="Gastroenterology">Gastroenterology</a></li>
+                            <li><a class="dropdown-item" value="General & Laparoscopic Surgery">General &
+                                    Laparoscopic Surgery</a></li>
+                            <li><a class="dropdown-item" value="Neurology">Neurology</a></li>
+                            <li><a class="dropdown-item" value="Neurosurgery">Neurosurgery</a></li>
+                            <li><a class="dropdown-item" value="Gynecology">Gynecology</a></li>
+                            <li><a class="dropdown-item" value="Orthopedics">Orthopedics</a></li>
+                            <li><a class="dropdown-item" value="Pediatrics">Pediatrics</a></li>
+                            <li><a class="dropdown-item" value="Pediatric Surgery">Pediatric Surgery</a></li>
+                            <li><a class="dropdown-item" value="Physical Medicine">Physical Medicine</a></li>
+                            <li><a class="dropdown-item" value="Plastic Surgery">Plastic Surgery</a></li>
+                            <li><a class="dropdown-item" value="Psychiatry">Psychiatry</a></li>
+                            <li><a class="dropdown-item" value="Rheumatology">Rheumatology</a></li>
+                            <li><a class="dropdown-item" value="Medicine">Medicine</a></li>
+                            <li><a class="dropdown-item" value="Urology">Urology</a></li>
                         </ul>
+
                     </div>
                 </div>
 
-                <div class="d-flex flex-wrap">
+                <div class="d-flex flex-wrap doctor-list-container">
                     <!-- Doctor List -->
-                    <div class="me-5">
-                        <a href="#">
-                            <div class="card mb-3 rounded-5" style="width: 30rem;">
-                                <div class="row g-0">
-                                    <div class="col-md-4">
-                                        <img src="../logo/4.jpg" class="img-fluid rounded-start" alt="..."
-                                            style="object-fit: cover; height: 100%;">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body">
-                                            <h5 class="card-title text-primary">Doctor Name</h5>
-                                            <p class="card-text">Qualification Name</p>
-                                            <p class="card-text">Department Name</p>
-                                            <p></p>
+                    <?php
+
+                    if (isset($_POST['selectedDepartment'])) {
+                        $selectedDepartment = $_POST['selectedDepartment'];
+                        $doctordata = mysqli_query($conn, "SELECT * FROM `doctorlist` WHERE `department` = '$selectedDepartment'");
+                    } else {
+                        // If no department is selected, retrieve all doctors
+                        $doctordata = mysqli_query($conn, "SELECT * FROM `doctorlist`");
+                    }
+
+                    while ($row = mysqli_fetch_array($doctordata)) {
+                        echo "
+                            <div class='me-5'>
+                                <a href='#' style='text-decoration: none;'>
+                                    <div class='card mb-3 rounded-5' style='width: 30rem;'>
+                                        <div class='row g-0' style='height: 150px; overflow: hidden;'>
+                                            <div class='col-md-4'>
+                                                <img src='" . $row['doctorPhoto'] . "' class='img-fluid rounded-5' alt='...'
+                                                style='object-fit: cover; max-height: 100%;'>
+                                            </div>
+                                            <div class='col-md-8'>
+                                                <div class='card-body'>
+                                                    <h5 class='card-title text-primary'>" . $row['doctorName'] . "</h5>
+                                                    <p class='card-text fw-semibold'>" . $row['department'] . "</p>
+                                                    <p class='card-text fw-medium' style='font-size: 0.8rem;'>" . $row['qualification'] . "</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                                </a>
+                            </div>";
+                    }
+                    ?>
                 </div>
             </div>
         </div>
@@ -153,11 +149,41 @@ $_SESSION['doctorList'] = 1;
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         $(document).ready(function () {
-            $(".dropdown-item").click(function () {
-                var selectedDepartment = $(this).text();
-                $(".btn.dropdown-toggle").text(selectedDepartment);
+    $(".dropdown-item").click(function (e) {
+        e.preventDefault();
+
+        var selectedDepartment = $(this).attr('value');
+        $(".btn.dropdown-toggle").text($(this).text());
+
+        // Update the doctor list based on the selected department using AJAX
+        sendAjaxRequest(selectedDepartment);
+
+        function sendAjaxRequest(selectedDepartment) {
+            console.log('Sending AJAX request...');
+            $.ajax({
+                type: 'POST',
+                url: 'doctorList.php',
+                data: { selectedDepartment: selectedDepartment },
+                success: function (response) {
+                    // Parse the response as HTML
+                    var parsedHtml = $.parseHTML(response);
+                    
+                    // Find the doctor-list-container in the parsed HTML
+                    var doctorListContainer = $(parsedHtml).find('.doctor-list-container');
+
+                    // Update only the doctor-list-container with the new content
+                    console.log('Received response:', response);
+                    $('.doctor-list-container').html(doctorListContainer.html());
+                },
+                error: function (error) {
+                    console.error('Error:', error);
+                }
             });
-        });
+        }
+    });
+});
+
+
     </script>
 </body>
 

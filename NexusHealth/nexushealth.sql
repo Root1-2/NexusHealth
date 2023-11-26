@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2023 at 06:51 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- Generation Time: Nov 26, 2023 at 08:24 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,12 +30,21 @@ SET time_zone = "+00:00";
 CREATE TABLE `appointments` (
   `id` int(255) NOT NULL,
   `doctorName` varchar(255) NOT NULL,
+  `doctorID` int(255) NOT NULL,
   `appointmentTime` varchar(255) NOT NULL,
   `appointmentDate` varchar(255) NOT NULL,
   `patientName` varchar(255) NOT NULL,
   `patientAge` varchar(255) NOT NULL,
-  `patientNumber` varchar(255) NOT NULL
+  `patientNumber` varchar(255) NOT NULL,
+  `patientUsername` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `appointments`
+--
+
+INSERT INTO `appointments` (`id`, `doctorName`, `doctorID`, `appointmentTime`, `appointmentDate`, `patientName`, `patientAge`, `patientNumber`, `patientUsername`) VALUES
+(1, 'Dr. Rahat Amin Chowdhury', 1, '7.00 - 7.30 PM', '2023-11-30', 'Abdullah Masrur', '2001-05-02', '01621030698', 'abd123');
 
 -- --------------------------------------------------------
 
@@ -250,7 +259,7 @@ ALTER TABLE `register`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `doctorlist`

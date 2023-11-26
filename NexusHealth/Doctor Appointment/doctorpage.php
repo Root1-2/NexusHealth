@@ -169,7 +169,7 @@ $_SESSION['doctorList'] = 1;
 
                 var selected = new Date(selectedDate);
                 selected.setHours(0, 0, 0, 0);
-                console.log('1');
+                // console.log('1');
                 if (selected >= today) {
                     radioContainer.style.display = 'block';
                 } else {

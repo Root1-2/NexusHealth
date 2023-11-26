@@ -120,7 +120,7 @@ $_SESSION['doctorList'] = 1;
                     while ($row = mysqli_fetch_array($doctordata)) {
                         echo "
                             <div class='me-5'>
-                                <a href='#' style='text-decoration: none;'>
+                                <a href='doctorpage.php?id= " . $row['id'] . "' style='text-decoration: none;'>
                                     <div class='card mb-3 rounded-5' style='width: 30rem;'>
                                         <div class='row g-0' style='height: 150px; overflow: hidden;'>
                                             <div class='col-md-4'>

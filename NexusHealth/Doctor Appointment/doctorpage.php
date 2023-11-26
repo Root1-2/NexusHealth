@@ -39,6 +39,15 @@ $_SESSION['doctorList'] = 1;
         body {
             background-color: #f2f5fa;
         }
+
+        .profile-preview {
+            width: 12.5rem;
+            height: 16rem;
+            /* background-color: grey; */
+            background-position: center;
+            background-size: cover;
+            overflow: hidden;
+        }
     </style>
 </head>
 
@@ -47,17 +56,17 @@ $_SESSION['doctorList'] = 1;
         <div class="d-flex flew-row">
             <?php include 'sidebar.php'; ?>
 
-            <section class="section about-section gray-bg" id="about">
-                <div class="container-fluid mt-5">
-                    <div class="row align-items-center">
-                        <div class="col-lg-3">
-                            <div class="">
-                                <img src="<?php echo $row1['doctorPhoto'] ?>" class="img-fluid"
-                                    style="object-fit: cover;" title="" alt="">
+            <section class="w-100">
+                <div class="container mt-5">
+                    <div class="d-flex">
+                        <div>
+                            <div class="profile-preview mt-5">
+                                <img src="<?php echo $row1['doctorPhoto'] ?>" class="img-fluid" style="object-fit: fit;"
+                                    alt="">
                             </div>
                         </div>
-                        <div class="col-lg-6">
-                            <div class="about-text go-to">
+                        <div class="ms-5 ps-5">
+                            <div>
                                 <h3 class="dark-color mt-5">
                                     <?php echo $row1['doctorName'] ?>
                                 </h3>
@@ -98,54 +107,59 @@ $_SESSION['doctorList'] = 1;
                         </div>
                     </div>
                     <hr>
-
-                    <div class="mt-4 px-4 py-3 rounded" style="background-color: #fff;">
-                        <div class="d-flex">
-                            <h4>Book Appointment</h4>
-                            <div class="col-lg-3 ms-5">
-                                <input type="date" id="appointmentDate" class="form-control"
-                                    onchange="handleDateChange()">
+                    <form action="appointAction.php" method="POST">
+                        <div class="mt-4 px-4 py-3 rounded" style="background-color: #fff;">
+                            <div class="d-flex">
+                                <h4>Book Appointment</h4>
+                                <div class="col-lg-3 ms-5">
+                                    <input type="date" id="appointmentDate" class="form-control" name="date" value=""
+                                        onchange="handleDateChange()">
+                                </div>
                             </div>
-                        </div>
-                        <form action="appointAction.php" method="POST">
+
                             <div id="radios" style="display: none;">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" value="<?php echo $row1['time1'] ?>"
+                                    <input class="form-check-input" type="radio" name="radioTime" value="<?php echo $row1['time1'] ?>"
                                         id="flexRadioDefault1">
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         <?php echo $row1['time1'] ?>
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" value="<?php echo $row1['time2'] ?>"
+                                    <input class="form-check-input" type="radio" name="radioTime" value="<?php echo $row1['time2'] ?>"
                                         id="flexRadioDefault2">
                                     <label class="form-check-label" for="flexRadioDefault2">
                                         <?php echo $row1['time2'] ?>
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" value="<?php echo $row1['time3'] ?>"
+                                    <input class="form-check-input" type="radio" name="radioTime" value="<?php echo $row1['time3'] ?>"
                                         id="flexRadioDefault1">
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         <?php echo $row1['time3'] ?>
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" value="<?php echo $row1['time4'] ?>"
+                                    <input class="form-check-input" type="radio" name="radioTime" value="<?php echo $row1['time4'] ?>"
                                         id="flexRadioDefault2">
                                     <label class="form-check-label" for="flexRadioDefault2">
                                         <?php echo $row1['time4'] ?>
                                     </label>
                                 </div>
                                 <div class="d-flex justify-content-center">
-                                    <button type="button" class="btn btn-outline-primary">Book Appointment</button>
+                                    <button type="submit" name="appoint" class="btn btn-outline-primary">Book Appointment</button>
                                 </div>
                             </div>
-                            <input type="hidden" name="docName" value="<?php echo $row1['doctorName'] ?>">
-                            <input type="hidden" name="docName" value="<?php echo $row1['doctorName'] ?>">
-                        </form>
 
-                    </div>
+                            <input type="hidden" name="docName" value="<?php echo $row1['doctorName'] ?>">
+                            <input type="hidden" name="docID" value="<?php echo $row1['id'] ?>">
+                            <input type="hidden" name="userName" value="<?php echo $row['userName'] ?>">
+                            <input type="hidden" name="patientNumber" value="<?php echo $row['pNumber'] ?>">
+                            <input type="hidden" name="patientFName" value="<?php echo $row['firstName'] ?>">
+                            <input type="hidden" name="patientLName" value="<?php echo $row['lastName'] ?>">
+                            <input type="hidden" name="patientAge" value="<?php echo $row['dob'] ?>">
+                        </div>
+                    </form>
 
                 </div>
             </section>
@@ -179,6 +193,9 @@ $_SESSION['doctorList'] = 1;
             } else {
                 radioContainer.style.display = 'none';
             }
+
+            // Update the value of the input field to the selected date
+            document.getElementById('appointmentDate').setAttribute('value', selectedDate);
         }
     </script>
 </body>

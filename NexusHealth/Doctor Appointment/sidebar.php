@@ -14,7 +14,8 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link link-body-emphasis">
+                <a href="appointmentlist.php" class="nav-link link-body-emphasis <?php if (isset($_SESSION['appointmentlist']))
+                echo "active" ?>">
                     <i class="bi bi bi-calendar3 me-2" width="16" height="16"></i>
                     Appointments
                 </a>

@@ -12,6 +12,7 @@ $indidoctordata = mysqli_query($conn, "SELECT * FROM `doctorList` WHERE id = '$i
 $row1 = mysqli_fetch_array($indidoctordata);
 
 unset($_SESSION['doctorHome']);
+unset($_SESSION['appointmentlist']);
 $_SESSION['doctorList'] = 1;
 ?>
 
@@ -117,7 +118,7 @@ $_SESSION['doctorList'] = 1;
                                 </div>
                             </div>
 
-                            <div id="radios" style="display: none;">
+                            <div class="mt-3" id="radios" style="display: none;">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="radioTime" value="<?php echo $row1['time1'] ?>"
                                         id="flexRadioDefault1">

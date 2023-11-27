@@ -18,7 +18,12 @@ if (isset($_POST['appoint'])) {
     $insert_query = "INSERT INTO `appointments`(`doctorName`,`doctorID`,`appointmentTime`,`appointmentDate`,`patientName`,`patientAge`,`patientNumber`,`patientUsername`) 
         VALUES ('$docName','$doctorID','$appointTime','$appointDate','$patientName','$patientAge','$patientNumber','$patientUserName')";
 
-    if (!mysqli_query($conn, $insert_query)) {
+    $dupe_appoint = mysqli_query($conn, "SELECT * FROM `appointments` WHERE doctorName = '$docName' AND appointmentTime = '$appointTime' AND appointmentDate = '$appointDate'");
+
+    if (mysqli_num_rows($dupe_appoint) > 0) { //Duplicate Appointment check from db
+        echo "<script>alert('This appointment is already booked. Please select another appointment time..!!')</script>";
+        echo "<script>location.href='doctorpage.php?id=$doctorID'</script>";
+    } else if (!mysqli_query($conn, $insert_query)) {
         die("Not Inserted");
     } else {
         echo "<script>alert('Appointment Created Successfully')</script>";

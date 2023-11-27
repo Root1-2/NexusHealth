@@ -70,58 +70,53 @@ $_SESSION['appointmentlist'] = 1;
                     <hr class="bg-primary">
                 </div>
 
-               
 
-                
-    <div class="container mt-5">
-        <table id="appointTable" class="table align-middle mb-0 bg-white">
-            <thead class="bg-light">
-                <tr>
-                    <th>Doctor Name</th>
-                    <th>Appointment date</th>
-                    <th>Appointmet Time</th>
-                    
-                </tr>
-            </thead>
-             <tbody>
+                <div class="container mt-5">
+                    <table id="appointTable" class="table align-middle mb-0 bg-white">
+                        <thead class="bg-light">
+                            <tr>
+                                <th>Doctor Name</th>
+                                <th>Appointment date</th>
+                                <th>Appointmet Time</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
                             <?php
 
-
-
-                            $patientUsername = $_SESSION['userName'];
+                            $patientUsername = $row['userName'];
                             $appointdata = mysqli_query($conn, "SELECT * FROM `appointments` WHERE `patientUsername` = '$patientUsername'");
 
-
-                            while ($row2 = mysqli_fetch_array($appointdata)) {
-                                echo "
-                    <tr>
-                        <td>
-                            <div class='d-flex align-items-center'>
-                                <div>
-                                    <p class='fw-medium mb-1'>" . $row2['doctorName'] . " </p>
-                                  
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                        <p class='text-muted mb-0'>" . $row2['appointmentDate'] . " </p>
-                          
-                        </td>
-
-                       
-                        <td>
-                        
-                            <p class='fw-normal mb-1'>" . $row2['appointmentTime'] . " </p>
-                        </td>
-                       
-
-                    </tr> ";
+                            while ($row2 = mysqli_fetch_array($appointdata)) 
+                            {
+                                echo 
+                                "
+                                    <tr>
+                                        <td>
+                                            <div class='d-flex align-items-center'>
+                                                <div>
+                                                    <p class='fw-medium mb-1'>" . $row2['doctorName'] . " </p>
+                                                
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                        <p class='text-muted mb-0'>" . $row2['appointmentDate'] . " </p>
+                                        
+                                        </td>
+                                    
+                                        <td>                          
+                                            <p class='fw-normal mb-1'>" . $row2['appointmentTime'] . " </p>
+                                        </td>
+                                    
+                                    </tr> 
+                                ";
                             }
 
                             ?>
                         </tbody>
-        </table>
-    </div>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -129,7 +124,7 @@ $_SESSION['appointmentlist'] = 1;
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
-    
+
 </body>
 
 </html>

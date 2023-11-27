@@ -83,43 +83,43 @@ $_SESSION['appointmentlist'] = 1;
                     
                 </tr>
             </thead>
-            <tbody>
-                <?php
-                if (isset($_POST['appointment'])) {
-                    $appointment = $_POST['appointment'];
-                    $appointdata = mysqli_query($conn, "SELECT * FROM `appointments` WHERE `appointment` = '$appointment'");
-                } else {
-                    $appointdata = mysqli_query($conn, "SELECT * FROM `appointments`");
-                }
+             <tbody>
+                            <?php
 
-                while ($row = mysqli_fetch_array($appointdata)) {
-                    echo "
+
+
+                            $patientUsername = $_SESSION['userName'];
+                            $appointdata = mysqli_query($conn, "SELECT * FROM `appointments` WHERE `patientUsername` = '$patientUsername'");
+
+
+                            while ($row2 = mysqli_fetch_array($appointdata)) {
+                                echo "
                     <tr>
                         <td>
                             <div class='d-flex align-items-center'>
                                 <div>
-                                    <p class='fw-bold mb-1'>" . $row['doctorName'] . " </p>
+                                    <p class='fw-medium mb-1'>" . $row2['doctorName'] . " </p>
                                   
                                 </div>
                             </div>
                         </td>
                         <td>
-                        <p class='text-muted mb-0'>" . $row['appointmentDate'] . " </p>
+                        <p class='text-muted mb-0'>" . $row2['appointmentDate'] . " </p>
                           
                         </td>
 
-                        </td>
+                       
                         <td>
                         
-                            <p class='fw-normal mb-1'>" . $row['appointmentTime'] . " </p>
+                            <p class='fw-normal mb-1'>" . $row2['appointmentTime'] . " </p>
                         </td>
                        
 
                     </tr> ";
-                }
+                            }
 
-                ?>
-            </tbody>
+                            ?>
+                        </tbody>
         </table>
     </div>
             </div>

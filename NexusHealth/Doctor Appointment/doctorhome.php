@@ -8,6 +8,7 @@ include "../Database/connection.php";
 include "../Database/sessionUserData.php";
 
 unset($_SESSION['doctorList']);
+unset($_SESSION['appointmentlist']);
 $_SESSION['doctorHome'] = 1;
 ?>
 

@@ -1,3 +1,13 @@
+<?php
+
+session_start();
+if (!isset($_SESSION['admin'])) {
+    echo "<script>alert('You have to Login First!!!')</script>";
+    echo "<script>location.href='../Authentication/login.php'</script>";
+}
+include '../Database/connection.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -131,11 +141,9 @@
                         </thead>
                         <tbody>
                             <?php
-                            include '../Database/connection.php';
                             $doctorsdata = mysqli_query($conn, "SELECT * FROM `doctorlist`");
 
-                            while ($row = mysqli_fetch_array($doctorsdata)) 
-                            {
+                            while ($row = mysqli_fetch_array($doctorsdata)) {
                                 $words = str_word_count($row['qualification']);
                                 $phoneNumbers = $row['phoneNumber'];
                                 echo "
@@ -154,28 +162,28 @@
                                     <td><p>" . $row['hospital/chamber'] . "</p></td>
                                     <td>";
 
-                                    $matches = preg_split('/\s+/', $phoneNumbers);
-                                    foreach ($matches as $number) {
-                                        echo "<span class='badge text-bg-success rounded-pill d-block mb-1'>$number</span>";
-                                    }
+                                $matches = preg_split('/\s+/', $phoneNumbers);
+                                foreach ($matches as $number) {
+                                    echo "<span class='badge text-bg-success rounded-pill d-block mb-1'>$number</span>";
+                                }
 
-                                    echo "</td>
+                                echo "</td>
                                     <td>
                                         <div class='d-flex'>
-                                            <button class='btn btn-outline-primary rounded-pill me-3'><i class='fa-solid fa-user'></i></button>
-                                            <button class='btn btn-outline-success rounded-pill me-3' onclick='openPopup(<?php echo $row["id"]; ?>)'><i class='fa-solid fa-pen-to-square'></i></button>
+                                            <button class='btn btn-outline-primary rounded-pill me-3' onclick='openProfile(" . $row['id'] . ")'><i class='fa-solid fa-user'></i></button>
+                                            <button class='btn btn-outline-success rounded-pill me-3' onclick='openPopup(" . $row['id'] . ")'><i class='fa-solid fa-pen-to-square'></i></button>
                                             <button class='btn btn-outline-danger rounded-pill'><i class='fa-solid fa-trash-can'></i></button>
                                         </div>
                                     </td>
-                                </tr>";   
+                                </tr>";
                             }
                             ?>
                         </tbody>
                     </table>
                 </div>
                 <!-- Profile Section -->
-                <div class="col-lg-4 col-md-8 rounded-2 mt-5 p-3 container-fluid ms-0"
-                    style="background-color: #fff; height: 40rem; width: 30rem; overflow-y: auto;">
+                <div class="col-lg-4 col-md-8 rounded-2 mt-5 p-3 container-fluid ms-0" id="profile"
+                    style="background-color: #fff; height: 40rem; width: 30rem; overflow-y: auto; display: none;">
 
                     <div class="d-flex justify-content-between">
                         <p class="">Doctor Name</p>
@@ -184,7 +192,7 @@
 
                     <div class="d-flex justify-content-center">
                         <div class="text-center">
-                            <img src="../logo/4.jpg" class="rounded img-fluid" alt="..."
+                            <img src="<?php echo $response['doctorPhoto']; ?>" class="rounded img-fluid" alt="..."
                                 style="height: 5rem; width: 5rem;">
                         </div>
                     </div>
@@ -193,25 +201,35 @@
                             <tbody>
                                 <tr>
                                     <th>Name</th>
-                                    <td> Pew Pew
-                                        <?php ?>
-                                    </td>
+                                    <td id="profileName">Data</td>
                                 </tr>
                                 <tr>
                                     <th>Department</th>
-                                    <td>The Wiz</td>
+                                    <td id="profileDepartment">Data</td>
                                 </tr>
                                 <tr>
-                                    <th>Chamber</th>
-                                    <td>angelica@ramos.com</td>
+                                    <th class="text-truncate">Qualification</th>
+                                    <td id="profileQualification">Data</td>
                                 </tr>
                                 <tr>
                                     <th>Phone</th>
-                                    <td>+1234123123123</td>
+                                    <td id="profilePhone">Data</td>
                                 </tr>
                                 <tr>
-                                    <th>Time Active</th>
-                                    <td><span>Active</span></td>
+                                    <th>Slot 1</th>
+                                    <td><span id="profileSlot1">Data</span></td>
+                                </tr>
+                                <tr>
+                                    <th>Slot 2</th>
+                                    <td><span id="profileSlot2">Data</span></td>
+                                </tr>
+                                <tr>
+                                    <th>Slot 3</th>
+                                    <td><span id="profileSlot3">Data</span></td>
+                                </tr>
+                                <tr>
+                                    <th>Slot 4</th>
+                                    <td><span id="profileSlot4">Data</span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -242,7 +260,6 @@
                             </li>
                         </ul>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -251,7 +268,7 @@
     <!-- Blurred overlay -->
     <div class="popupOverlay" id="popupOverlay"></div>
 
-    <!-- Change Form -->
+    <!-- Popup Edit Form -->
     <div>
         <br><br>
         <div class="justify-content-center my-5 col-lg-7 container-fluid border border-1 border-success-subtle rounded p-4 shadow-lg popupForm"
@@ -260,120 +277,80 @@
                 <button class="btn" onclick="closePopup()"><i class="fa-solid fa-xmark"></i></button>
             </div>
 
-            <form action="registerAction.php" method="POST">
+            <form action="docUpdateAction.php" method="POST">
                 <div class="row g-3">
-                    <div class="col-sm-6">
-                        <label for="firstName" class="form-label">First name</label>
-                        <input type="text" class="form-control" name="fname" required>
+                    <div class="col-12">
+                        <label for="Name" class="form-label">Doctor Name</label>
+                        <input type="text" class="form-control" name="dname" required>
                     </div>
 
-                    <div class="col-sm-6">
-                        <label for="lastName" class="form-label">Last name</label>
-                        <input type="text" class="form-control" name="lname" required>
+                    <div class="col-6 btn-group shadow-0">
+                        <button type="button" class="btn dropdown-toggle" data-bs-toggle='dropdown'
+                            aria-expanded='false' name="department">
+                            Select Department
+                        </button>
+                        <ul class="dropdown-menu" style="max-height: 30rem; overflow-y: auto;">
+                            <li><a class="dropdown-item" value="Anesthesiology">Anesthesiology</a></li>
+                            <li><a class="dropdown-item" value="Cardiac surgery">Cardiac surgery</a></li>
+                            <li><a class="dropdown-item" value="Cardiology">Cardiology</a></li>
+                            <li><a class="dropdown-item" value="Hematology">Hematology</a></li>
+                            <li><a class="dropdown-item" value="Colorectal Surgery">Colorectal Surgery</a></li>
+                            <li><a class="dropdown-item" value="Dental">Dental</a></li>
+                            <li><a class="dropdown-item" value="Dermatology">Dermatology</a></li>
+                            <li><a class="dropdown-item" value="Diabetes">Diabetes</a></li>
+                            <li><a class="dropdown-item" value="ENT">ENT</a></li>
+                            <li><a class="dropdown-item" value="Gastroenterology">Gastroenterology</a></li>
+                            <li><a class="dropdown-item" value="General & Laparoscopic Surgery">General &
+                                    Laparoscopic Surgery</a></li>
+                            <li><a class="dropdown-item" value="Neurology">Neurology</a></li>
+                            <li><a class="dropdown-item" value="Neurosurgery">Neurosurgery</a></li>
+                            <li><a class="dropdown-item" value="Gynecology">Gynecology</a></li>
+                            <li><a class="dropdown-item" value="Orthopedics">Orthopedics</a></li>
+                            <li><a class="dropdown-item" value="Pediatrics">Pediatrics</a></li>
+                            <li><a class="dropdown-item" value="Pediatric Surgery">Pediatric Surgery</a></li>
+                            <li><a class="dropdown-item" value="Physical Medicine">Physical Medicine</a></li>
+                            <li><a class="dropdown-item" value="Plastic Surgery">Plastic Surgery</a></li>
+                            <li><a class="dropdown-item" value="Psychiatry">Psychiatry</a></li>
+                            <li><a class="dropdown-item" value="Rheumatology">Rheumatology</a></li>
+                            <li><a class="dropdown-item" value="Medicine">Medicine</a></li>
+                            <li><a class="dropdown-item" value="Urology">Urology</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-6">
+                        <label for="phone" class="form-label">Contact Number</label>
+                        <input type="tel" class="form-control" name="phone" required>
                     </div>
 
                     <div class="col-12">
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" name="uname" required>
+                        <label for="hospital" class="form-label">Hospital/Chamber</label>
+                        <input type="hospital" class="form-control" name="hospital" required>
                     </div>
 
                     <div class="col-12">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" name="email" placeholder="you@example.com" required>
+                        <label for="address" class="form-label">Qualification</label>
+                        <input type="text" class="form-control" name="qual" required>
                     </div>
 
-                    <div class="col-sm-6">
-                        <label class="form-label">Password</label>
-                        <input type="password" class="form-control" name="pass" required>
+                    <div class="col-3">
+                        <label for="slots" class="form-label">Slot 1</label>
+                        <input type="text" class="form-control" name="slot1" required>
+                    </div>
+                    <div class="col-3">
+                        <label for="slots" class="form-label">Slot 2</label>
+                        <input type="text" class="form-control" name="slot2" required>
+                    </div>
+                    <div class="col-3">
+                        <label for="slots" class="form-label">Slot 3</label>
+                        <input type="text" class="form-control" name="slot3" required>
+                    </div>
+                    <div class="col-3">
+                        <label for="slots" class="form-label">Slot 4</label>
+                        <input type="text" class="form-control" name="slot4" required>
                     </div>
 
-                    <div class="col-sm-6">
-                        <label class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control" name="con_pass" required>
-                    </div>
-
-                    <div class="col-12">
-                        <label for="address" class="form-label">Address</label>
-                        <input type="text" class="form-control" placeholder="Sylhet, Bangladesh" name="address"
-                            required>
-                    </div>
-
-                    <div class="col-md-6">
-                        <label for="country" class="form-label">City</label>
-                        <select class="form-select" name="city" required="">
-                            <option value="">Choose...</option>
-                            <option value="Dhaka">Dhaka</option>
-                            <option value="Sylhet">Sylhet</option>
-                            <option value="Khulna">Khulna</option>
-                            <option value="Rajshahi">Rajshahi</option>
-                            <option value="Chottogram">Chottogram</option>
-                            <option value="Rangpur">Rangpur</option>
-                            <option value="Barishal">Barishal</option>
-                        </select>
-                    </div>
-
-                    <div class="col-md-6">
-                        <label for="state" class="form-label">Date of Birth</label>
-                        <input type="date" name="dob" class="form-control">
-                        <div class="invalid-feedback">
-                            Please provide a valid state.
-                        </div>
-                    </div>
                 </div>
 
-                <h5 class="my-3">Gender</h5>
-
-                <div class="d-flex my-3">
-                    <div class="form-check">
-                        <input name="sex" type="radio" class="form-check-input" value="Male" required>
-                        <label class="form-check-label">Male</label>
-                    </div>
-                    <div class="form-check mx-4">
-                        <input name="sex" type="radio" class="form-check-input" value="Female" required>
-                        <label class="form-check-label">Female</label>
-                    </div>
-                    <div class="form-check">
-                        <input name="sex" type="radio" class="form-check-input" value="Other" required>
-                        <label class="form-check-label">Other...</label>
-                    </div>
-                </div>
-
-                <div class="row gy-3">
-                    <div class="col-lg-3">
-                        <label class="form-label">Weight</label>
-                        <input type="number" class="form-control" name="weight" required>
-                    </div>
-
-                    <div class="col-lg-1">
-                        <label class="form-label">Height</label>
-                        <input type="number" class="form-control" name="ftheight" placeholder="ft" required>
-                    </div>
-
-                    <div class="col-lg-1">
-                        <br>
-                        <input type="number" class="form-control mt-2" name="inheight" placeholder="in" required>
-                    </div>
-
-                    <div class="col-lg-6" style="margin-left: 4.2rem;">
-                        <label for="cc-name" class="form-label">Mobile Number</label>
-                        <input type="text" class="form-control" name="mobile" required>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <label for="cc-number" class="form-label">Blood Group</label>
-                        <select class="form-select" name="blood" required="">
-                            <option value="">Choose...</option>
-                            <option value="A+">A+</option>
-                            <option value="A-">A-</option>
-                            <option value="AB+">AB+</option>
-                            <option value="AB-">AB-</option>
-                            <option value="B+">B+</option>
-                            <option value="B-">B-</option>
-                            <option value="O+">O+</option>
-                            <option value="O-">O-</option>
-                        </select>
-                    </div>
-                </div>
 
                 <hr class="my-4">
                 <div class="d-flex justify-content-center">
@@ -393,15 +370,81 @@
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 
     <script>
+        // Dropdown Item Selected
+        $(document).ready(function () {
+            $(".dropdown-item").click(function (e) {
+                e.preventDefault();
+
+                var selectedDepartment = $(this).attr('value');
+                $(".btn.dropdown-toggle").text($(this).text());
+            });
+        });
+
+        // Profile Open/Close
+        let profile = document.getElementById("profile");
+        function openProfile(rowId) {
+            $.ajax({
+                type: "POST",
+                url: "docDataFetch.php",
+                data: { rowId: rowId },
+                success: function (response) {
+                    if (response && response.error) {
+                        console.error("Error from server:", response.error);
+                    } else {
+                        console.log("Doctor Data:", response);
+
+                        // Set profile data
+                        $("#profileName").text(response.doctorName);
+                        $("#profileDepartment").text(response.department);
+                        $("#profileQualification").text(response.qualification);
+                        $("#profilePhone").text(response.phoneNumber);
+                        $("#profileSlot1").text(response.time1);
+                        $("#profileSlot2").text(response.time2);
+                        $("#profileSlot3").text(response.time3);
+                        $("#profileSlot4").text(response.time4);
+                        $("#profile img").attr("src", response.doctorPhoto);
+                    }
+                }, error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+
+            profile.style.display = "block";
+        }
+
         // Popup open/close
         let popup = document.getElementById("popupForm");
         let overlay = document.getElementById("popupOverlay");
+        function openPopup(rowId) {
+            $.ajax({
+                type: "POST",
+                url: "docDataFetch.php",
+                data: { rowId: rowId },
+                success: function (response) {
+                    if (response && response.error) {
+                        console.error("Error from server:", response.error);
+                    } else {
+                        console.log("Doctor Data:", response);
 
-        function openPopup() {
+                        $("#popupForm [name=dname]").val(response.doctorName);
+                        $("#popupForm [name=hospital]").val(response['hospital/chamber']);
+                        $("#popupForm [name=department]").val(response.department);
+                        $("#popupForm [name=qual]").val(response.qualification);
+                        $("#popupForm [name=phone]").val(response.phoneNumber);
+                        $("#popupForm [name=slot1]").val(response.time1);
+                        $("#popupForm [name=slot2]").val(response.time2);
+                        $("#popupForm [name=slot3]").val(response.time3);
+                        $("#popupForm [name=slot4]").val(response.time4);
+                    }
+                }, error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+
             popup.classList.add("open-popup");
             overlay.style.display = "block";
 
-            console.log("Doctor ID:", doctorId);
+            console.log("Doctor ID:", rowId);
         }
         function closePopup() {
             popup.classList.remove("open-popup");

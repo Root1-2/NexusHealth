@@ -2,7 +2,7 @@
 
 session_start();
 
-if (!isset($_SESSION['userName'])) {
+if (!isset($_SESSION['userName']) || !isset($_SESSION['admin'])) {
     echo "<script>alert('You have to Login First!!!')</script>";
     echo "<script>location.href='../Authentication/login.php'</script>";
 }
@@ -26,7 +26,7 @@ include '../Database/connection.php';
     <script defer src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script defer src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script defer src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
-    <script defer src="temp.js"></script>
+    <script defer src="../dataTable.js"></script>
 </head>
 
 <body>
@@ -59,7 +59,7 @@ include '../Database/connection.php';
 
 
     <div class="container">
-        <table id="donorTable" class="table align-middle mb-0 bg-white">
+        <table id="dataTable" class="table align-middle mb-0 bg-white">
             <thead class="bg-light">
                 <tr>
                     <th>Name</th>
@@ -93,7 +93,7 @@ include '../Database/connection.php';
                         </td>
                         <td>" . $row['Address'] . "</td>
                         <td>
-                            <span class='badge text-bg-success rounded-pill d-inline'></span>
+                            <span class='badge text-bg-success rounded-pill d-inline'>" .$row['status'] . "</span>
                         </td>
                     </tr> ";
                 }
@@ -112,7 +112,6 @@ include '../Database/connection.php';
                 button.addEventListener('click', function () {
                     const bloodGroup = this.value; // Use 'value' instead of 'data-bloodgroup'
 
-                    // Send an AJAX request to fetch data based on the selected blood group
                     sendAjaxRequest(bloodGroup);
                 });
             });

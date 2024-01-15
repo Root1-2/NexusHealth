@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['userName'])) {
+if (!isset($_SESSION['userName']) || !isset($_SESSION['admin'])) {
     echo "<script>alert('Please Login First!')</script>";
     echo "<script>location.href='../Homepage/index.php'</script>";
 }
@@ -102,7 +102,6 @@ $_SESSION['doctorList'] = 1;
                             <li><a class="dropdown-item" value="Medicine">Medicine</a></li>
                             <li><a class="dropdown-item" value="Urology">Urology</a></li>
                         </ul>
-
                     </div>
                 </div>
 

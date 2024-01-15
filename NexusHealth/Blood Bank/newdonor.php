@@ -2,7 +2,7 @@
 
 session_start();
 
-if (!isset($_SESSION['userName'])) {
+if (!isset($_SESSION['userName']) || !isset($_SESSION['admin'])) {
     echo "<script>alert('You have to Login First!!!')</script>";
     echo "<script>location.href='../Authentication/login.php'</script>";
 }
@@ -98,39 +98,40 @@ include '../Database/connection.php';
         <div class="row d-flex justify-content-center">
             <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
                 <h3>Become a Donor</h3>
-                <p class="blue-text">Put your necessary data <br> so that we can add your information in server as a donor.</p>
+                <p class="blue-text">Put your necessary data <br> so that we can add your information in server as a
+                    donor.</p>
                 <div class="card">
                     <h5 class="text-center mb-4">Blood donor form</h5>
                     <form class="form-card" action="newdonorAction.php" method="POST">
                         <div class="row justify-content-between text-left">
                             <div class="form-group col-sm-12 flex-column d-flex"> <label
-                                    class="form-control-label px-3">FullName</label> <input type="text" name="fname" required=""
-                                    placeholder="Enter your fullname"> </div>
+                                    class="form-control-label px-3">FullName</label> <input type="text" name="fname"
+                                    required="" placeholder="Enter your fullname"> </div>
                         </div>
                         <div class="row justify-content-between text-left">
                             <div class="form-group col-sm-12 flex-column d-flex"> <label
-                                    class="form-control-label px-3">Phone Number</label> <input type="number" name="phonenumber" required=""
-                                    placeholder="Enter your phone number"> </div>
+                                    class="form-control-label px-3">Phone Number</label> <input type="number"
+                                    name="phonenumber" required="" placeholder="Enter your phone number"> </div>
                         </div>
                         <div class="row justify-content-between text-left">
                             <div class="form-group col-sm-12 flex-column d-flex"> <label
-                                    class="form-control-label px-3">Address</label> <input type="text" name="address" required=""
-                                    placeholder="Enter your address"> </div>
+                                    class="form-control-label px-3">Address</label> <input type="text" name="address"
+                                    required="" placeholder="Enter your address"> </div>
                         </div>
                         <div class="form-group col-sm-12 flex-column d-flex">
-                                    <label for="country" class="form-label">Blood Group</label>
-                                    <select class="form-select" name="blood" required="">
-                                        <option value="">Choose...</option>
-                                        <option value="A+">A+</option>
-                                        <option value="A-">A-</option>
-                                        <option value="B+">B+</option>
-                                        <option value="B-">B-</option>
-                                        <option value="AB+">AB+</option>
-                                        <option value="AB-">AB-</option>
-                                        <option value="O+">O+</option>
-                                        <option value="O-">O-</option>
-                                    </select>
-                                </div>
+                            <label for="country" class="form-label">Blood Group</label>
+                            <select class="form-select" name="blood" required="">
+                                <option value="">Choose...</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                            </select>
+                        </div>
                         <div class="row justify-content-center py-2">
                             <div class="form-group col-sm-6"> <button type="submit" name="submit"
                                     class="btn-block btn-primary">Submit</button> </div>

@@ -65,8 +65,8 @@
             </button>
             <div class="collapse" id="med-collapse" style="">
                 <ul class="btn-toggle-nav list-unstyled fw-normal px-4 small">
-                    <li><a href="#"
-                            class="link-body-emphasis d-inline-flex p-1 text-decoration-none rounded"><span>1</span></a>
+                    <li><a href="med-addMed.php"
+                            class="link-body-emphasis d-inline-flex p-1 text-decoration-none rounded"><span>Add Medicine</span></a>
                     </li>
                     <li><a href="#"
                             class="link-body-emphasis d-inline-flex p-1 text-decoration-none rounded"><span>2</span></a>
@@ -125,5 +125,8 @@
                 </ul>
             </div>
         </li>
+        <li class="border-top my-3"></li>
+        <li class="mb-1"><a href="../Homepage/" class="text-decoration-none"><button class="btn rounded border-0">
+                    <span><i class="fa-solid fa-users-rays me-3"></i>NexusHealth</span></a></li>
     </ul>
 </div>

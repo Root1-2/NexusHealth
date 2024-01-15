@@ -27,33 +27,12 @@ include "../Database/connection.php";
 
     <link rel="stylesheet" href="styles.css">
     <style>
-        .carousel-image {
-            object-fit: contain;
-            height: 500px;
-            padding: 2% 5%;
-        }
-
-        .transparent-input {
-            background-color: transparent;
-            outline: none;
-        }
-
         .font {
-            font-family: 'Dancing Script', cursive;
             font-family: 'Oswald', sans-serif;
         }
 
         .card {
             opacity: .8;
-        }
-
-        .img1 {
-            transition: transform .2s;
-
-        }
-
-        .img1:hover {
-            transform: scale(1.1);
         }
     </style>
 
@@ -72,40 +51,42 @@ include "../Database/connection.php";
 
                         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                             <li><a href="#features" class="nav-link px-2 text-dark">Features</a></li>
-                            <li><a href="#" class="nav-link px-2 text-dark">Pricing</a></li>
                             <li><a href="#" class="nav-link px-2 text-dark">FAQs</a></li>
                             <li><a href="#" class="nav-link px-2 text-dark">About</a></li>
                         </ul>
 
-
-
                         <!-- Login-Signup visible when there is no session. -->
                         <?php
-                        if (!isset($_SESSION['userName'])) {
-                            echo "<div class='text-end'>
-                            <a href='../Authentication/login.php'><button type='button'
-                                    class='btn me-2' style='background-color: #2fbfbf;'>Login</button></a>
-                            <a href='../Authentication/register.php'><button type='button' class='btn btn-warning'>Sign-up</button></a>
-                        </div>";
-                            // Profile Section appear when there is session.
-                        } else {
+
+                        if (isset($_SESSION['userName']) || isset($_SESSION['admin'])) {
                             include "../Database/sessionUserData.php";
                             echo "
-                            <div class='dropdown text-end'>
-                                <a href='#' class='d-block link-body-emphasis text-decoration-none dropdown-toggle'
-                                    data-bs-toggle='dropdown' aria-expanded='false'>
-                                <img src='" . $row['profilepic'] . "' alt='' width='32' height='32' class='rounded-circle'>
-                                </a>
-                                <ul class='dropdown-menu text-small'>
-                                    <li><a class='dropdown-item' href='#'>Settings</a></li>
-                                    <li><a class='dropdown-item' href='profile.php'>Profile</a></li>
-                                    <li>
-                                    <hr class='dropdown-divider'>
-                                    </li>
-                                    <li><a class='dropdown-item' href='../Authentication/logout.php'>Sign out</a></li>
-                                </ul>
-                             </div>
-                            ";
+                                <div class='dropdown text-end'>
+                                    <a href='#' class='d-block link-body-emphasis text-decoration-none dropdown-toggle'
+                                        data-bs-toggle='dropdown' aria-expanded='false'>
+                                        <img src='" . $row['profilepic'] . "' alt='' width='32' height='32' class='rounded-circle'>
+                                    </a>
+                                    <ul class='dropdown-menu text-small'>
+                                        <li><a class='dropdown-item' href='#'>Settings</a></li>
+                                        <li><a class='dropdown-item' href='profile.php'>Profile</a></li>
+                                        <li><hr class='dropdown-divider'></li>";
+
+                                        if (isset($_SESSION['admin'])) 
+                                        {
+                                            echo "<li><a class='dropdown-item' href='../AdminPanel'>Admin Panel</a></li>";
+                                        }
+
+                                        echo "
+                                        <li><a class='dropdown-item' href='../Authentication/logout.php'>Sign out</a></li>
+                                    </ul>
+                                </div>";
+                        // Profile Section appear when there is session.
+                        } else {
+                            echo "<div class='text-end'>
+                            <a href='../Authentication/login.php'><button type='button'
+                                class='btn me-2' style='background-color: #2fbfbf;'>Login</button></a>
+                            <a href='../Authentication/register.php'><button type='button' class='btn btn-warning'>Sign-up</button></a>
+                        </div>";
                         }
                         ?>
                     </div>
@@ -145,9 +126,10 @@ include "../Database/connection.php";
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <h5 class="cardh card-title text-primary">Doctor Appointment</h5>
-                                    <p class="cardp card-text text-dark">Offer dedicated time with
-                                        medical professionals for comprehensive health assessments, diagnosis, and
-                                        treatment recommendations.
+                                    <p class="cardp card-text">This is a wider card with supporting text below
+                                        as a
+                                        natural lead-in to additional content. This content is a little bit
+                                        longer.
                                     </p>
                                 </div>
                             </div>
@@ -155,6 +137,7 @@ include "../Database/connection.php";
                                 <img src="../logo/3.jpg" class="img-fluid rounded-start" alt="...">
                             </div>
                         </div>
+
                 </a>
             </div>
             <a href="../Blood Bank/bloodhome.php">
@@ -166,9 +149,9 @@ include "../Database/connection.php";
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="cardh bloodh card-title text-danger">Blood Bank</h5>
-                                <p class="cardp bloodp card-text">Collect, store, and distribute donated
-                                    blood to hospitals, ensuring a vital supply for surgeries, trauma care, and medical
-                                    conditions.
+                                <p class="cardp bloodp card-text">This is a wider card with supporting text
+                                    below as a natural lead-in to additional content. This content is a little bit
+                                    longer.
                                 </p>
                             </div>
                         </div>
@@ -183,88 +166,23 @@ include "../Database/connection.php";
                 <img src="../logo/5.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="cardh card-title text-success">Med Corner</h5>
-                    <p class="cardp card-text">Offer the convenience of ordering prescription and
-                        medications from the comfort of one's home</p>
+                    <p class="cardp card-text">Some quick example text to build on the card title and make
+                        up the
+                        bulk of the card's content.</p>
                 </div>
             </div>
             <div class="card vertical-card ms-5 rounded-5" style="width: 16rem;">
                 <img src="../logo/6.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="cardh card-title text-primary">Self-Diagnosis</h5>
-                    <p class="cardp card-text">Provides individuals with digital tools to assess their symptoms and
-                        potential health conditions.</p>
+                    <p class="cardp card-text">Some quick example text to build on the card title and make
+                        up the
+                        bulk of the card's content.</p>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Carousel Section -->
-    <!-- <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img class="d-block w-100 carousel-image" src="../logo/7.jpg" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>First slide label</h5>
-                    <p>Some representative placeholder content for the first slide.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img class="d-block w-100 carousel-image" src="../logo/8.jpg" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Second slide label</h5>
-                    <p>Some representative placeholder content for the second slide.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img class="d-block w-100 carousel-image" src="../logo/9.jpg" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Third slide label</h5>
-                    <p>Some representative placeholder content for the third slide.</p>
-                </div>
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-    <hr> -->
-    <!-- About us section -->
-    <section id="about">
-        <div class="container my-5">
 
-            <div class="row pt-lg-3 align-items-center rounded-3 border shadow-lg">
-
-            <h3>Currently Widepread Health Condition</h3>
-                <div class="col-lg-6 ">
-                    <h4>Dengue Symptoms:</h4>
-                    <ul class="benefits-list lead mt-4 justify ">
-                        <li>High fever, which might be continuous or intermittent.
-                        </li>
-                        <li>Severe headaches.
-                        </li>
-                        <li>Pain behind the eyes </li>
-                        <li>Nausea and vomiting. </li>
-                        <li>Fatigue and tiredness. </li>
-                        <li>Muscle, bone, and joint pain.</li>
-                        <li>Skin rash, which might spread to most parts of the body. </li>
-                        <li>Mild bleeding, such as nosebleeds, gum bleeding, or easy bruising.</li>
-                    </ul>
-
-                </div>
-                <div class="col-lg-4 offset-lg-1 p-0 mb-4">
-                    <img class="rounded-lg-3 img-fluid img1" src="../logo/dengue prevention.jpg" alt="dengue prevention">
-                </div>
-            </div>
-        </div>
-
-
-    </section>
     <hr>
     <!-- Footer Section -->
     <div class="container">

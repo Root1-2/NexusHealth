@@ -8,7 +8,6 @@ if (isset($_POST['submit'])) {
     $phone = $_POST['phonenumber'];
     $address = $_POST['address'];
     $blood = $_POST['blood'];
-
     
     $Name_pattern = "/^[A-Za-z .]{2,}$/";
     $phoneNumber_pattern = "/(\+88)?-?01[3-9]\d{8}/";

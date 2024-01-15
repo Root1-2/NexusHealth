@@ -1,12 +1,12 @@
 <?php
 
 session_start();
-if (!isset($_SESSION['userName'])) {
+if (!isset($_SESSION['userName']) || !isset($_SESSION['admin'])) {
     echo "<script>alert('You have to Login First!!!')</script>";
     echo "<script>location.href='../Authentication/login.php'</script>";
 }
-include '../Database/connection.php'
-    ?>
+include '../Database/connection.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -95,7 +95,7 @@ include '../Database/connection.php'
                 </div>
             </a>
 
-            <a class="card3" href="#">
+            <a class="card3" href="newdonor.php">
                 <h3>Make A Request</h3>
                 <p class="small">Card description with lots of great facts and interesting details.</p>
                 <div class="dimmer"></div>
@@ -163,40 +163,6 @@ include '../Database/connection.php'
 
         </div>
     </div>
-
-
-
-    <!-- Donor List -->
-    <?php include '../Database/registerdata.php'; ?>
-
-    <div class="m-5 rounded">
-        <table class="table  table-striped border border-secondary rounded">
-            <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Blood Group</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Contact Number</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php while ($row = mysqli_fetch_array($alldata)) {
-                    echo "<tr>
-                <td>" . $row['firstName'] . " " . $row['lastName'] . "</td>
-                <td>" . $row['bloodGroup'] . "</td>
-                <td>" . $row['city'] . "</td>
-                <td>" . $row['pNumber'] . "</td>
-            </tr>";
-                }
-
-                ?>
-            </tbody>
-        </table>
-    </div>
-
-    <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-        crossorigin="anonymous"></script>
 
 </body>
 

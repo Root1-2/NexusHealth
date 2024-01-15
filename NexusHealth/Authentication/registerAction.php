@@ -23,7 +23,7 @@ if (isset($_POST['signup'])) {
     $lastName_pattern = "/^[A-Za-z]{2,}$/";
     $userName_pattern = "/^(?=.*[a-z])[a-z!@#$%^&*_\-]{5,10}$/";
     $phoneNumber_pattern = "/(\+88)?-?01[3-9]\d{8}/";
-    $email_pattern = "/^[a-z0-9_.+-]+@(gmail\.com|yahoo\.com|hotmail\.com|outlook\.com|icloud\.com|zoho\.com|lus\.ac\.bd)$/";
+    $email_pattern = "/^[a-z0-9_.+-]+@(gmail\.com|yahoo\.com|hotmail\.com|outlook\.com|icloud\.com|zoho\.com)$/";
     $pass_pattern = "/(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%&*()]).{6,20}/";
 
     $insert_query = "INSERT INTO `register`(`firstName`,`lastName`,`userName`,`email`,`pass`,`pNumber`,`dob`,`weight`,`height`,`sex`,`bloodGroup`,`address`,`city`,`verifytoken`) 
@@ -64,7 +64,7 @@ if (isset($_POST['signup'])) {
             die("Not Inserted!!");
         } else {
             include 'sendmail.php';
-            echo "<script>alert('Account Created Successfully!')</script>";
+            echo "<script>alert('Account Created Successfully! Please Check Your Email.')</script>";
             echo "<script>location.href='login.php'</script>";
         }
     }

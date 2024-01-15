@@ -1,5 +1,13 @@
 <?php
 include '../Database/connection.php';
+//Import PHPMailer classes into the global namespace
+//These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+//Load Composer's autoloader
+require '../vendor/autoload.php';
 
 if (isset($_POST['forgotbtn'])) {
     $_email = $_POST['forgotemail'];
@@ -52,10 +60,7 @@ if (isset($_POST['updatebtn'])) {
 
         if ($updatePasswordQuery) {
             echo "<script>alert('Password Updated Successfully!')</script>";
-            $updateToken = md5(rand());
-            $updatePasswordQuery2 = mysqli_query($conn, "UPDATE register SET verifytoken = '$updateToken' WHERE email = '$email'");
-            echo "<script>location.href='login.php'</script>";
-
+            // echo "<script>location.href='login.php'</script>";
         } else {
             echo "<script>alert('Something Went Wrong. Please Try Again!')</script>";
             echo "<script>location.href='forgotPassChange>token=$token&email=$email.php'</script>";

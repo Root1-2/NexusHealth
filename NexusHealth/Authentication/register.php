@@ -12,7 +12,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-
 </head>
 
 <body class="bg-body-tertiary">
@@ -62,12 +61,13 @@
 
                             <div class="col-12">
                                 <label for="address" class="form-label">Address</label>
-                                <input type="text" class="form-control" name="address" required>
+                                <input type="text" class="form-control" placeholder="Sylhet, Bangladesh" name="address"
+                                    required>
                             </div>
 
                             <div class="col-md-6">
                                 <label for="country" class="form-label">City</label>
-                                <select class="form-select" name="city" required>
+                                <select class="form-select" name="city" required="">
                                     <option value="">Choose...</option>
                                     <option value="Dhaka">Dhaka</option>
                                     <option value="Sylhet">Sylhet</option>
@@ -106,26 +106,27 @@
                         </div>
 
                         <div class="row gy-3">
-                            <div class="col-md-3">
+                            <div class="col-lg-3">
                                 <label class="form-label">Weight</label>
                                 <input type="number" class="form-control" name="weight" required>
                             </div>
 
-                            <div class="col-lg-3">
+                            <div class="col-lg-1">
                                 <label class="form-label">Height</label>
-                                <div class="input-group">
-                                    <input type="number" class="form-control" name="ftheight" placeholder="ft" required>
-                                    <input type="number" class="form-control" name="inheight" placeholder="in" required>
-                                </div>
+                                <input type="number" class="form-control" name="ftheight" placeholder="ft" required>
                             </div>
 
+                            <div class="col-lg-1">
+                                <br>
+                                <input type="number" class="form-control mt-2" name="inheight" placeholder="in" required>
+                            </div>
 
-                            <div class="col-md-6">
+                            <div class="col-lg-6" style="margin-left: 4.2rem;">
                                 <label for="cc-name" class="form-label">Mobile Number</label>
-                                <input type="number" class="form-control" name="mobile" required>
+                                <input type="text" class="form-control" name="mobile"  required>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-lg-6">
                                 <label for="cc-number" class="form-label">Blood Group</label>
                                 <select class="form-select" name="blood" required="">
                                     <option value="">Choose...</option>
@@ -164,11 +165,11 @@
             </ul>
         </footer>
     </div>
-    
+
+
     <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
-
 </body>
 
 </html>

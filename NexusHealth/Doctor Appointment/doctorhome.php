@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['userName'])) {
+if(!isset($_SESSION['userName']) || !isset($_SESSION['admin'])) {
     echo "<script>alert('Please Login First!')</script>";
     echo "<script>location.href='../Homepage/index.php'</script>";
 }

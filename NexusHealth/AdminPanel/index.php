@@ -1,3 +1,13 @@
+<?php
+
+session_start();
+if (!isset($_SESSION['admin'])) {
+    echo "<script>alert('You have to Login First!!!')</script>";
+    echo "<script>location.href='../Authentication/login.php'</script>";
+}
+include '../Database/connection.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

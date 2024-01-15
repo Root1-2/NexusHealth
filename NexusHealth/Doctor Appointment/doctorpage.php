@@ -161,7 +161,6 @@ $_SESSION['doctorList'] = 1;
                             <input type="hidden" name="patientAge" value="<?php echo $row['dob'] ?>">
                         </div>
                     </form>
-
                 </div>
             </section>
 

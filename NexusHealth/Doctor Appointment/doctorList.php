@@ -150,39 +150,39 @@ $_SESSION['doctorList'] = 1;
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         $(document).ready(function () {
-    $(".dropdown-item").click(function (e) {
-        e.preventDefault();
+            $(".dropdown-item").click(function (e) {
+                e.preventDefault();
 
-        var selectedDepartment = $(this).attr('value');
-        $(".btn.dropdown-toggle").text($(this).text());
+                var selectedDepartment = $(this).attr('value');
+                $(".btn.dropdown-toggle").text($(this).text());
 
-        // Update the doctor list based on the selected department using AJAX
-        sendAjaxRequest(selectedDepartment);
+                // Update the doctor list based on the selected department using AJAX
+                sendAjaxRequest(selectedDepartment);
 
-        function sendAjaxRequest(selectedDepartment) {
-            console.log('Sending AJAX request...');
-            $.ajax({
-                type: 'POST',
-                url: 'doctorList.php',
-                data: { selectedDepartment: selectedDepartment },
-                success: function (response) {
-                    // Parse the response as HTML
-                    var parsedHtml = $.parseHTML(response);
-                    
-                    // Find the doctor-list-container in the parsed HTML
-                    var doctorListContainer = $(parsedHtml).find('.doctor-list-container');
+                function sendAjaxRequest(selectedDepartment) {
+                    console.log('Sending AJAX request...');
+                    $.ajax({
+                        type: 'POST',
+                        url: 'doctorList.php',
+                        data: { selectedDepartment: selectedDepartment },
+                        success: function (response) {
+                            // Parse the response as HTML
+                            var parsedHtml = $.parseHTML(response);
 
-                    // Update only the doctor-list-container with the new content
-                    console.log('Received response:', response);
-                    $('.doctor-list-container').html(doctorListContainer.html());
-                },
-                error: function (error) {
-                    console.error('Error:', error);
+                            // Find the doctor-list-container in the parsed HTML
+                            var doctorListContainer = $(parsedHtml).find('.doctor-list-container');
+
+                            // Update only the doctor-list-container with the new content
+                            console.log('Received response:', response);
+                            $('.doctor-list-container').html(doctorListContainer.html());
+                        },
+                        error: function (error) {
+                            console.error('Error:', error);
+                        }
+                    });
                 }
             });
-        }
-    });
-});
+        });
 
 
     </script>

@@ -383,7 +383,7 @@ include '../Database/connection.php';
     <div class="col-lg-3 container-fluid border border-1 border-danger-subtle rounded-5 p-4 shadow-lg popupDel"
         id="popupDel">
         <div class="d-flex justify-content-center">
-            <i class="p-3 fa-solid fa-x rounded rounded-pill animate__animated animate__bounce"
+            <i class="p-3 fa-solid fa-x rounded rounded-pill animate__animated"
                 style="background-color: #cf3834; color: #fff; font-size: 2rem;"></i>
         </div>
         <div class="mt-3 d-flex justify-content-center">
@@ -501,6 +501,8 @@ include '../Database/connection.php';
         var deleteRowId;
         function openDelete(rowId) {
             popupDel.classList.add("open-popupDel");
+            popupDel.querySelector('.fa-x').classList.add("animate__bounce");
+            $("#idshow").text(rowId);
             overlay.style.display = "block";
             deleteRowId = rowId;
 
@@ -508,6 +510,7 @@ include '../Database/connection.php';
         }
         function closeDelete() {
             popupDel.classList.remove("open-popupDel");
+            popupDel.querySelector('.fa-x').classList.remove("animate__bounce");
             overlay.style.display = "none";
             console.log("Closed");
         }

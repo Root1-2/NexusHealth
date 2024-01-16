@@ -23,6 +23,8 @@ include '../Database/connection.php';
     <!-- DataTable -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" />
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
     <title>Admin Home</title>
     <style>
@@ -88,7 +90,7 @@ include '../Database/connection.php';
             content: "";
         }
 
-        /* Popup */
+        /* Blurred Background Overlay */
         .popupOverlay {
             position: fixed;
             top: 0;
@@ -100,6 +102,7 @@ include '../Database/connection.php';
             backdrop-filter: blur(5px);
         }
 
+        /* Popup Form*/
         .popupForm {
             background-color: #fff;
             transform: scale(0.01);
@@ -112,6 +115,23 @@ include '../Database/connection.php';
         }
 
         .open-popup {
+            visibility: visible;
+            transform: scale(1);
+        }
+
+        /* Popup Delete */
+        .popupDel {
+            background-color: #fff;
+            position: absolute;
+            visibility: hidden;
+            top: 33%;
+            left: 38%;
+            z-index: 100;
+            transform: scale(0.01);
+            transition: all 0.3s;
+        }
+
+        .open-popupDel {
             visibility: visible;
             transform: scale(1);
         }
@@ -172,7 +192,7 @@ include '../Database/connection.php';
                                         <div class='d-flex'>
                                             <button class='btn btn-outline-primary rounded-pill me-3' onclick='openProfile(" . $row['id'] . ")'><i class='fa-solid fa-user'></i></button>
                                             <button class='btn btn-outline-success rounded-pill me-3' onclick='openPopup(" . $row['id'] . ")'><i class='fa-solid fa-pen-to-square'></i></button>
-                                            <button class='btn btn-outline-danger rounded-pill'><i class='fa-solid fa-trash-can'></i></button>
+                                            <button class='btn btn-outline-danger rounded-pill' onclick='openDelete(" . $row['id'] . ")'><i class='fa-solid fa-trash-can'></i></button>
                                         </div>
                                     </td>
                                 </tr>";
@@ -201,35 +221,35 @@ include '../Database/connection.php';
                             <tbody>
                                 <tr>
                                     <th>Name</th>
-                                    <td id="profileName">Data</td>
+                                    <td id="profileName"></td>
                                 </tr>
                                 <tr>
                                     <th>Department</th>
-                                    <td id="profileDepartment">Data</td>
+                                    <td id="profileDepartment"></td>
                                 </tr>
                                 <tr>
                                     <th class="text-truncate">Qualification</th>
-                                    <td id="profileQualification">Data</td>
+                                    <td id="profileQualification"></td>
                                 </tr>
                                 <tr>
                                     <th>Phone</th>
-                                    <td id="profilePhone">Data</td>
+                                    <td id="profilePhone"></td>
                                 </tr>
                                 <tr>
                                     <th>Slot 1</th>
-                                    <td><span id="profileSlot1">Data</span></td>
+                                    <td><span id="profileSlot1"></span></td>
                                 </tr>
                                 <tr>
                                     <th>Slot 2</th>
-                                    <td><span id="profileSlot2">Data</span></td>
+                                    <td><span id="profileSlot2"></span></td>
                                 </tr>
                                 <tr>
                                     <th>Slot 3</th>
-                                    <td><span id="profileSlot3">Data</span></td>
+                                    <td><span id="profileSlot3"></span></td>
                                 </tr>
                                 <tr>
                                     <th>Slot 4</th>
-                                    <td><span id="profileSlot4">Data</span></td>
+                                    <td><span id="profileSlot4"></span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -277,43 +297,44 @@ include '../Database/connection.php';
                 <button class="btn" onclick="closePopup()"><i class="fa-solid fa-xmark"></i></button>
             </div>
 
-            <form action="docUpdateAction.php" method="POST">
+            <form action="doc-docAction.php" method="POST">
                 <div class="row g-3">
                     <div class="col-12">
                         <label for="Name" class="form-label">Doctor Name</label>
                         <input type="text" class="form-control" name="dname" required>
                     </div>
 
+                    <input type="hidden" id="selectedDepartment" name="department" value="">
+                    <input type="hidden" id="id" name="id" value="">
                     <div class="col-6 btn-group shadow-0">
-                        <button type="button" class="btn dropdown-toggle" data-bs-toggle='dropdown'
-                            aria-expanded='false' name="department">
-                            Select Department
+                        <button type="button" class="btn dropdown-toggle" data-bs-toggle='dropdown'>
+                            <span id="selectDepartment"></span>
                         </button>
-                        <ul class="dropdown-menu" style="max-height: 30rem; overflow-y: auto;">
-                            <li><a class="dropdown-item" value="Anesthesiology">Anesthesiology</a></li>
-                            <li><a class="dropdown-item" value="Cardiac surgery">Cardiac surgery</a></li>
-                            <li><a class="dropdown-item" value="Cardiology">Cardiology</a></li>
-                            <li><a class="dropdown-item" value="Hematology">Hematology</a></li>
-                            <li><a class="dropdown-item" value="Colorectal Surgery">Colorectal Surgery</a></li>
-                            <li><a class="dropdown-item" value="Dental">Dental</a></li>
-                            <li><a class="dropdown-item" value="Dermatology">Dermatology</a></li>
-                            <li><a class="dropdown-item" value="Diabetes">Diabetes</a></li>
-                            <li><a class="dropdown-item" value="ENT">ENT</a></li>
-                            <li><a class="dropdown-item" value="Gastroenterology">Gastroenterology</a></li>
-                            <li><a class="dropdown-item" value="General & Laparoscopic Surgery">General &
+                        <ul class="dropdown-menu" style="max-height: 20rem; overflow-y: auto;">
+                            <li><a class="dropdown-item" data-value="Anesthesiology">Anesthesiology</a></li>
+                            <li><a class="dropdown-item" data-value="Cardiac surgery">Cardiac surgery</a></li>
+                            <li><a class="dropdown-item" data-value="Cardiology">Cardiology</a></li>
+                            <li><a class="dropdown-item" data-value="Hematology">Hematology</a></li>
+                            <li><a class="dropdown-item" data-value="Colorectal Surgery">Colorectal Surgery</a></li>
+                            <li><a class="dropdown-item" data-value="Dental">Dental</a></li>
+                            <li><a class="dropdown-item" data-value="Dermatology">Dermatology</a></li>
+                            <li><a class="dropdown-item" data-value="Diabetes">Diabetes</a></li>
+                            <li><a class="dropdown-item" data-value="ENT">ENT</a></li>
+                            <li><a class="dropdown-item" data-value="Gastroenterology">Gastroenterology</a></li>
+                            <li><a class="dropdown-item" data-value="General & Laparoscopic Surgery">General &
                                     Laparoscopic Surgery</a></li>
-                            <li><a class="dropdown-item" value="Neurology">Neurology</a></li>
-                            <li><a class="dropdown-item" value="Neurosurgery">Neurosurgery</a></li>
-                            <li><a class="dropdown-item" value="Gynecology">Gynecology</a></li>
-                            <li><a class="dropdown-item" value="Orthopedics">Orthopedics</a></li>
-                            <li><a class="dropdown-item" value="Pediatrics">Pediatrics</a></li>
-                            <li><a class="dropdown-item" value="Pediatric Surgery">Pediatric Surgery</a></li>
-                            <li><a class="dropdown-item" value="Physical Medicine">Physical Medicine</a></li>
-                            <li><a class="dropdown-item" value="Plastic Surgery">Plastic Surgery</a></li>
-                            <li><a class="dropdown-item" value="Psychiatry">Psychiatry</a></li>
-                            <li><a class="dropdown-item" value="Rheumatology">Rheumatology</a></li>
-                            <li><a class="dropdown-item" value="Medicine">Medicine</a></li>
-                            <li><a class="dropdown-item" value="Urology">Urology</a></li>
+                            <li><a class="dropdown-item" data-value="Neurology">Neurology</a></li>
+                            <li><a class="dropdown-item" data-value="Neurosurgery">Neurosurgery</a></li>
+                            <li><a class="dropdown-item" data-value="Gynecology">Gynecology</a></li>
+                            <li><a class="dropdown-item" data-value="Orthopedics">Orthopedics</a></li>
+                            <li><a class="dropdown-item" data-value="Pediatrics">Pediatrics</a></li>
+                            <li><a class="dropdown-item" data-value="Pediatric Surgery">Pediatric Surgery</a></li>
+                            <li><a class="dropdown-item" data-value="Physical Medicine">Physical Medicine</a></li>
+                            <li><a class="dropdown-item" data-value="Plastic Surgery">Plastic Surgery</a></li>
+                            <li><a class="dropdown-item" data-value="Psychiatry">Psychiatry</a></li>
+                            <li><a class="dropdown-item" data-value="Rheumatology">Rheumatology</a></li>
+                            <li><a class="dropdown-item" data-value="Medicine">Medicine</a></li>
+                            <li><a class="dropdown-item" data-value="Urology">Urology</a></li>
                         </ul>
                     </div>
 
@@ -350,16 +371,33 @@ include '../Database/connection.php';
                     </div>
 
                 </div>
-
-
                 <hr class="my-4">
                 <div class="d-flex justify-content-center">
-                    <button class="w-25 btn btn-outline-success" type="submit" name="signup">Update</button>
+                    <button class="w-25 btn btn-outline-success" type="submit" name="update">Update</button>
                 </div>
-
             </form>
         </div>
     </div>
+
+    <!-- Delete Popup -->
+    <div class="col-lg-3 container-fluid border border-1 border-danger-subtle rounded-5 p-4 shadow-lg popupDel"
+        id="popupDel">
+        <div class="d-flex justify-content-center">
+            <i class="p-3 fa-solid fa-x rounded rounded-pill animate__animated animate__bounce"
+                style="background-color: #cf3834; color: #fff; font-size: 2rem;"></i>
+        </div>
+        <div class="mt-3 d-flex justify-content-center">
+            <p class="h4">Are You Sure You Want to Delete?</p>
+        </div>
+        <p class="h4 text-center text-info" id="idshow">ID</p>
+
+        <div class="mt-5 gap-5 d-flex justify-content-center">
+            <button class="btn btn-outline-danger" onclick="deleteDoctor()">Yes</button>
+            <button class="btn btn-outline-primary" onclick="closeDelete()">No</button>
+        </div>
+
+    </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
@@ -372,11 +410,16 @@ include '../Database/connection.php';
     <script>
         // Dropdown Item Selected
         $(document).ready(function () {
-            $(".dropdown-item").click(function (e) {
-                e.preventDefault();
+            $(document).ready(function () {
+                $(".dropdown-item").click(function (e) {
+                    e.preventDefault();
 
-                var selectedDepartment = $(this).attr('value');
-                $(".btn.dropdown-toggle").text($(this).text());
+                    var selectedDepartment = $(this).attr('data-value');
+                    $(".btn.dropdown-toggle").text($(this).text());
+
+                    // Set the value of the hidden input
+                    $("#selectedDepartment").val(selectedDepartment);
+                });
             });
         });
 
@@ -427,6 +470,8 @@ include '../Database/connection.php';
                         console.log("Doctor Data:", response);
 
                         $("#popupForm [name=dname]").val(response.doctorName);
+                        $("#id").val(response.id);
+                        $("#selectDepartment").text(response.department);
                         $("#popupForm [name=hospital]").val(response['hospital/chamber']);
                         $("#popupForm [name=department]").val(response.department);
                         $("#popupForm [name=qual]").val(response.qualification);
@@ -449,6 +494,26 @@ include '../Database/connection.php';
         function closePopup() {
             popup.classList.remove("open-popup");
             overlay.style.display = "none";
+        }
+
+        // Delete Popup
+        let popupDel = document.getElementById("popupDel");
+        var deleteRowId;
+        function openDelete(rowId) {
+            popupDel.classList.add("open-popupDel");
+            overlay.style.display = "block";
+            deleteRowId = rowId;
+
+            console.log("Doctor ID:", rowId);
+        }
+        function closeDelete() {
+            popupDel.classList.remove("open-popupDel");
+            overlay.style.display = "none";
+            console.log("Closed");
+        }
+        // If pressed yes
+        function deleteDoctor() {
+            window.location.href = "doc-docAction.php?deleteid=" + deleteRowId;
         }
 
         // Sidebar toggle

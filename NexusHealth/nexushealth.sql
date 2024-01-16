@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2023 at 08:24 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Jan 16, 2024 at 08:09 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `appointments` (
   `id` int(255) NOT NULL,
   `doctorName` varchar(255) NOT NULL,
-  `doctorID` int(255) NOT NULL,
+  `doctorID` varchar(255) NOT NULL,
   `appointmentTime` varchar(255) NOT NULL,
   `appointmentDate` varchar(255) NOT NULL,
   `patientName` varchar(255) NOT NULL,
@@ -44,7 +44,12 @@ CREATE TABLE `appointments` (
 --
 
 INSERT INTO `appointments` (`id`, `doctorName`, `doctorID`, `appointmentTime`, `appointmentDate`, `patientName`, `patientAge`, `patientNumber`, `patientUsername`) VALUES
-(1, 'Dr. Rahat Amin Chowdhury', 1, '7.00 - 7.30 PM', '2023-11-30', 'Abdullah Masrur', '2001-05-02', '01621030698', 'abd123');
+(4, 'Dr. Rahat Amin Chowdhury', '1', '7.00 - 7.30 PM', '2023-11-30', 'Abdullah Masrur', '2001-05-02', '01621030698', 'abd123'),
+(6, 'Prof. Dr. Md. Manajjir Ali', '3', '6:00 - 6:30 pm', '2023-12-08', 'Abdullah Masrur', '2001-05-02', '01621030698', 'abd123'),
+(9, 'Dr. Md. Shamsur Rahman', '13', '5:00 - 5:30 pm\r\n', '2023-11-30', 'Aiman Azad Khan', '2000-12-09', '01942446088', 'aiman1'),
+(10, 'Prof. Dr. Madhusudan Saha', '10', '\r\n6:30 - 7:00 pm\r\n', '2023-12-01', 'Aiman Azad Khan', '2000-12-09', '01942446088', 'aiman1'),
+(11, 'Dr. Rahat Amin Chowdhury', '1', '6.30 - 7.00 PM', '2023-12-07', 'Aiman Azad Khan', '2000-12-09', '01942446088', 'aiman1'),
+(12, 'Prof. Dr. Md. Shahnewaz Chowdhury\r\n', '5', '6:30-7:00 pm', '2024-02-07', 'Abdullah Masrur', '2001-05-02', '01621030698', 'abd123');
 
 -- --------------------------------------------------------
 
@@ -73,8 +78,8 @@ CREATE TABLE `doctorlist` (
 INSERT INTO `doctorlist` (`id`, `doctorName`, `department`, `hospital/chamber`, `qualification`, `phoneNumber`, `time1`, `time2`, `time3`, `time4`, `doctorPhoto`) VALUES
 (1, 'Dr. Rahat Amin Chowdhury', 'Neurology', 'Al-Haramain Hospital, Sylhet', 'MBBS, MD (Neurology)', '+8801931225555', '6.00 - 6.30 PM', '6.30 - 7.00 PM', '7.00 - 7.30 PM', '7.30 - 8.00 PM', '../DoctorPhotos/rahatAmin.jpg'),
 (2, 'Prof. Dr. N. K. Sinha', 'ENT ', 'Sylhet MAG Osmani Medical College & Hospital', 'MBBS, FCPS (ENT), MS (ENT), DLO', '+8801766662727', '4:00 - 4:30 pm', '4:30 - 5:00 pm', '5:00 -5:30 pm', '5:30 - 6:00 pm', '../DoctorPhotos/ProfDrNKSinha.jpg'),
-(3, 'Prof. Dr. Md. Manajjir Ali', 'Pediatrics', 'Sylhet MAG Osmani Medical College & Hospital\nPopular Medical Center, Sylhet\nMount Adora Hospital, Akhalia, Sylhet', 'MBBS, FCPS (CHILD), DMEd (UK), FRCP (EDIN, UK)\r\nNewborn & Child Diseases Specialist\r\nFormer Professor, Pediatrics', ' +8801715084078\r\n+8801317310895', '6:00 - 6:30 pm', '6:30 - 7:00 pm', '7:00 - 7:30 pm', '7:30 - 8:00 pm', '../DoctorPhotos/ProfDrMdMonojjirAli.jpg'),
-(4, 'Dr. Shishir Basak', 'Cardiology', 'Sylhet MAG Osmani Medical College & Hospital\r\nMount Adora Hospital, Akhalia, Sylhet', 'MBBS (DMC), MCPS (Medicine), D-CARD (DU), MD (Cardiology), MRCP (UK)', '+8801726450182', '4:30 - 5:00', '5:00 - 5:30', '5:30 - 6:00', '6:00 - 6:30', '../DoctorPhotos/ShishirBasak.jpg'),
+(3, 'Prof. Dr. Md. Manajjir Ali', 'Pediatrics', 'Sylhet MAG Osmani Medical College & Hospital\nPopular Medical Center, Sylhet\nMount Adora Hospital, Akhalia, Sylhet', 'MBBS, FCPS (CHILD), DMEd (UK), FRCP (EDIN, UK)\r\nNewborn & Child Diseases Specialist\r\nFormer Professor, Pediatrics', '+8801715084078\r\n+8801317310895', '6:00 - 6:30 pm', '6:30 - 7:00 pm', '7:00 - 7:30 pm', '7:30 - 8:00 pm', '../DoctorPhotos/ProfDrMdMonojjirAli.jpg'),
+(4, 'Dr. Shishir Basak', 'Cardiology', 'Sylhet MAG Osmani Medical College & Hospital\r\nMount Adora Hospital, Akhalia, Sylhet', 'MBBS (DMC), MCPS (Medicine), D-CARD (DU), MD (Cardiology), MRCP (UK)', '+8801726450182', '4:30 - 5:00 pm', '5:00 - 5:30 pm', '5:30 - 6:00 pm', '6:00 - 6:30 pm', '../DoctorPhotos/ShishirBasak.jpg'),
 (5, 'Prof. Dr. Md. Shahnewaz Chowdhury\r\n', 'Anesthesiology', 'Sylhet Womens Medical College & Hospital\r\nPopular Medical Center, Sylhet', 'MBBS, DA (DU), MCPS (Anesthesiology)', '+8801842995065', '5:00-5:30 pm', '5:30-6:00 pm', '6:30-7:00 pm', '7:00-7:30 pm', '../DoctorPhotos/Prof. Dr. Md. Shahnewaz Chowdhury.jpg'),
 (6, 'Dr. Md. Abdus Samad Azad', 'Cardiac Surgery', 'Sylhet MAG Osmani Medical College & Hospital\r\nStadium Market, Sylhet\r\nAddress: 38, Stadium Market, Rikabi Bazar, Sylhet - 3100', 'MBBS, FCPS (Surgery), MS (Cardiovascular & Thoracic Surgery)\r\nCardiovascular & Thoracic Surgeon\r\nAssistant Professor, Cardiac Surgery', '+8801711905035', '6:00 - 6:30 pm', '6:30 - 7:00 pm\r\n', '7:00 - 7:30 pm\r\n', '7:30 - 8:00 pm', '../DoctorPhotos/Dr. Md. Abdus Samad Azad.jpg'),
 (7, 'Dr. Muhammad Alam Sikder', 'Dental', 'Sylhet MAG Osmani Medical College & Hospital\r\nTrust Medical Services, Sylhet', 'BDS, DDS, BCS\r\nFellow in Oral Implantology (ICOI), Germany\r\nAssistant Professor & Head, Dental Unit', '+8801712604174', '4:00 - 4:30 pm\r\n', '\r\n4:30 - 5:00 pm\r\n\r\n', '\r\n5:00 - 5:30 pm\r\n\r\n', '6:00 - 6:30 pm\r\n', '../DoctorPhotos/Dr. Muhammad Alam Sikder.jpg'),
@@ -189,6 +194,39 @@ INSERT INTO `donor_list` (`id`, `Name`, `BloodGroup`, `Phone number`, `Address`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `medcorner`
+--
+
+CREATE TABLE `medcorner` (
+  `id` int(255) NOT NULL,
+  `medname` varchar(255) NOT NULL,
+  `medgroup` varchar(255) NOT NULL,
+  `medcategory` varchar(255) NOT NULL,
+  `medcompany` varchar(255) NOT NULL,
+  `medprice` varchar(255) NOT NULL,
+  `medpic` varchar(255) NOT NULL DEFAULT '../Medphotos/default.png'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `medcorner`
+--
+
+INSERT INTO `medcorner` (`id`, `medname`, `medgroup`, `medcategory`, `medcompany`, `medprice`, `medpic`) VALUES
+(1, 'Napa', 'Paracetamol', 'OTC Medicine', 'Beximco Pharmaceuticals Ltd.', '10', '../Medphotos/napa.jpg'),
+(2, 'Ceevit', 'vitamin c', 'OTC Medicine', 'Square Pharmaceuticals Ltd.', '10', '../Medphotos/ceevit.jpg\r\n'),
+(3, 'U & ME Long Love Condoms\r\n', 'Condom\r\n', 'Sexual Wellness', 'Social Marketing Company', '50', '../Medphotos/u&me.png'),
+(4, 'Cevion 1000 mg', 'vitamin c', 'OTC Medicine', 'Healthcare Pharmaceuticals Ltd.', '72', '../MedPhotos/cevion.png'),
+(5, 'Freedom Heavy Flow Wings16 Pads', 'Sanitary Napkin', 'Women choice', 'ACI Limited', '190', '../MedPhotos/Freedom Heavy Flow Wings16 Pads.png'),
+(6, 'NovoFine Needle3 ml', 'Pen Needle', 'Diabetic Care', 'Mundipharma (BD) Pvt. Ltd.', '12.50', '../MedPhotos/NovoFine Needle3 ml.png'),
+(7, 'NeoCare Baby Wipes120', 'Wipes', 'Baby Care', 'Incepta Pharmaceuticals Ltd.', '223.25', '../MedPhotos/NeoCare Baby Wipes120.png'),
+(8, 'Orostar Plus250 ml', 'Mouthwash', 'Dental Care', 'Square Pharmaceuticals Ltd.', '135.00', '../MedPhotos/Orostar Plus250 ml.png'),
+(9, 'Hexisol250 ml', 'Hand Rub', 'Personal Care', 'ACI Limited', '126.00', '../MedPhotos/Hexisol250 ml.png'),
+(10, 'ThermometerDigital', 'Digital', 'Devices', 'Mundipharma (BD) Pvt. Ltd.', '185.50', '../MedPhotos/ThermometerDigital.png'),
+(11, 'Sergel 20 mg', 'Capsule', 'Prescription Medicine', 'Healthcare Pharmacuticals Ltd.', '6.30', '../MedPhotos/Sergel 20 mg.png');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `register`
 --
 
@@ -221,7 +259,8 @@ INSERT INTO `register` (`id`, `firstName`, `lastName`, `userName`, `email`, `pas
 (8, 'Abdullah', 'Masrur', 'abd123', 'abdullahalmasrur8@gmail.com', '12345!Abd', '01621030698', '2001-05-02', '51kg', '42', 'Male', 'AB+', 'Sylhet, Bnagladesh', 'Sylhet', '4f0e9223a606f11aeb0ad0a5fd46b401', 1, '../ProfilePictures/Default.jpg'),
 (9, 'Md. Jafrul Haque', 'Rafi', 'rafibai', 'cse_2012020259@lus.ac.bd', 'Rafi!1', '01797224414', '1999-09-10', '63kg', '6', 'Male', 'A+', 'Uposhahar', 'Sylhet', '679e4094c473697ac56265c15286c3a7', 0, '../ProfilePictures/Default.jpg'),
 (10, 'Md. Jafrul', 'Rafi', 'rafii', 'jafrulhaque99@gmail.com', 'Rafi!1', '01797224414', '1999-09-10', '63kg', '5ft3in', 'Male', 'A+', 'Uposhahar', 'Sylhet', 'e54765bcae069a6a2f71689644223118', 0, '../ProfilePictures/Default.jpg'),
-(12, 'Aiman Azad', 'Khan', 'aiman!', 'masterseo.aak@gmail.com', 'Aiman@1', '01942446088', '2000-01-01', '70kg', '6ft 1in', 'Male', 'B+', '7/2 foridbagh,amberkhana', 'Sylhet', 'df05937397b1a9bd480acad841731005', 1, '../ProfilePictures/Default.jpg');
+(13, 'Aiman Azad', 'Khan', 'aiman1', 'masterseo.aak@gmail.com', 'Aiman@1', '01942446088', '2000-12-09', '70kg', '6ft 0in', 'Male', 'B+', '7/2 foridbagh,amberkhana', 'Sylhet', '1718ef17b95b0828583ac5446e786cd1', 1, '../ProfilePictures/Default.jpg'),
+(14, 'admin', 'admin', 'admin', 'admin@gmail.com', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 1, '../ProfilePictures/Default.jpg');
 
 --
 -- Indexes for dumped tables
@@ -246,6 +285,12 @@ ALTER TABLE `donor_list`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `medcorner`
+--
+ALTER TABLE `medcorner`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `register`
 --
 ALTER TABLE `register`
@@ -259,7 +304,7 @@ ALTER TABLE `register`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `doctorlist`
@@ -274,10 +319,16 @@ ALTER TABLE `donor_list`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
+-- AUTO_INCREMENT for table `medcorner`
+--
+ALTER TABLE `medcorner`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT for table `register`
 --
 ALTER TABLE `register`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

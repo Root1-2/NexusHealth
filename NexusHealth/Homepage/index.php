@@ -58,7 +58,7 @@ include "../Database/connection.php";
                         <!-- Login-Signup visible when there is no session. -->
                         <?php
 
-                        if (isset($_SESSION['userName']) || isset($_SESSION['admin'])) {
+                        if (isset($_SESSION['userName'])) {
                             include "../Database/sessionUserData.php";
                             echo "
                                 <div class='dropdown text-end'>
@@ -71,8 +71,7 @@ include "../Database/connection.php";
                                         <li><a class='dropdown-item' href='profile.php'>Profile</a></li>
                                         <li><hr class='dropdown-divider'></li>";
 
-                                        if (isset($_SESSION['admin'])) 
-                                        {
+                                        if (isset($_SESSION['userName']) == "admin") {
                                             echo "<li><a class='dropdown-item' href='../AdminPanel'>Admin Panel</a></li>";
                                         }
 

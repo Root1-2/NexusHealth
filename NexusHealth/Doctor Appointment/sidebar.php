@@ -7,21 +7,21 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-            <a href="doctorhome.php" class="nav-link <?php if (isset($_SESSION['doctorHome']))
+            <a href="doctorhome.php" class="nav-link <?php if (isset($doctorHome))
                 echo "active" ?>" aria-current="page">
                     <i class="bi bi-speedometer me-2" width="16" height="16"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
             <li>
-                <a href="appointmentlist.php" class="nav-link link-body-emphasis <?php if (isset($_SESSION['appointmentlist']))
+                <a href="appointmentlist.php" class="nav-link link-body-emphasis <?php if (isset($appointmentlist))
                 echo "active" ?>">
                     <i class="bi bi bi-calendar3 me-2" width="16" height="16"></i>
                     Appointments
                 </a>
             </li>
             <li>
-                <a href="doctorList.php" class="nav-link link-body-emphasis <?php if (isset($_SESSION['doctorList']))
+                <a href="doctorList.php" class="nav-link link-body-emphasis <?php if (isset($doctorList))
                 echo "active" ?>">
                     <i class="bi bi-file-medical me-2" width="16" height="16"></i>
                     Doctors
@@ -39,6 +39,9 @@
             <li>
                 <hr class="dropdown-divider">
             </li>
+            <?php if (isset($_SESSION['userName']) == "admin") {
+                echo "<li><a class='dropdown-item' href='../AdminPanel'>Admin Panel</a></li>";
+            } ?>
             <li><a class="dropdown-item" href="../Authentication/logout.php">Sign out</a></li>
         </ul>
     </div>

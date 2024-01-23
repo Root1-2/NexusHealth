@@ -1,15 +1,15 @@
 <?php
 session_start();
-if(!isset($_SESSION['userName']) || !isset($_SESSION['admin'])) {
+if(!isset($_SESSION['userName'])) {
     echo "<script>alert('Please Login First!')</script>";
     echo "<script>location.href='../Homepage/index.php'</script>";
 }
 include "../Database/connection.php";
 include "../Database/sessionUserData.php";
 
-unset($_SESSION['doctorList']);
-unset($_SESSION['appointmentlist']);
-$_SESSION['doctorHome'] = 1;
+
+$doctorHome = 1;
+
 ?>
 
 <!DOCTYPE html>

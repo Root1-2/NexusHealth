@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['userName']) || !isset($_SESSION['admin'])) {
+if (!isset($_SESSION['userName'])) {
     echo "<script>alert('Please Login First!')</script>";
     echo "<script>location.href='../Homepage/index.php'</script>";
 }
@@ -11,9 +11,8 @@ $id = $_GET['id'];
 $indidoctordata = mysqli_query($conn, "SELECT * FROM `doctorList` WHERE id = '$id'");
 $row1 = mysqli_fetch_array($indidoctordata);
 
-unset($_SESSION['doctorHome']);
-unset($_SESSION['appointmentlist']);
-$_SESSION['doctorList'] = 1;
+
+$doctorList = 1;
 ?>
 
 <!DOCTYPE html>

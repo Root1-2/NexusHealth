@@ -6,6 +6,9 @@ if (!isset($_SESSION['userName'])) {
     echo "<script>location.href='../Authentication/login.php'</script>";
 }
 include '../Database/connection.php';
+
+$doctorappointment = 1;
+
 ?>
 
 <!DOCTYPE html>
@@ -155,7 +158,7 @@ include '../Database/connection.php';
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Chamber</th>
-                                <th>Phone Number</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -203,7 +206,7 @@ include '../Database/connection.php';
                 </div>
                 <!-- Profile Section -->
                 <div class="col-lg-4 col-md-8 rounded-2 mt-5 p-3 container-fluid ms-0" id="profile"
-                    style="background-color: #fff; height: 40rem;  overflow-y: auto; display: none;">
+                    style="background-color: #fff; height: 40rem; width: 30rem; overflow-y: auto; display: none;">
 
                     <div class="d-flex justify-content-between">
                         <p class="">Doctor Name</p>

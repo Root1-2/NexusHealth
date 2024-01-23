@@ -6,6 +6,8 @@ if (!isset($_SESSION['userName'])) {
     echo "<script>location.href='../Authentication/login.php'</script>";
 }
 include '../Database/connection.php';
+
+$medcorner = 1;
 ?>
 
 <!DOCTYPE html>
@@ -79,17 +81,7 @@ include '../Database/connection.php';
                                 <select class="form-select" name="category" required="">
                                     <option value="">Select Category.....</option>
                                     <option value="OTC Medicine">OTC Medicine</option>
-                                    <option value="Women choice">Women's choice</option>
-
                                     <option value="Sexual Wellness">Sexual Wellness</option>
-                                    <option value="Diabetic Care">Diabetic Care</option>
-                                    <option value="Baby Care">Baby Care</option>
-                                    <option value="Dental Care">Dental Care</option>
-                                    <option value="Personal Care">Personal Care</option>
-                                    <option value="Devices">Devices</option>
-                                    <option value="Prescription Medicine">Prescription Medicine</option>
-                                    
-
                                 </select>
                             </div>
 
@@ -116,7 +108,7 @@ include '../Database/connection.php';
 
                         <hr class="my-4">
                         <div class="d-flex justify-content-center">
-                            <button class="w-25 btn btn-outline-success" type="submit" name="submit">Add
+                            <button class="w-25 btn btn-outline-success" type="submit" name="signup">Add
                                 Medicine</button>
                         </div>
                     </form>

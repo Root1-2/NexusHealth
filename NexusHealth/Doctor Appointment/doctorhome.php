@@ -1,14 +1,29 @@
 <?php
 session_start();
-if(!isset($_SESSION['userName'])) {
+if (!isset($_SESSION['userName'])) {
     echo "<script>alert('Please Login First!')</script>";
     echo "<script>location.href='../Homepage/index.php'</script>";
 }
 include "../Database/connection.php";
 include "../Database/sessionUserData.php";
 
-
 $doctorHome = 1;
+
+// Total Appointment Query
+$totalApp = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM appointments WHERE patientUsername = '{$_SESSION['userName']}'"));
+// Upcoming Appointment
+$upApp = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM appointments WHERE patientUsername = '{$_SESSION['userName']}' AND appointmentDate >= CURDATE()"));
+$upAppNum = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM appointments WHERE patientUsername = '{$_SESSION['userName']}' AND appointmentDate >= CURDATE()"));
+// Upcoming Doctor Information
+$upcomingAppDoc = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM doctorlist WHERE id = '{$upApp['doctorID']}'"));
+// Closest Appointment
+$upcomingAppointment = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM appointments WHERE patientUsername = '{$_SESSION['userName']}' 
+                                                                AND appointmentDate >= CURDATE() ORDER BY appointmentDate, appointmentTime LIMIT 1"));
+// Top Doctors
+$topDoc = mysqli_fetch_assoc(mysqli_query($conn, "SELECT doctorID, COUNT(*) AS appointment_count FROM appointments WHERE patientUsername = '{$_SESSION['userName']}' 
+                                                    GROUP BY doctorID ORDER BY appointment_count DESC LIMIT 1")); 
+// Top Doctor Information
+$topDocInfo = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM doctorlist WHERE id = '{$topDoc['doctorID']}'"));
 
 ?>
 
@@ -26,6 +41,8 @@ $doctorHome = 1;
     <!-- Bootstrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
         integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
+    <!-- Fontawesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -40,65 +57,120 @@ $doctorHome = 1;
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="d-flex flew-row">
-            <?php include 'sidebar.php'; ?>
-
-            <!-- Dashboard Section -->
+    <div class="container-fluid ms-0">
+        <div class="d-flex flex-nowrap ms-0">
+            <div class="ms-0">
+                <?php include 'sidebar.php'; ?>
+            </div>
             <div class="px-5 py-3" style="width: 100%;">
-                <div>
-                    <i class="bi bi-speedometer dashicon display-6 me-2"></i>
-                    <span class="display-5 slide-in-from-left">Dashboard Overview</span>
-                    <hr class="bg-primary">
+                <!-- Dashboard Header -->
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <i class="bi bi-speedometer dashicon display-6 me-2"></i>
+                        <span class="display-5 slide-in-from-left">Dashboard Overview</span>
+                    </div>
+                    <div class="display-5">
+                        <?php
+                        $t = time();
+                        echo (date("M jS", $t));
+                        ?>
+                    </div>
                 </div>
+                <hr>
 
                 <!-- Welcome Card -->
-                <div class="row">
-                    <div class="col-lg-5 ms-3 me-5 p-5 rounded" style="background-color: #1c325a;">
+                <div class="d-flex flex-wrap">
+                    <div class="col-lg-5 ms-3 me-5 p-2 rounded" style="background-color: #082c90;">
                         <span class="fs-2 text-light slide-in-from-bottom">Good Morning,
                             <?php echo $row['lastName'] ?>
                         </span>
                         <p class="fs-5 my-4 text-light">Appointment Statistics</p>
-                        <div class="row">
-                            <div class="col-lg-6 card rounded rounded-dark p-3" style="background-color: #1c325a;">
+                        <div class="ms-1 row">
+                            <div class="col-lg-5 card rounded rounded-dark p-2" style="background-color: #082c90;">
                                 <p class=" text-light">Total Appointments</p>
-                                <p class="display-2 text-secondary">24</p>
+                                <p class="display-2 text-secondary">
+                                    <?php echo $totalApp ?>
+                                </p>
                             </div>
-                            <div class="col-lg-6 card rounded rounded-dark p-3" style="background-color: #1c325a;">
+                            <div class="col-lg-5 card rounded rounded-dark p-2" style="background-color: #082c90;">
                                 <p class="text-light">Upcoming Appointments</p>
-                                <p class="display-2 text-secondary">11</p>
+                                <p class="display-2 text-secondary">
+                                    <?php echo $upAppNum ?>
+                                </p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-5 p-5 card border border-none rounded">
+                    <div class="col-lg-5 p-2 card border rounded">
                         <span class="fs-2">Closest Appointment</span>
                         <div class="rounded p-3 my-3" style="background-color: #f2f5fa">
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    <h3>Dr. Arafat Hossain</h3>
+                            <div class="d-flex justify-content-between">
+                                <div class="col-lg-8 mt-4 pt-1">
+                                    <h3>
+                                        <?php echo $upcomingAppointment['doctorName'] ?>
+                                    </h3>
                                     <h4>Cardiology</h4>
                                 </div>
-                                <div class="col-lg-4 d-flex justify-content-end">
-                                    <p class="fs-4 mt-4 me-2">11-11:20 AM</p>
+                                <div class="col-lg-4">
+                                    <p class="fs-4 mt-3 mb-0">
+                                        <?php echo $upcomingAppointment['appointmentTime'] ?>
+                                    </p>
+                                    <p class="fs-4">
+                                        <?php
+                                        $formattedDate = date("F jS, l", strtotime($upcomingAppointment['appointmentDate']));
+                                        echo $formattedDate;
+                                        ?>
+
+                                    </p>
                                 </div>
                             </div>
                             <h2></h2>
                         </div>
-                        <p class="fs-4 m-0">Address Information</p>
-                        <p class="fs-5">Al-Haramain Hospital</p>
+                        <p class="fw-bold fs-4 m-0">Address Information</p>
+                        <p class="fs-5">
+                            <?php echo $upcomingAppDoc['hospital/chamber'] ?>
+                        </p>
                         <div>
                             <i class="bi bi-telephone-plus dashicon fs-4 me-2"></i>
-                            <span> +88 019 3122 5555</span>
+                            <span>
+                                <?php echo $upcomingAppDoc['phoneNumber'] ?>
+                            </span>
                         </div>
                     </div>
                 </div>
 
-
+                <!-- Top Doctor -->
+                <div class="d-flex justify-content-center">
+                    <div class="col-lg-5 card border rounded ms-3 me-5 mt-4" style="background-color: #fff;">
+                        <p class="fw-bold fs-4 d-flex mx-auto mt-2">Top Doctor</p>
+                        <hr class="mt-0 pt-0">
+                        <div class="d-flex justify-content-around">
+                            <div class="">
+                                <img src="<?php echo $topDocInfo['doctorPhoto'] ?>" alt="" width="150" height="200" class="img-fluid" style="">
+                            </div>
+                            <div class="mt-5 pt-1">
+                                <div class="d-flex">
+                                    <i class="fa-solid fa-user-doctor mt-1 me-2"></i>
+                                    <p class="fw-bold fs-5 mb-2"><?php echo $topDocInfo['doctorName'] ?></p>
+                                </div>
+                                <div class="d-flex">
+                                    <i class="fa-solid fa-stethoscope mt-1 me-2"></i>
+                                    <p class="fs-6"><?php echo $topDocInfo['department'] ?></p>
+                                </div>
+                                <div class="d-flex">
+                                <i class="fa-solid fa-hospital mt-1 me-2"></i>
+                                    <p class="fs-6"><?php echo $topDocInfo['hospital/chamber'] ?></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ms-4 mt-4 mb-5">
+                            <span class="fs-3">You Have Appointed This Doctor: </span>
+                            <span class="fs-3"><?php echo $topDoc['appointment_count']; ?></span>
+                            <span class="fs-3">Times</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
-
         </div>
     </div>
 

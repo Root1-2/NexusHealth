@@ -65,7 +65,7 @@
                     data-bs-toggle="collapse" data-bs-target="#med-collapse">
                     <span><i class="fa-solid fa-pills me-3"></i>Med Corner</span>
                 </button>
-                <div class="collapse <?php if (isset($medcorner))
+                <div class="collapse <?php if (isset($medcorners))
                 echo "show" ?>" id="med-collapse" style="">
                     <ul class="btn-toggle-nav list-unstyled fw-normal px-4 small">
                         <li><a href="med-addMed.php"

@@ -111,7 +111,7 @@ $doctorappointment = 1;
             transform: scale(0.01);
             visibility: hidden;
             position: absolute;
-            top: 0%;
+            top: 5%;
             left: 20%;
             z-index: 100;
             transition: all 0.3s;

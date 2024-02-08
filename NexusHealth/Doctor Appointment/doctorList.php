@@ -60,7 +60,7 @@ $doctorList = 1;
         <div class="d-flex flex-row">
             <?php include 'sidebar.php'; ?>
 
-            <div class="px-5 py-3" style="width: 100%;">
+            <div class="px-5 py-3" style="width: 100%; height: 100vh;">
                 <div>
                     <i class="bi bi-activity dashicon display-6 me-2"></i>
                     <span class="display-5 slide-in-from-left">Doctor List</span>
@@ -104,7 +104,7 @@ $doctorList = 1;
                     </div>
                 </div>
 
-                <div class="d-flex flex-wrap doctor-list-container">
+                <div class="d-flex flex-wrap doctor-list-container" style="height: 80vh; overflow-y: auto;">
                     <!-- Doctor List -->
                     <?php
 
@@ -158,7 +158,7 @@ $doctorList = 1;
                 sendAjaxRequest(selectedDepartment);
 
                 function sendAjaxRequest(selectedDepartment) {
-                    console.log('Sending AJAX request...');
+                    // console.log('Sending AJAX request...');
                     $.ajax({
                         type: 'POST',
                         url: 'doctorList.php',
@@ -171,7 +171,6 @@ $doctorList = 1;
                             var doctorListContainer = $(parsedHtml).find('.doctor-list-container');
 
                             // Update only the doctor-list-container with the new content
-                            console.log('Received response:', response);
                             $('.doctor-list-container').html(doctorListContainer.html());
                         },
                         error: function (error) {

@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+include "../Database/connection.php";
+include "../Database/sessionUserData.php";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -86,44 +94,27 @@
                         <form>
                             <div class="mb-3">
                                 <label for="input-firstname" class="form-label">First Name</label>
-                                <input type="text" class="form-control" id="input-firstname" placeholder="First Name">
+                                <input type="text" class="form-control" value="<?php echo $row['firstName'] ?>" id="input-firstname" placeholder="First Name" >
                             </div>
                             <div class="mb-3">
                                 <label for="input-lastname" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" id="input-lastname" placeholder="Last Name">
+                                <input type="text" class="form-control" value="<?php echo $row['lastName'] ?>" id="input-lastname" placeholder="Last Name">
                             </div>
                             <div class="mb-3">
                                 <label for="input-address" class="form-label">Address</label>
-                                <input type="text" class="form-control" id="input-address" placeholder="Address">
+                                <input type="text" class="form-control" value="<?php echo $row['address'] ?>" id="input-address" placeholder="Address">
                             </div>
                             <div class="mb-3">
                                 <label for="input-telephone" class="form-label">Mobile</label>
-                                <input type="tel" class="form-control" id="input-telephone" placeholder="Mobile">
+                                <input type="tel" class="form-control" value="<?php echo $row['pNumber'] ?>" id="input-telephone" placeholder="Mobile">
                             </div>
                             <div class="mb-3">
                                 <label for="input-email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="input-email" placeholder="Email">
+                                <input type="email" class="form-control" value="<?php echo $row['email'] ?>" id="input-email" placeholder="Email">
                             </div>
                             <div class="mb-3">
                                 <label for="input-city" class="form-label">City</label>
-                                <input type="text" class="form-control" id="input-city" placeholder="City">
-                            </div>
-                            <div class="mb-3">
-                                <label for="input-zone" class="form-label">Zone</label>
-                                <select class="form-select" id="input-zone">
-                                    <option selected>Dhaka City</option>
-                                    <option>Khulna City</option>
-                                    <option>Rajshahi City</option>
-                                    <option>Rangpur City</option>
-                                    <option>Chittagong City</option>
-                                    <option>Gazipur City</option>
-                                    <option>Others</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="input-comment" class="form-label">Comment</label>
-                                <textarea class="form-control" id="input-comment" rows="3"
-                                    placeholder="Comment"></textarea>
+                                <input type="text" class="form-control" value="<?php echo $row['city'] ?>" id="input-city" placeholder="City">
                             </div>
                         </form>
                     </div>
@@ -140,21 +131,21 @@
                                 <div class="form-check mb-3">
                                     <input class="form-check-input" type="radio" name="payment_method" id="payment-cod"
                                         value="cod" checked>
-                                    <label class="form-check-label" for="payment-cod">
+                                    <label class="form-check-label">
                                         Cash on Delivery
                                     </label>
                                 </div>
                                 <div class="form-check mb-3">
-                                    <input class="form-check-input" type="radio" name="payment_method" id="payment-cod"
-                                        value="cod" checked>
-                                    <label class="form-check-label" for="payment-cod">
+                                    <input class="form-check-input" type="radio" name="payment_method"
+                                        id="payment-bkash" value="bkash">
+                                    <label class="form-check-label">
                                         Bkash
                                     </label>
                                 </div>
                                 <div class="form-check mb-3">
-                                    <input class="form-check-input" type="radio" name="payment_method" id="payment-cod"
-                                        value="cod" checked>
-                                    <label class="form-check-label" for="payment-cod">
+                                    <input class="form-check-input" type="radio" name="payment_method" id="payment-card"
+                                        value="card">
+                                    <label class="form-check-label">
                                         Card
                                     </label>
                                 </div>
@@ -176,7 +167,7 @@
                                 </div>
                                 <div class="form-check mb-3">
                                     <input class="form-check-input" type="radio" name="shipping_method"
-                                        id="shipping-home" value="flat.flat" checked>
+                                        id="shipping-home" value="express.express">
                                     <label class="form-check-label" for="shipping-home">
                                         Express Delivery - 120৳
                                     </label>
@@ -186,42 +177,31 @@
                     </div>
 
                     <!-- Order Overview -->
-                    <div class="row mt-3">
-                        <div class="col-md-12">
-                            <div class="page-section" style="height: auto;">
-                                <div class="section-head">
-                                    <h2><span>4</span> Order Overview</h2>
+                    <div class="container">
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <div class="page-section" style="height: auto;">
+                                    <div class="section-head">
+                                        <h2><span>4</span> Order Overview</h2>
+                                    </div>
+                                    <table id="cartItemsTable" class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Medicine Name</th>
+                                                <th>Quantity</th>
+                                                <th>Price</th>
+                                                <th>Total Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="orderItemsTable"></tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="3" class="text-end"><strong>Sub Total:</strong></td>
+                                                <td id="totalPriceColumn">0৳</td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
                                 </div>
-                                <table class="table checkout-data">
-                                    <thead>
-                                        <tr>
-                                            <th>Product Name</th>
-                                            <th>Price</th>
-                                            <th class="text-right">Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="name">
-                                                <a href="#">Starex 19" NB Wide Led TV Monitor</a>
-                                            </td>
-                                            <td class="price"><span>7,800৳</span> <span> x </span> <span>2</span></td>
-                                            <td class="price text-right">15,600৳ </td>
-                                        </tr>
-                                        <tr class="total">
-                                            <td colspan="2" class="text-right"><strong>Sub-Total:</strong></td>
-                                            <td class="text-right"><span class="amount">15,600৳</span></td>
-                                        </tr>
-                                        <tr class="total">
-                                            <td colspan="2" class="text-right"><strong>Home Delivery:</strong></td>
-                                            <td class="text-right"><span class="amount">60৳</span></td>
-                                        </tr>
-                                        <tr class="total">
-                                            <td colspan="2" class="text-right"><strong>Total:</strong></td>
-                                            <td class="text-right"><span class="amount">15,660৳</span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
                             </div>
                         </div>
                     </div>
@@ -242,6 +222,89 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const orderItemsTable = document.getElementById('orderItemsTable');
+            const totalPriceColumn = document.getElementById('totalPriceColumn');
+            const deliveryRadioButtons = document.querySelectorAll('input[name="shipping_method"]');
+
+            // Retrieve cart data from session storage
+            const cartItems = JSON.parse(sessionStorage.getItem('cartItems'));
+
+            // Function to update order overview table
+            function updateOrderOverview(deliveryCost) {
+                let total = 0; // Initialize total price
+
+                // Clear previous rows
+                orderItemsTable.innerHTML = '';
+
+                // Display cart items in the order overview table
+                if (cartItems && cartItems.length > 0) {
+                    cartItems.forEach(item => {
+                        const row = orderItemsTable.insertRow();
+                        const cell1 = row.insertCell(0);
+                        const cell2 = row.insertCell(1);
+                        const cell3 = row.insertCell(2);
+                        const cell4 = row.insertCell(3);
+
+                        cell1.textContent = item.medName;
+                        cell2.textContent = item.quantity; // Quantity
+                        cell3.textContent = `${item.medPrice}৳`; // Price
+
+                        // Calculate the total price for the item
+                        const totalPrice = item.medPrice * item.quantity;
+                        cell4.textContent = `${totalPrice}৳`;
+
+                        total += totalPrice; // Accumulate total price
+                    });
+                }
+
+                // Add row for delivery cost
+                const deliveryRow = orderItemsTable.insertRow();
+                deliveryRow.innerHTML = `<td colspan="3" class="text-end"><strong>Delivery:</strong></td><td>${deliveryCost}৳</td>`;
+
+                total += deliveryCost; // Add delivery cost to total
+
+                totalPriceColumn.textContent = `${total}৳`; // Set total price
+            }
+
+            // Event listener for radio buttons
+            deliveryRadioButtons.forEach(button => {
+                button.addEventListener('change', function () {
+                    let deliveryCost = 0;
+                    if (button.value === 'flat.flat') {
+                        deliveryCost = 60;
+                    } else if (button.value === 'express.express') {
+                        deliveryCost = 120;
+                    }
+                    updateOrderOverview(deliveryCost);
+                });
+            });
+
+            // Initial update of order overview with default delivery cost
+            const defaultDeliveryCost = 60; // Default delivery cost for home delivery
+            updateOrderOverview(defaultDeliveryCost);
+        });
+
+        // Event listener for "Confirm Order" button
+        const confirmOrderButton = document.querySelector('.btn-outline-primary');
+        confirmOrderButton.addEventListener('click', function () {
+            const selectedPaymentMethod = document.querySelector('input[name="payment_method"]:checked').value;
+
+            // Perform action based on selected payment method
+            if (selectedPaymentMethod === 'bkash') {
+                window.location.href = 'bkash.php';
+            } else if (selectedPaymentMethod === 'card') {
+                window.location.href = 'card.php';
+            } else {
+                // Cash on Delivery
+                // Show popup window confirming the order
+                alert('Your order is confirmed. Thank you!');
+            }
+        });
+
+    </script>
 </body>
 
 </html>

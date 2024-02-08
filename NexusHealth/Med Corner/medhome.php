@@ -19,19 +19,15 @@ $meddata = mysqli_query($conn, "SELECT * FROM `medcorner`");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Med corner</title>
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
     <!-- Bootstrap Icon -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
-        integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
     <!-- Fontawesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lemon&family=Oswald:wght@500&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lemon&family=Oswald:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
         .dashicon {
@@ -79,16 +75,20 @@ $meddata = mysqli_query($conn, "SELECT * FROM `medcorner`");
 
 
         .sidebar {
-            width: 400px;
+            width: 500px;
+            /* Adjust the width as needed */
             height: 100%;
             position: fixed;
             top: 0;
-            right: -400px;
+            right: -500px;
+            /* Adjust the initial position as needed */
             background-color: #f9f9f9;
             padding: 20px;
-            transition: left 0.3s ease;
+            transition: right 0.3s ease;
+            /* Adjust the transition property as needed */
             z-index: 10;
         }
+
 
         .show-sidebar {
             right: 0;
@@ -130,6 +130,12 @@ $meddata = mysqli_query($conn, "SELECT * FROM `medcorner`");
             margin-right: 5px;
             /* Adjust the margin-right as needed */
         }
+
+        #buyNowButton {
+            display: block;
+            margin: 0 auto;
+
+        }
     </style>
 
 
@@ -148,35 +154,46 @@ $meddata = mysqli_query($conn, "SELECT * FROM `medcorner`");
                     <div class="d-flex justify-content-between">
                         <div>
                             <i class="bi bi-capsule-pill dashicon display-6 me-2"></i>
-                            <span class="display-5 slide-in-from-left">Medicine Corner</span>
+                           <a href="medhome.php" style="text-decoration: none; color:black;"> <span class="display-5 slide-in-from-left">Medicine Corner</span></a>
                         </div>
 
                         <div id="cartContainer" class="d-flex align-items-center">
-                            <button id="searchButton" class="btn"><i
-                                    class="fa-solid fa-magnifying-glass fa-fw"></i></button>
+                            <button id="searchButton" class="btn"><i class="fa-solid fa-magnifying-glass fa-fw"></i></button>
                             <button id="cartButton" class="btn"><i class="fa-solid fa-cart-shopping ms-2"></i></button>
                             <span id="cartCount" class="badge bg-danger">0</span>
                             <input type="text" id="searchInput" class="search-input" placeholder="Search">
                         </div>
 
-
-
-
-
-
-
-
-
+                        <!-- Update the sidebar content -->
+                        <!-- Update the sidebar content -->
                         <div id="sidebar" class="sidebar">
-                            <p class="d-flex justify-content-center">Your Medicine</p>
+                            <p class="d-flex justify-content-center">Your Order</p>
                             <hr>
-                            <!-- Add any other sidebar content here -->
-                            <h5>Work in progress</h5>
+                            <table id="cartItemsTable" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Medicine Name</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                        <th>Total Price</th>
+                                        <th>Action</th> <!-- New column for action -->
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="3" class="text-end"><strong>Sub Total:</strong></td>
+                                        <td id="totalPriceColumn">0৳</td>
+                                        <td></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <a href="../payment/checkoutpage.php"><button id="buyNowButton" class="btn btn-primary btn-block">Buy Now</button></a>
                         </div>
 
-
-
                     </div>
+
+                    <!-- <button id="buyNowButton" class="btn btn-primary btn-block">Buy Now</button> -->
 
                     <hr class="bg-primary">
                 </div>
@@ -202,7 +219,9 @@ $meddata = mysqli_query($conn, "SELECT * FROM `medcorner`");
                                         <p class='card-title text-success'>" . $row['medcompany'] . "</p>
                                         <div class='d-flex justify-content-between'>
                                             <p class='card-text fw-semibold bigger-currency'>" . $row['medprice'] . '৳' . "</p>
-                                            <button class='btn' title='Add to Cart'><i class='fa-solid fa-cart-plus fa-fw'></i></button>
+                                            <button class='btn addToCart' data-medname= " . $row['medname'] . " data-medprice= " . $row['medprice'] . ">
+                                                <i class='fa-solid fa-cart-plus fa-fw'></i>
+                                            </button>
 
                                         </div>
                                         
@@ -217,57 +236,150 @@ $meddata = mysqli_query($conn, "SELECT * FROM `medcorner`");
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
     <script>
-        let cartCount = 0;
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const sidebar = document.getElementById('sidebar');
-            const cartButton = document.getElementById('cartButton');
-            const cartCountSpan = document.getElementById('cartCount');
-
-            cartButton.addEventListener('click', function () {
-                sidebar.classList.toggle('show-sidebar');
-            });
-
-            document.addEventListener('click', function (e) {
-                const isClickInsideSidebar = sidebar.contains(e.target);
-                const isClickOnCartButton = cartButton.contains(e.target);
-
-                if (!isClickInsideSidebar && !isClickOnCartButton) {
-                    sidebar.classList.remove('show-sidebar');
+    // Update the JavaScript code
+    document.addEventListener('DOMContentLoaded', function() {
+        const cartButton = document.getElementById('cartButton');
+        const cartCountSpan = document.getElementById('cartCount');
+        const cartItemsTable = document.getElementById('cartItemsTable').getElementsByTagName('tbody')[0];
+        const totalPriceColumn = document.getElementById('totalPriceColumn');
+        
+        // Initialize cart data from session storage if available
+        let cartCount = sessionStorage.getItem('cartCount') ? parseInt(sessionStorage.getItem('cartCount')) : 0;
+        let cartItems = sessionStorage.getItem('cartItems') ? JSON.parse(sessionStorage.getItem('cartItems')) : [];
+        
+        updateSidebar(); // Update sidebar initially
+        
+        const addToCartButtons = document.querySelectorAll('.addToCart');
+        
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const medName = button.getAttribute('data-medname');
+                const medPrice = parseFloat(button.getAttribute('data-medprice')); // Parse price as float
+                
+                // Check if the item is already in the cart
+                const existingItemIndex = cartItems.findIndex(item => item.medName === medName);
+                
+                if (existingItemIndex !== -1) {
+                    // If the item is already in the cart, increase the quantity
+                    cartItems[existingItemIndex].quantity++;
+                } else {
+                    // If the item is not in the cart, add it with quantity 1
+                    cartItems.push({
+                        medName,
+                        medPrice,
+                        quantity: 1
+                    });
                 }
-            });
-
-            // Event listener for the "Add to Cart" button in each card
-            document.querySelectorAll('.card button').forEach(button => {
-                button.addEventListener('click', function () {
-                    cartCount++;
-                    cartCountSpan.innerText = cartCount;
-                });
-            });
-
-            // Your existing event listeners
-            document.getElementById('searchButton').addEventListener('click', function () {
-                // Handle search button click here
+                
+                cartCount++;
+                cartCountSpan.innerText = cartCount;
+                
+                // Update session storage
+                sessionStorage.setItem('cartCount', cartCount);
+                sessionStorage.setItem('cartItems', JSON.stringify(cartItems));
+                
+                // Update the sidebar with the cart items
+                updateSidebar();
             });
         });
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const searchButton = document.getElementById('searchButton');
-            const searchInput = document.getElementById('searchInput');
-
-            searchButton.addEventListener('click', function () {
-                searchInput.classList.toggle('show-search-input');
-                if (searchInput.classList.contains('show-search-input')) {
-                    searchInput.focus(); // Optionally focus on the input when it's displayed
-                }
+        
+        function updateSidebar() {
+            // Clear existing items in the table
+            cartItemsTable.innerHTML = '';
+            
+            // Add each item to the table
+            cartItems.forEach((item, index) => {
+                const row = cartItemsTable.insertRow();
+                const cell1 = row.insertCell(0);
+                const cell2 = row.insertCell(1);
+                const cell3 = row.insertCell(2);
+                const cell4 = row.insertCell(3);
+                const cell5 = row.insertCell(4);
+                
+                cell1.textContent = item.medName;
+                cell2.textContent = item.quantity; // Quantity is now in the second column
+                cell3.textContent = `${item.medPrice}৳`; // Price is now in the third column
+                
+                // Calculate the total price for the item
+                const totalPrice = item.medPrice * item.quantity;
+                cell4.textContent = `${totalPrice}৳`;
+                
+                // Add buttons for increasing and decreasing quantity
+                const increaseButton = createQuantityButton('+', () => increaseQuantity(index));
+                const decreaseButton = createQuantityButton('-', () => decreaseQuantity(index));
+                
+                cell5.appendChild(decreaseButton);
+                cell5.appendChild(increaseButton);
             });
+            
+            // Update the total price at the end
+            const total = cartItems.reduce((acc, item) => acc + item.medPrice * item.quantity, 0);
+            totalPriceColumn.textContent = `${total}৳`;
+            
+            // Update the card icon number
+            cartCountSpan.innerText = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+        }
+        
+        function createQuantityButton(text, clickHandler) {
+            const button = document.createElement('button');
+            button.textContent = text;
+            button.classList.add('btn', 'btn-outline-secondary', 'btn-sm');
+            button.addEventListener('click', function(event) {
+                event.stopPropagation(); // Stop the event from propagating
+                clickHandler();
+            });
+            return button;
+        }
+        
+        
+        function increaseQuantity(index) {
+            cartItems[index].quantity++;
+            updateSidebar();
+            updateSessionStorage();
+        }
+        
+        function decreaseQuantity(index) {
+            if (cartItems[index].quantity > 1) {
+                cartItems[index].quantity--;
+            } else {
+                // Optionally, remove the item from the cart when the quantity becomes zero
+                cartItems.splice(index, 1);
+            }
+            updateSidebar();
+            updateSessionStorage();
+        }
+        
+        function updateSessionStorage() {
+            // Update session storage with current cart data
+            sessionStorage.setItem('cartCount', cartCount);
+            sessionStorage.setItem('cartItems', JSON.stringify(cartItems));
+        }
+        
+        const sidebar = document.getElementById('sidebar');
+        
+        cartButton.addEventListener('click', function() {
+            sidebar.classList.toggle('show-sidebar');
         });
-    </script>
+        
+        document.addEventListener('click', function(e) {
+            const isClickInsideSidebar = sidebar.contains(e.target);
+            const isClickOnCartButton = cartButton.contains(e.target);
+            
+            if (!isClickInsideSidebar && !isClickOnCartButton) {
+                sidebar.classList.remove('show-sidebar');
+            }
+        });
+        
+        // Your existing event listeners
+        document.getElementById('searchButton').addEventListener('click', function() {
+            // Handle search button click here
+        });
+    });
+</script>
+
 
 </body>
 

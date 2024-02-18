@@ -1,4 +1,29 @@
-<div class="ps-3 py-3 border-end sidebar" id="side_nav" style="width: 16rem; height: 100vh; background-color: #222e3c;">
+<style>
+    #side_nav p,
+    #side_nav a,
+    #side_nav span {
+        color: rgba(233, 236, 239, 1);
+        font-size: 0.9rem;
+    }
+
+    #side_nav {
+        transition: all 0.3s;
+    }
+
+    #side_nav.active {
+        margin-left: -16rem;
+        /* position: absolute; */
+        min-height: 100vh;
+        z-index: 2;
+    }
+
+    #side_nav {
+        margin-left: 0;
+    }
+</style>
+
+<div class="ps-3 py-3 border-end sidebar" id="side_nav"
+    style="width: 16rem; min-height: 100vh; max-height: auto; background-color: #222e3c;">
     <div class="pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
         <div class="d-flex flex-wrap">
             <i class="fa-solid fa-user-gear fs-4"></i>
@@ -28,12 +53,12 @@
             <div class="collapse <?php if (isset($bloodbank))
                 echo "show" ?>" id="dashboard-collapse">
                     <ul class="btn-toggle-nav list-unstyled fw-normal px-4 small">
-                        <li><a href="#"
-                                class="link-body-emphasis d-inline-flex p-1 text-decoration-none rounded"><span>Donor
-                                    List</span></a>
+                        <li><a href="blood-donorList.php" class="link-body-emphasis d-inline-flex p-1 text-decoration-none rounded">
+                                <span>Donor List</span></a>
                         </li>
-                        <li><a href="#" class="link-body-emphasis d-inline-flex p-1 text-decoration-none rounded"><span>Add
-                                    Donor</span></a>
+                        <li><a href="blood-addBlood.php"
+                                class="link-body-emphasis d-inline-flex p-1 text-decoration-none rounded">
+                                <span>Add Donor</span></a>
                         </li>
                     </ul>
                 </div>
@@ -90,7 +115,8 @@
                     data-bs-toggle="collapse" data-bs-target="#diag-collapse">
                     <span><i class="fa-solid fa-stethoscope me-3"></i>Self-Diagnosis</span>
                 </button>
-                <div class="collapse" id="diag-collapse" style="">
+                <div class="collapse <?php if (isset($selfDiagnosis))
+                echo "show" ?>" id="diag-collapse" style="">
                     <ul class="btn-toggle-nav list-unstyled fw-normal px-4 small">
                         <li><a href="#"
                                 class="link-body-emphasis d-inline-flex p-1 text-decoration-none rounded"><span>1</span></a>

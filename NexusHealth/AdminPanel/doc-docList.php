@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-if (!isset($_SESSION['userName'])) {
+if (!isset($_SESSION['userName']) && $_SESSION['userName'] !== 'admin') {
     echo "<script>alert('You have to Login First!!!')</script>";
     echo "<script>location.href='../Authentication/login.php'</script>";
 }
@@ -35,43 +35,16 @@ $doctorappointment = 1;
             background-color: #f5f7fb;
         }
 
-        #side_nav p,
-        #side_nav a,
-        #side_nav span {
-            color: rgba(233, 236, 239, 1);
-        }
-
-        p,
-        a,
-        span {
-            font-size: 0.9rem;
-        }
-
-        .timeline p,
-        .timeline span {
-            font-size: 0.8rem;
-        }
-
-        #side_nav {
-            transition: all 0.3s;
-        }
-
-        #side_nav.active {
-            margin-left: -16rem;
-            /* position: absolute; */
-            min-height: 100vh;
-            z-index: 2;
-        }
-
-        #side_nav {
-            margin-left: 0;
-        }
-
         /* Timeline */
         .timeline {
             border-left: 1px solid #0388fc;
             position: relative;
             list-style: none;
+        }
+
+        .timeline p,
+        .timeline span {
+            font-size: 0.8rem;
         }
 
         .timeline .timeline-item {
@@ -143,9 +116,9 @@ $doctorappointment = 1;
 
 <body>
     <div class='d-flex flex-nowrap'>
-        <div>
-            <?php include 'adminSideBar.php'; ?>
-        </div>
+
+        <?php include 'adminSideBar.php'; ?>
+
         <div class="" style="width: 100%;">
             <button class="btn open-btn position-fixed"><i class="fa-solid fa-bars-staggered"></i></button> <br>
             <div class="d-flex flex-wrap">
@@ -158,7 +131,7 @@ $doctorappointment = 1;
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Chamber</th>
-                                <th>Status</th>
+                                <th>Contact</th>
                                 <th>Action</th>
                             </tr>
                         </thead>

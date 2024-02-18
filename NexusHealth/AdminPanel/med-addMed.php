@@ -1,13 +1,14 @@
 <?php
 
 session_start();
-if (!isset($_SESSION['userName'])) {
+if (!isset($_SESSION['userName']) && $_SESSION['userName'] !== 'admin') {
     echo "<script>alert('You have to Login First!!!')</script>";
     echo "<script>location.href='../Authentication/login.php'</script>";
 }
 include '../Database/connection.php';
 
 $medcorner = 1;
+
 ?>
 
 <!DOCTYPE html>
@@ -22,33 +23,10 @@ $medcorner = 1;
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <!-- Fontawesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-
-    <title>Admin Home</title>
+    <title>Add Medicine</title>
     <style>
         body {
             background-color: #f5f7fb;
-        }
-
-        #side_nav p,
-        #side_nav a,
-        #side_nav span {
-            color: rgba(233, 236, 239, 1);
-        }
-
-        #side_nav {
-            transition: all 0.3s;
-        }
-
-        #side_nav.active {
-            margin-left: -16rem;
-            /* position: absolute; */
-            min-height: 100vh;
-            z-index: 1;
-        }
-
-        #side_nav {
-            margin-left: 0;
         }
     </style>
 </head>
@@ -56,20 +34,15 @@ $medcorner = 1;
 <body>
 
     <div class='d-flex flex-nowrap'>
-        <div>
-            <?php include 'adminSideBar.php'; ?>
-        </div>
+
+        <?php include 'adminSideBar.php'; ?>
+
         <div class="" style="width: 100%;">
             <button class="btn open-btn"><i class="fa-solid fa-bars-staggered"></i></button>
             <!-- Form Section -->
             <div>
                 <br><br>
-                <div class="justify-content-center my-5 col-lg-7 container-fluid border border-1 border-success-subtle rounded p-4 shadow-lg popupForm"
-                    id="popupForm">
-                    <div class="d-flex justify-content-end">
-                        <button class="btn" onclick="closePopup()"><i class="fa-solid fa-xmark"></i></button>
-                    </div>
-
+                <div class="justify-content-center my-5 col-lg-7 container-fluid border border-1 border-success-subtle rounded p-4 shadow-lg">
                     <form action="med-medAddAction.php" method="POST" enctype="multipart/form-data">
                         <div class="row g-3">
                             <div class="col-12">
@@ -114,7 +87,6 @@ $medcorner = 1;
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
 

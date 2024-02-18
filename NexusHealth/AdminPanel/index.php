@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-if (!isset($_SESSION['userName'])) {
+if (!isset($_SESSION['userName']) && $_SESSION['userName'] !== 'admin') {
     echo "<script>alert('You have to Login First!!!')</script>";
     echo "<script>location.href='../Authentication/login.php'</script>";
 }

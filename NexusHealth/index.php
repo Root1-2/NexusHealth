@@ -2,8 +2,8 @@
 
 session_start();
 
-if(isset($_SESSION['username'])) {
-    if($_SESSION['username'] == 'admin') {
+if(isset($_SESSION['userName'])) {
+    if($_SESSION['userName'] == 'admin') {
         echo "<script>location.href='AdminPanel/'</script>";
     } else {
         echo "<script>location.href='Homepage/'</script>";

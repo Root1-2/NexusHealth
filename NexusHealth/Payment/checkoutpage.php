@@ -4,6 +4,25 @@ session_start();
 include "../Database/connection.php";
 include "../Database/sessionUserData.php";
 
+
+if (isset($_GET['cod'])) {
+    // Get the cart items from session storage
+    $cartItems = $_GET['cod'];
+
+    // Perform database insert operation
+    $sql = "INSERT INTO `receipt`(`orderBuyer`, `items`) VALUES ('{$_SESSION['userName']}',' $cartItems')";
+    // Execute the SQL query
+    if ($conn->query($sql) === TRUE) {
+        echo "<script>alert('Record inserted successfully');</script>";
+        echo "<script>sessionStorage.clear();</script>";
+        echo "<script>location.href='../Med Corner/receipt.php'</script>";
+    } else {
+        echo "<script>alert('Error inserting record: " . $conn->error . "');</script>";
+    }
+    // Clear sessionStorage
+    
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -94,27 +113,33 @@ include "../Database/sessionUserData.php";
                         <form>
                             <div class="mb-3">
                                 <label for="input-firstname" class="form-label">First Name</label>
-                                <input type="text" class="form-control" value="<?php echo $row['firstName'] ?>" id="input-firstname" placeholder="First Name" >
+                                <input type="text" class="form-control" value="<?php echo $row['firstName'] ?>"
+                                    id="input-firstname" placeholder="First Name">
                             </div>
                             <div class="mb-3">
                                 <label for="input-lastname" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" value="<?php echo $row['lastName'] ?>" id="input-lastname" placeholder="Last Name">
+                                <input type="text" class="form-control" value="<?php echo $row['lastName'] ?>"
+                                    id="input-lastname" placeholder="Last Name">
                             </div>
                             <div class="mb-3">
                                 <label for="input-address" class="form-label">Address</label>
-                                <input type="text" class="form-control" value="<?php echo $row['address'] ?>" id="input-address" placeholder="Address">
+                                <input type="text" class="form-control" value="<?php echo $row['address'] ?>"
+                                    id="input-address" placeholder="Address">
                             </div>
                             <div class="mb-3">
                                 <label for="input-telephone" class="form-label">Mobile</label>
-                                <input type="tel" class="form-control" value="<?php echo $row['pNumber'] ?>" id="input-telephone" placeholder="Mobile">
+                                <input type="tel" class="form-control" value="<?php echo $row['pNumber'] ?>"
+                                    id="input-telephone" placeholder="Mobile">
                             </div>
                             <div class="mb-3">
                                 <label for="input-email" class="form-label">Email</label>
-                                <input type="email" class="form-control" value="<?php echo $row['email'] ?>" id="input-email" placeholder="Email">
+                                <input type="email" class="form-control" value="<?php echo $row['email'] ?>"
+                                    id="input-email" placeholder="Email">
                             </div>
                             <div class="mb-3">
                                 <label for="input-city" class="form-label">City</label>
-                                <input type="text" class="form-control" value="<?php echo $row['city'] ?>" id="input-city" placeholder="City">
+                                <input type="text" class="form-control" value="<?php echo $row['city'] ?>"
+                                    id="input-city" placeholder="City">
                             </div>
                         </form>
                     </div>
@@ -231,6 +256,7 @@ include "../Database/sessionUserData.php";
 
             // Retrieve cart data from session storage
             const cartItems = JSON.parse(sessionStorage.getItem('cartItems'));
+            console.log(cartItems);
 
             // Function to update order overview table
             function updateOrderOverview(deliveryCost) {
@@ -298,9 +324,11 @@ include "../Database/sessionUserData.php";
             } else if (selectedPaymentMethod === 'card') {
                 window.location.href = 'card.php';
             } else {
-                // Cash on Delivery
-                // Show popup window confirming the order
-                alert('Your order is confirmed. Thank you!');
+                // Retrieve the data from sessionStorage
+                var data = JSON.parse(sessionStorage.getItem('cartItems'));
+                // Convert the JavaScript object to a JSON string
+                var jsonData = JSON.stringify(data);
+                window.location.href = 'checkoutpage.php?cod=' + encodeURIComponent(jsonData);
             }
         });
 

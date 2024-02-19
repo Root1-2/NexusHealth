@@ -1,8 +1,3 @@
-<?php
-
-$_SESSION['img'] = 'bkash';
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">

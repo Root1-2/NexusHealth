@@ -197,8 +197,8 @@ $meddata = mysqli_query($conn, "SELECT * FROM `medcorner`");
 
                         </div>
 
-                        <!-- Update the sidebar content -->
-                        <!-- Update the sidebar content -->
+                        
+                        <!-- sidebar Design -->
                         <div id="sidebar" class="sidebar">
                             <p class="d-flex justify-content-center">Your Order</p>
                             <hr>
@@ -207,18 +207,15 @@ $meddata = mysqli_query($conn, "SELECT * FROM `medcorner`");
                                     <tr>
                                         <th>Medicine Name</th>
                                         <th>Quantity</th>
+                                        <th>Action</th>
                                         <th>Price</th>
                                         <th>Total Price</th>
-                                        <th>Action</th> <!-- New column for action -->
+
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
                                 <tfoot>
-                                    <tr>
-                                        <td colspan="3" class="text-end"><strong>Sub Total:</strong></td>
-                                        <td id="totalPriceColumn">0৳</td>
-                                        <td></td>
-                                    </tr>
+                                    
                                 </tfoot>
                                 <tbody id="cartItemsTableBody"></tbody>
                                 <tfoot>
@@ -235,7 +232,7 @@ $meddata = mysqli_query($conn, "SELECT * FROM `medcorner`");
 
                     </div>
 
-                    <!-- <button id="buyNowButton" class="btn btn-primary btn-block">Buy Now</button> -->
+                    <
 
                     <hr class="bg-primary">
                 </div>
@@ -296,18 +293,18 @@ $meddata = mysqli_query($conn, "SELECT * FROM `medcorner`");
 
     <script>
 
-document.addEventListener('DOMContentLoaded', function () {
-    const addToCartButtons = document.querySelectorAll('.addToCart');
-    const modal = document.getElementById('confirmationModal');
-    const confirmYes = document.getElementById('confirmYes');
-    const confirmNo = document.getElementById('confirmNo');
-    const sidebar = document.getElementById('sidebar');
-    const cartButton = document.getElementById('cartButton');
-    let cartCount = parseInt(sessionStorage.getItem('cartCount')) || 0;
-    let cartItems = JSON.parse(sessionStorage.getItem('cartItems')) || [];
+        document.addEventListener('DOMContentLoaded', function () {
+            const addToCartButtons = document.querySelectorAll('.addToCart');
+            const modal = document.getElementById('confirmationModal');
+            const confirmYes = document.getElementById('confirmYes');
+            const confirmNo = document.getElementById('confirmNo');
+            const sidebar = document.getElementById('sidebar');
+            const cartButton = document.getElementById('cartButton');
+            let cartCount = parseInt(sessionStorage.getItem('cartCount')) || 0;
+            let cartItems = JSON.parse(sessionStorage.getItem('cartItems')) || [];
 
-    // Update the sidebar when the page loads
-    updateSidebar();
+            // Update the sidebar when the page loads
+            updateSidebar();
 
             cartButton.addEventListener('click', function () {
                 sidebar.classList.toggle('show-sidebar');
@@ -378,15 +375,17 @@ document.addEventListener('DOMContentLoaded', function () {
                     const quantityCell = row.insertCell(1);
                     quantityCell.textContent = item.quantity;
 
+                    const buttonCell = row.insertCell(2); // Create a cell for action
+
                     const decreaseButton = createQuantityButton('-', () => decreaseQuantity(item));
-                    row.insertCell(2).appendChild(decreaseButton);
+                    buttonCell.appendChild(decreaseButton);
 
                     const increaseButton = createQuantityButton('+', () => increaseQuantity(item));
-                    row.insertCell(3).appendChild(increaseButton);
+                    buttonCell.appendChild(increaseButton);
 
-                    row.insertCell(4).textContent = `${item.medPrice}৳`;
+                    row.insertCell(3).textContent = `${item.medPrice}৳`;
                     const totalPrice = item.medPrice * item.quantity;
-                    row.insertCell(5).textContent = `${totalPrice}৳`;
+                    row.insertCell(4).textContent = `${totalPrice}৳`;
                 });
 
                 const total = cartItems.reduce((acc, item) => acc + item.medPrice * item.quantity, 0);

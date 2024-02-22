@@ -197,7 +197,7 @@ $meddata = mysqli_query($conn, "SELECT * FROM `medcorner`");
 
                         </div>
 
-                        
+
                         <!-- sidebar Design -->
                         <div id="sidebar" class="sidebar">
                             <p class="d-flex justify-content-center">Your Order</p>
@@ -215,7 +215,7 @@ $meddata = mysqli_query($conn, "SELECT * FROM `medcorner`");
                                 </thead>
                                 <tbody></tbody>
                                 <tfoot>
-                                    
+
                                 </tfoot>
                                 <tbody id="cartItemsTableBody"></tbody>
                                 <tfoot>
@@ -231,8 +231,6 @@ $meddata = mysqli_query($conn, "SELECT * FROM `medcorner`");
                         </div>
 
                     </div>
-
-                    <
 
                     <hr class="bg-primary">
                 </div>
@@ -250,7 +248,7 @@ $meddata = mysqli_query($conn, "SELECT * FROM `medcorner`");
 
 
                 <!-- Card Section -->
-                <div class="row med-list-container">
+                <div class="row med-list-container" style="height: 90vh; overflow-y: auto;">
                     <?php
                     if (isset($_POST['selectedcategory'])) {
                         $selectedcategory = $_POST['selectedcategory'];
@@ -270,7 +268,7 @@ $meddata = mysqli_query($conn, "SELECT * FROM `medcorner`");
                                         <p class='card-title text-success'>" . $row['medcompany'] . "</p>
                                         <div class='d-flex justify-content-between'>
                                             <p class='card-text fw-semibold bigger-currency'>" . $row['medprice'] . '৳' . "</p>
-                                            <button class='btn addToCart' data-medname= " . $row['medname'] . " data-medprice= " . $row['medprice'] . ">
+                                            <button class='btn addToCart' data-medname= " . json_encode($row['medname']) . " data-medprice= " . $row['medprice'] . ">
                                                 <i class='fa-solid fa-cart-plus fa-fw'></i>
                                             </button>
 
@@ -286,6 +284,8 @@ $meddata = mysqli_query($conn, "SELECT * FROM `medcorner`");
             </div>
         </div>
     </div>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
@@ -315,7 +315,10 @@ $meddata = mysqli_query($conn, "SELECT * FROM `medcorner`");
             addToCartButtons.forEach(button => {
                 button.addEventListener('click', function () {
                     modal.style.display = 'block';
-                    const medName = button.getAttribute('data-medname');
+
+                    
+                    const medName = button.getAttribute('data-medname'); // Get the value of data-medname attribute
+                    console.log("Med Name:", medName);
                     const medPrice = parseFloat(button.getAttribute('data-medprice'));
                     modal.setAttribute('data-medname', medName);
                     modal.setAttribute('data-medprice', medPrice);

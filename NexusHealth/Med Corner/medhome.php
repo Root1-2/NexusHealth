@@ -113,33 +113,60 @@ $meddata = mysqli_query($conn, "SELECT * FROM `medcorner`");
             /* Adjust the right position as needed */
         }
 
-        #searchInput {
-            display: none;
-            transition: width 0.3s ease;
-            width: 0;
-            padding: 0;
-            border: none;
-            outline: none;
-        }
 
-        #searchButton:hover+#searchInput {
-            display: inline-block;
-            width: 150px;
-            /* Adjust the width as needed */
-            padding: 5px;
-            /* Adjust the padding as needed */
-            border: 1px solid #ccc;
-            /* Add border style as needed */
-            border-radius: 4px;
-            /* Add border-radius as needed */
-            margin-right: 5px;
-            /* Adjust the margin-right as needed */
-        }
 
         #buyNowButton {
             display: block;
             margin: 0 auto;
 
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Add semi-transparent background */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            /* Center the modal vertically and horizontally */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 20%;
+            /* Adjust the width of the modal as needed */
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+            /* Add shadow effect */
+        }
+
+        /* Close button styles */
+        #confirmYes,
+        #confirmNo {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-right: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* Style for hovering over buttons */
+        #confirmYes:hover,
+        #confirmNo:hover {
+            background-color: #0056b3;
         }
     </style>
 
@@ -193,6 +220,14 @@ $meddata = mysqli_query($conn, "SELECT * FROM `medcorner`");
                                         <td></td>
                                     </tr>
                                 </tfoot>
+                                <tbody id="cartItemsTableBody"></tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="3" class="text-end"><strong>Sub Total:</strong></td>
+                                        <td id="totalPriceColumn">0৳</td>
+                                        <td></td>
+                                    </tr>
+                                </tfoot>
                             </table>
                             <a href="../payment/checkoutpage.php"><button id="buyNowButton"
                                     class="btn btn-primary btn-block">Buy Now</button></a>
@@ -204,6 +239,18 @@ $meddata = mysqli_query($conn, "SELECT * FROM `medcorner`");
 
                     <hr class="bg-primary">
                 </div>
+
+                <!-- Modal POPUP -->
+                <div id="confirmationModal" class="modal">
+                    <div class="modal-content">
+                        <p>Are you sure you want to add this item to your cart?</p>
+                        <div class="d-flex justify-content-center">
+                            <button id="confirmYes">Yes</button>
+                            <button id="confirmNo">No</button>
+                        </div>
+                    </div>
+                </div>
+
 
                 <!-- Card Section -->
                 <div class="row med-list-container">
@@ -248,145 +295,133 @@ $meddata = mysqli_query($conn, "SELECT * FROM `medcorner`");
         crossorigin="anonymous"></script>
 
     <script>
-        // Update the JavaScript code
-        document.addEventListener('DOMContentLoaded', function () {
-            const cartButton = document.getElementById('cartButton');
-            const cartCountSpan = document.getElementById('cartCount');
-            const cartItemsTable = document.getElementById('cartItemsTable').getElementsByTagName('tbody')[0];
-            const totalPriceColumn = document.getElementById('totalPriceColumn');
 
-            // Initialize cart data from session storage if available
-            let cartCount = sessionStorage.getItem('cartCount') ? parseInt(sessionStorage.getItem('cartCount')) : 0;
-            let cartItems = sessionStorage.getItem('cartItems') ? JSON.parse(sessionStorage.getItem('cartItems')) : [];
+document.addEventListener('DOMContentLoaded', function () {
+    const addToCartButtons = document.querySelectorAll('.addToCart');
+    const modal = document.getElementById('confirmationModal');
+    const confirmYes = document.getElementById('confirmYes');
+    const confirmNo = document.getElementById('confirmNo');
+    const sidebar = document.getElementById('sidebar');
+    const cartButton = document.getElementById('cartButton');
+    let cartCount = parseInt(sessionStorage.getItem('cartCount')) || 0;
+    let cartItems = JSON.parse(sessionStorage.getItem('cartItems')) || [];
 
-            updateSidebar(); // Update sidebar initially
+    // Update the sidebar when the page loads
+    updateSidebar();
 
-            const addToCartButtons = document.querySelectorAll('.addToCart');
+            cartButton.addEventListener('click', function () {
+                sidebar.classList.toggle('show-sidebar');
+            });
+
+
 
             addToCartButtons.forEach(button => {
                 button.addEventListener('click', function () {
+                    modal.style.display = 'block';
                     const medName = button.getAttribute('data-medname');
-                    const medPrice = parseFloat(button.getAttribute('data-medprice')); // Parse price as float
-
-                    // Check if the item is already in the cart
-                    const existingItemIndex = cartItems.findIndex(item => item.medName === medName);
-
-                    if (existingItemIndex !== -1) {
-                        // If the item is already in the cart, increase the quantity
-                        cartItems[existingItemIndex].quantity++;
-                    } else {
-                        // If the item is not in the cart, add it with quantity 1
-                        cartItems.push({
-                            medName,
-                            medPrice,
-                            quantity: 1
-                        });
-                    }
-
-                    cartCount++;
-                    cartCountSpan.innerText = cartCount;
-
-                    // Update session storage
-                    sessionStorage.setItem('cartCount', cartCount);
-                    sessionStorage.setItem('cartItems', JSON.stringify(cartItems));
-
-                    // Update the sidebar with the cart items
-                    updateSidebar();
+                    const medPrice = parseFloat(button.getAttribute('data-medprice'));
+                    modal.setAttribute('data-medname', medName);
+                    modal.setAttribute('data-medprice', medPrice);
                 });
             });
 
+            confirmYes.addEventListener('click', function () {
+                const medName = modal.getAttribute('data-medname');
+                const medPrice = parseFloat(modal.getAttribute('data-medprice'));
+                const existingItemIndex = cartItems.findIndex(item => item.medName === medName);
+                if (existingItemIndex !== -1) {
+                    cartItems[existingItemIndex].quantity++;
+                } else {
+                    cartItems.push({
+                        medName,
+                        medPrice,
+                        quantity: 1
+                    });
+                }
+
+                cartCount++;
+                sessionStorage.setItem('cartCount', cartCount);
+                sessionStorage.setItem('cartItems', JSON.stringify(cartItems));
+                modal.style.display = 'none';
+                updateSidebar();
+
+            });
+
+
+            confirmNo.addEventListener('click', function () {
+                modal.style.display = 'none';
+            });
+
+            // Prevent closing the sidebar when interacting with the cart content
+            sidebar.addEventListener('click', function (event) {
+                event.stopPropagation();
+            });
+
+            window.addEventListener('click', function (event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                } else if (!sidebar.contains(event.target) && !cartButton.contains(event.target)) {
+                    sidebar.classList.remove('show-sidebar');
+                }
+            });
+
             function updateSidebar() {
-                // Clear existing items in the table
-                cartItemsTable.innerHTML = '';
+                const cartCountSpan = document.getElementById('cartCount');
+                cartCountSpan.innerText = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+                const cartItemsTableBody = document.getElementById('cartItemsTableBody');
+                cartItemsTableBody.innerHTML = '';
 
-                // Add each item to the table
-                cartItems.forEach((item, index) => {
-                    const row = cartItemsTable.insertRow();
-                    const cell1 = row.insertCell(0);
-                    const cell2 = row.insertCell(1);
-                    const cell3 = row.insertCell(2);
-                    const cell4 = row.insertCell(3);
-                    const cell5 = row.insertCell(4);
+                cartItems.forEach(item => {
+                    const row = cartItemsTableBody.insertRow();
+                    row.insertCell(0).textContent = item.medName;
 
-                    cell1.textContent = item.medName;
-                    cell2.textContent = item.quantity; // Quantity is now in the second column
-                    cell3.textContent = `${item.medPrice}৳`; // Price is now in the third column
+                    const quantityCell = row.insertCell(1);
+                    quantityCell.textContent = item.quantity;
 
-                    // Calculate the total price for the item
+                    const decreaseButton = createQuantityButton('-', () => decreaseQuantity(item));
+                    row.insertCell(2).appendChild(decreaseButton);
+
+                    const increaseButton = createQuantityButton('+', () => increaseQuantity(item));
+                    row.insertCell(3).appendChild(increaseButton);
+
+                    row.insertCell(4).textContent = `${item.medPrice}৳`;
                     const totalPrice = item.medPrice * item.quantity;
-                    cell4.textContent = `${totalPrice}৳`;
-
-                    // Add buttons for increasing and decreasing quantity
-                    const increaseButton = createQuantityButton('+', () => increaseQuantity(index));
-                    const decreaseButton = createQuantityButton('-', () => decreaseQuantity(index));
-
-                    cell5.appendChild(decreaseButton);
-                    cell5.appendChild(increaseButton);
+                    row.insertCell(5).textContent = `${totalPrice}৳`;
                 });
 
-                // Update the total price at the end
                 const total = cartItems.reduce((acc, item) => acc + item.medPrice * item.quantity, 0);
-                totalPriceColumn.textContent = `${total}৳`;
-
-                // Update the card icon number
-                cartCountSpan.innerText = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+                document.getElementById('totalPriceColumn').textContent = `${total}৳`;
             }
 
             function createQuantityButton(text, clickHandler) {
                 const button = document.createElement('button');
                 button.textContent = text;
                 button.classList.add('btn', 'btn-outline-secondary', 'btn-sm');
-                button.addEventListener('click', function (event) {
-                    event.stopPropagation(); // Stop the event from propagating
-                    clickHandler();
-                });
+                button.addEventListener('click', clickHandler);
                 return button;
             }
 
-
-            function increaseQuantity(index) {
-                cartItems[index].quantity++;
-                updateSidebar();
-                updateSessionStorage();
-            }
-
-            function decreaseQuantity(index) {
-                if (cartItems[index].quantity > 1) {
-                    cartItems[index].quantity--;
-                } else {
-                    // Optionally, remove the item from the cart when the quantity becomes zero
-                    cartItems.splice(index, 1);
-                }
-                updateSidebar();
-                updateSessionStorage();
-            }
-
-            function updateSessionStorage() {
-                // Update session storage with current cart data
-                sessionStorage.setItem('cartCount', cartCount);
+            function increaseQuantity(item) {
+                item.quantity++;
                 sessionStorage.setItem('cartItems', JSON.stringify(cartItems));
+                updateSidebar();
             }
 
-            const sidebar = document.getElementById('sidebar');
-
-            cartButton.addEventListener('click', function () {
-                sidebar.classList.toggle('show-sidebar');
-            });
-
-            document.addEventListener('click', function (e) {
-                const isClickInsideSidebar = sidebar.contains(e.target);
-                const isClickOnCartButton = cartButton.contains(e.target);
-
-                if (!isClickInsideSidebar && !isClickOnCartButton) {
-                    sidebar.classList.remove('show-sidebar');
+            function decreaseQuantity(item) {
+                if (item.quantity > 1) {
+                    item.quantity--;
+                } else {
+                    const index = cartItems.indexOf(item);
+                    if (index !== -1) {
+                        cartItems.splice(index, 1);
+                    }
                 }
-            });
-
-            // Your existing event listeners
-            document.getElementById('searchButton').addEventListener('click', function () {
-                // Handle search button click here
-            });
+                sessionStorage.setItem('cartItems', JSON.stringify(cartItems));
+                updateSidebar();
+            }
         });
+
+
     </script>
 
 

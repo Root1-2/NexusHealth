@@ -179,7 +179,7 @@ include '../Database/sessionUserData.php'
                                     <label for="city">City:</label>
                                 </div>
                                 <select class="form-select" name="city">
-                                    <option value="<?php echo $row['city']; ?>">Choose...</option>
+                                    <option value="<?php echo $row['city']; ?>"><?php echo $row['city']; ?></option>
                                     <option value="Dhaka">Dhaka</option>
                                     <option value="Sylhet">Sylhet</option>
                                     <option value="Khulna">Khulna</option>

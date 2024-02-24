@@ -2,7 +2,7 @@
 session_start();
 include "../Database/connection.php";
 include '../Database/sessionUserData.php'
-?>
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,11 +15,14 @@ include '../Database/sessionUserData.php'
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
     <!-- Add these lines in the head section -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.bundle.min.css" rel="stylesheet" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.bundle.min.css" rel="stylesheet"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
 
 
     <style>
@@ -81,6 +84,17 @@ include '../Database/sessionUserData.php'
         .hidden {
             display: none;
         }
+
+        #photoInput {
+            display: none;
+        }
+
+        .custom-file-upload {
+            border: 1px solid #007bff;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
     </style>
 
 
@@ -101,13 +115,14 @@ include '../Database/sessionUserData.php'
                     <!-- Modal Body -->
                     <div class="modal-body">
                         <!-- Inside the card body where you display user information -->
-                        <form form method="post" action="update_profile.php" id="editProfileForm">
+                        <form method="post" action="update_profile.php" id="editProfileForm">
                             <div class="row">
                                 <div class="col-sm-3">
                                     <label for="firstName">First Name:</label>
                                 </div>
                                 <div class="col-sm-9">
-                                    <input type="text" id="firstName" name="firstName" class="form-control" value="<?php echo $row['firstName']; ?>">
+                                    <input type="text" id="firstName" name="firstName" class="form-control"
+                                        value="<?php echo $row['firstName']; ?>">
                                 </div>
                             </div>
 
@@ -116,7 +131,8 @@ include '../Database/sessionUserData.php'
                                     <label for="lastName">Last Name:</label>
                                 </div>
                                 <div class="col-sm-9">
-                                    <input type="text" id="lastName" name="lastName" class="form-control" value="<?php echo $row['lastName']; ?>">
+                                    <input type="text" id="lastName" name="lastName" class="form-control"
+                                        value="<?php echo $row['lastName']; ?>">
                                 </div>
                             </div>
 
@@ -125,7 +141,8 @@ include '../Database/sessionUserData.php'
                                     <label for="email">Email:</label>
                                 </div>
                                 <div class="col-sm-9">
-                                    <input type="email" id="email" name="email" class="form-control" value="<?php echo $row['email']; ?>">
+                                    <input type="email" id="email" name="email" class="form-control"
+                                        value="<?php echo $row['email']; ?>" disabled>
                                 </div>
                             </div>
 
@@ -134,7 +151,8 @@ include '../Database/sessionUserData.php'
                                     <label for="phone">Phone:</label>
                                 </div>
                                 <div class="col-sm-9">
-                                    <input type="number" id="phone" name="phone" class="form-control" value="<?php echo $row['pNumber']; ?>">
+                                    <input type="number" id="phone" name="phone" class="form-control"
+                                        value="<?php echo $row['pNumber']; ?>">
                                 </div>
                             </div>
 
@@ -143,7 +161,8 @@ include '../Database/sessionUserData.php'
                                     <label for="dob">Date of Birth:</label>
                                 </div>
                                 <div class="col-sm-9">
-                                    <input type="date" id="dob" name="dob" class="form-control" value="<?php echo $row['dob']; ?>">
+                                    <input type="date" id="dob" name="dob" class="form-control"
+                                        value="<?php echo $row['dob']; ?>">
                                 </div>
                             </div>
 
@@ -152,7 +171,8 @@ include '../Database/sessionUserData.php'
                                     <label for="weight">Weight:</label>
                                 </div>
                                 <div class="col-sm-9">
-                                    <input type="number" id="weight" name="weight" class="form-control" value="<?php echo $row['weight']; ?>">
+                                    <input type="text" id="weight" name="weight" class="form-control"
+                                        value="<?php echo $row['weight']; ?>">
                                 </div>
                             </div>
 
@@ -161,7 +181,8 @@ include '../Database/sessionUserData.php'
                                     <label for="height">Height:</label>
                                 </div>
                                 <div class="col-sm-9">
-                                    <input type="number" id="height" name="height" class="form-control" value="<?php echo $row['height']; ?>">
+                                    <input type="text" id="height" name="height" class="form-control"
+                                        value="<?php echo $row['height']; ?>">
                                 </div>
                             </div>
 
@@ -170,7 +191,8 @@ include '../Database/sessionUserData.php'
                                     <label for="address">Address:</label>
                                 </div>
                                 <div class="col-sm-9">
-                                    <input type="text" id="address" name="address" class="form-control" value="<?php echo $row['address']; ?>">
+                                    <input type="text" id="address" name="address" class="form-control"
+                                        value="<?php echo $row['address']; ?>">
                                 </div>
                             </div>
 
@@ -179,7 +201,9 @@ include '../Database/sessionUserData.php'
                                     <label for="city">City:</label>
                                 </div>
                                 <select class="form-select" name="city">
-                                    <option value="<?php echo $row['city']; ?>"><?php echo $row['city']; ?></option>
+                                    <option value="<?php echo $row['city']; ?>">
+                                        <?php echo $row['city']; ?>
+                                    </option>
                                     <option value="Dhaka">Dhaka</option>
                                     <option value="Sylhet">Sylhet</option>
                                     <option value="Khulna">Khulna</option>
@@ -196,7 +220,8 @@ include '../Database/sessionUserData.php'
                     <!-- Modal Footer -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" form="editProfileForm" class="btn btn-primary">Save changes</button>
+                        <button type="submit" form="editProfileForm" name="updateProfile" class="btn btn-primary">Save
+                            changes</button>
                     </div>
 
                 </div>
@@ -219,13 +244,24 @@ include '../Database/sessionUserData.php'
                 <div class="col-lg-4">
                     <div class="card mb-4">
                         <div class="card-body text-center">
-                            <img src="<?php echo $row['profilepic'] ?>" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-                            <h5 class="my-3"><?php echo $row['userName'] ?></h5>
+                            <img src="<?php echo $row['profilepic'] ?>" alt="avatar" class="rounded-circle img-fluid"
+                                style="width: 150px;">
+                            <h5 class="my-3">
+                                <?php echo $row['userName'] ?>
+                            </h5>
 
 
                             <div class=" justify-content-center mb-2">
-                                <button type="button" class="btn btn-outline-primary ms-1">Upload Profile</button>
-                                <button type="button" class="btn btn-outline-primary ms-1" data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit Profile</button>
+                                <form id="profileForm" action="update_profile.php" method="POST"
+                                    enctype="multipart/form-data">
+                                    <label for="photoInput"
+                                        class="custom-file-upload btn btn-outline-primary mb-1 ms-1">Update
+                                        Photo</label>
+                                    <input type="file" name="photo" id="photoInput">
+                                </form>
+
+                                <button type="button" class="btn btn-outline-primary ms-1" data-bs-toggle="modal"
+                                    data-bs-target="#editProfileModal">Edit Profile</button>
 
                             </div>
                         </div>
@@ -267,7 +303,9 @@ include '../Database/sessionUserData.php'
                                     <p class="mb-0">Full Name</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><?php echo $row['firstName'] . ' ' . $row['lastName'] ?></p>
+                                    <p class="text-muted mb-0">
+                                        <?php echo $row['firstName'] . ' ' . $row['lastName'] ?>
+                                    </p>
                                 </div>
                             </div>
                             <hr>
@@ -276,7 +314,9 @@ include '../Database/sessionUserData.php'
                                     <p class="mb-0">Email</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><?php echo $row['email'] ?></p>
+                                    <p class="text-muted mb-0">
+                                        <?php echo $row['email'] ?>
+                                    </p>
                                 </div>
                             </div>
                             <hr>
@@ -285,7 +325,9 @@ include '../Database/sessionUserData.php'
                                     <p class="mb-0">Phone</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><?php echo $row['pNumber'] ?></p>
+                                    <p class="text-muted mb-0">
+                                        <?php echo $row['pNumber'] ?>
+                                    </p>
                                 </div>
                             </div>
                             <hr>
@@ -294,7 +336,9 @@ include '../Database/sessionUserData.php'
                                     <p class="mb-0">Date of birth</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><?php echo $row['dob'] ?></p>
+                                    <p class="text-muted mb-0">
+                                        <?php echo $row['dob'] ?>
+                                    </p>
                                 </div>
                             </div>
                             <hr>
@@ -303,7 +347,9 @@ include '../Database/sessionUserData.php'
                                     <p class="mb-0">Weight</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><?php echo $row['weight'] ?></p>
+                                    <p class="text-muted mb-0">
+                                        <?php echo $row['weight'] ?>
+                                    </p>
                                 </div>
                             </div>
                             <hr>
@@ -312,16 +358,20 @@ include '../Database/sessionUserData.php'
                                     <p class="mb-0">Height</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><?php echo $row['height'] ?>"</p>
+                                    <p class="text-muted mb-0">
+                                        <?php echo $row['height'] ?>
+                                    </p>
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <p class="mb-0">Bload Group</p>
+                                    <p class="mb-0">Blood Group</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><?php echo $row['bloodGroup'] ?></p>
+                                    <p class="text-muted mb-0">
+                                        <?php echo $row['bloodGroup'] ?>
+                                    </p>
                                 </div>
                             </div>
 
@@ -331,7 +381,9 @@ include '../Database/sessionUserData.php'
                                     <p class="mb-0">Gender</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><?php echo $row['sex'] ?></p>
+                                    <p class="text-muted mb-0">
+                                        <?php echo $row['sex'] ?>
+                                    </p>
                                 </div>
                             </div>
 
@@ -341,7 +393,9 @@ include '../Database/sessionUserData.php'
                                     <p class="mb-0">Address</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><?php echo $row['address'] ?></p>
+                                    <p class="text-muted mb-0">
+                                        <?php echo $row['address'] ?>
+                                    </p>
                                 </div>
                             </div>
                             <hr>
@@ -350,51 +404,37 @@ include '../Database/sessionUserData.php'
                                     <p class="mb-0">City</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><?php echo $row['city'] ?></p>
+                                    <p class="text-muted mb-0">
+                                        <?php echo $row['city'] ?>
+                                    </p>
                                 </div>
                             </div>
                             <hr>
                             <div class="col-md-12">
-                                <!-- Switch button -->
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="notificationSwitch">
-                                    <label class="form-check-label" for="notificationSwitch">Me available for donate blood.</label>
-                                </div>
+
+                                <!-- switch button -->
+                                <form method="post" action="update_profile.php">
+                                    <div class="form-check form-switch">
+                                        <?php
+                                        $_SESSION['fullName'] = $row['firstName'] . " " . $row['lastName'];
+
+                                        // echo $fullName;
+                                        $query = mysqli_query($conn, "SELECT * FROM donor_list WHERE (Name = '{$_SESSION['fullName']}' AND `Phone number`= '{$row['pNumber']}' AND status='Available')");
+                                        
+                                        if (mysqli_num_rows($query) > 0) {
+                                            $_SESSION['isChecked'] = 'checked';
 
 
-
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card mb-4 mb-md-0">
-                                <div class="card-body">
-                                    <p class="mb-4"><span class="text-primary font-italic me-1">Statistic</span> (Work in progress)
-                                    </p>
-                                    <p class="mb-1" style="font-size: .88rem;">Blood donated: </p>
-                                    <!-- <div class="progress rounded" style="height: 5px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 80%"
-                                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div> -->
-                                    <p class="mt-4 mb-1" style="font-size: .88rem;">Last blood donated date: </p>
-                                    <!-- <div class="progress rounded" style="height: 5px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 72%"
-                                            aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div> -->
-                                    <p class="mt-4 mb-1" style="font-size: .88rem;">Doctor appointment </p>
-                                    <!-- <div class="progress rounded" style="height: 5px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 89%"
-                                            aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div> -->
-                                    <p class="mt-4 mb-1" style="font-size: .88rem;">Self-diagnosis report</p>
-                                    <!-- <div class="progress rounded" style="height: 5px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 55%"
-                                            aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div> -->
-
-                                </div>
+                                        } else {
+                                            $_SESSION['isChecked'] = '';
+                                        }
+                                        ?>
+                                        <input class="form-check-input"value="off" type="checkbox" id="notificationSwitch"
+                                            name="notificationSwitch" onchange="this.form.submit()" <?php echo $_SESSION['isChecked']; ?>>
+                                        <label class="form-check-label" for="notificationSwitch">Me available for donate
+                                            Blood</label>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -404,22 +444,16 @@ include '../Database/sessionUserData.php'
     </section>
 
     <!-- Add this line at the bottom of the body section -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-
-
-    <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    <!-- Bootstrap JS (Make sure you have included Bootstrap JS in your project) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
 
     <script>
-        function toggleEditProfileForm() {
-            var form = document.getElementById("editProfileForm");
-            if (form.classList.contains("hidden")) {
-                form.classList.remove("hidden");
-            } else {
-                form.classList.add("hidden");
-            }
-        }
+        document.getElementById('photoInput').addEventListener('change', function () {
+            document.getElementById('profileForm').submit();
+        });
+
+
     </script>
 </body>
 

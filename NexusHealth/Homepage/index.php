@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 include "../Database/connection.php";
 ?>
@@ -71,15 +70,15 @@ include "../Database/connection.php";
                                         <li><a class='dropdown-item' href='profile.php'>Profile</a></li>
                                         <li><hr class='dropdown-divider'></li>";
 
-                                        if (isset($_SESSION['userName']) == "admin") {
-                                            echo "<li><a class='dropdown-item' href='../AdminPanel'>Admin Panel</a></li>";
-                                        }
+                            if (isset($_SESSION['userName']) == "admin") {
+                                echo "<li><a class='dropdown-item' href='../AdminPanel'>Admin Panel</a></li>";
+                            }
 
-                                        echo "
+                            echo "
                                         <li><a class='dropdown-item' href='../Authentication/logout.php'>Sign out</a></li>
                                     </ul>
                                 </div>";
-                        // Profile Section appear when there is session.
+                            // Profile Section appear when there is session.
                         } else {
                             echo "<div class='text-end'>
                             <a href='../Authentication/login.php'><button type='button'
@@ -160,16 +159,19 @@ include "../Database/connection.php";
         </div>
 
         <!-- Vertical Cards -->
+
         <div class="d-flex px-3 py-5">
-            <div class="card vertical-card rounded-5" style="width: 16rem;">
-                <img src="../logo/5.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="cardh card-title text-success">Med Corner</h5>
-                    <p class="cardp card-text">Some quick example text to build on the card title and make
-                        up the
-                        bulk of the card's content.</p>
+            <a href="Med Corner/medhome.php">
+                <div class="card vertical-card rounded-5" style="width: 16rem;">
+                    <img src="../logo/5.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="cardh card-title text-success">Med Corner</h5>
+                        <p class="cardp card-text">Some quick example text to build on the card title and make
+                            up the
+                            bulk of the card's content.</p>
+                    </div>
                 </div>
-            </div>
+            </a>
             <div class="card vertical-card ms-5 rounded-5" style="width: 16rem;">
                 <img src="../logo/6.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -180,6 +182,7 @@ include "../Database/connection.php";
                 </div>
             </div>
         </div>
+
     </section>
 
     <hr>

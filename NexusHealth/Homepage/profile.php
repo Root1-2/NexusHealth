@@ -420,7 +420,7 @@ include '../Database/sessionUserData.php'
 
                                         // echo $fullName;
                                         $query = mysqli_query($conn, "SELECT * FROM donor_list WHERE (Name = '{$_SESSION['fullName']}' AND `Phone number`= '{$row['pNumber']}' AND status='Available')");
-                                        
+
                                         if (mysqli_num_rows($query) > 0) {
                                             $_SESSION['isChecked'] = 'checked';
 
@@ -429,8 +429,9 @@ include '../Database/sessionUserData.php'
                                             $_SESSION['isChecked'] = '';
                                         }
                                         ?>
-                                        <input class="form-check-input"value="off" type="checkbox" id="notificationSwitch"
-                                            name="notificationSwitch" onchange="this.form.submit()" <?php echo $_SESSION['isChecked']; ?>>
+                                        <input class="form-check-input" value="off" type="checkbox"
+                                            id="notificationSwitch" name="notificationSwitch"
+                                            onchange="this.form.submit()" <?php echo $_SESSION['isChecked']; ?>>
                                         <label class="form-check-label" for="notificationSwitch">Me available for donate
                                             Blood</label>
                                     </div>

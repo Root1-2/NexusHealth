@@ -21,4 +21,3 @@ if (isset($_POST['addBlood'])) {
     echo "<script>alert('Not Accessible!')</script>";
     echo "<script>location.href='index.php'</script>";
 }
-?>

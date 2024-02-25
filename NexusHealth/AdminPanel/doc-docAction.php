@@ -2,6 +2,7 @@
 
 include '../Database/connection.php';
 
+// Doctor Data Edit
 if (isset($_POST['update'])) {
     $id = $_POST['id'];
     $docname = $_POST['dname'];
@@ -27,6 +28,7 @@ if (isset($_POST['update'])) {
 
 }
 
+// Doctor Data Delete
 if (isset($_GET['deleteid'])) {
     $id = $_GET['deleteid'];
 

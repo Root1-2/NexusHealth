@@ -273,7 +273,7 @@ $doctorappointment = 1;
                 <button class="btn" onclick="closePopup()"><i class="fa-solid fa-xmark"></i></button>
             </div>
 
-            <form action="doc-docAction.php" method="POST">
+            <form action="doc-Action.php" method="POST">
                 <div class="row g-3">
                     <div class="col-12">
                         <label for="Name" class="form-label">Doctor Name</label>
@@ -494,13 +494,6 @@ $doctorappointment = 1;
         function deleteDoctor() {
             window.location.href = "doc-docAction.php?deleteid=" + deleteRowId;
         }
-
-        // Sidebar toggle
-        $(document).ready(function () {
-            $('.open-btn').on('click', function () {
-                $('.sidebar').toggleClass('active');
-            });
-        });
 
         // DataTable Initialization
         $(document).ready(function () {

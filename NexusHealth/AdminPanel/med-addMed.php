@@ -43,7 +43,7 @@ $medcorner = 1;
             <div>
                 <br><br>
                 <div class="justify-content-center my-5 col-lg-7 container-fluid border border-1 border-success-subtle rounded p-4 shadow-lg">
-                    <form action="med-medAddAction.php" method="POST" enctype="multipart/form-data">
+                    <form action="med-Action.php" method="POST" enctype="multipart/form-data">
                         <div class="row g-3">
                             <div class="col-12">
                                 <label for="Name" class="form-label">Medicine Name</label>
@@ -105,12 +105,6 @@ $medcorner = 1;
 
                 var selectedDepartment = $(this).attr('value');
                 $(".btn.dropdown-toggle").text($(this).text());
-            });
-        });
-
-        $(document).ready(function () {
-            $('.open-btn').on('click', function () {
-                $('.sidebar').toggleClass('active');
             });
         });
     </script>

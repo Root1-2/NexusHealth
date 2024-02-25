@@ -46,7 +46,8 @@ $bloodbank = 1;
                         </div>
                         <div class="mb-4">
                             <p>Phone Number</p>
-                            <input type="tel" pattern="(\+88)?-?01[3-9]\d{8}" name="phoneNumber" class="form-control" required>
+                            <input type="tel" pattern="(\+88)?-?01[3-9]\d{8}" name="phoneNumber" class="form-control"
+                                required>
                         </div>
                         <div class="mb-4">
                             <p>Address</p>
@@ -82,15 +83,7 @@ $bloodbank = 1;
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
-
-    <script>
-        // Sidebar toggle
-        $(document).ready(function () {
-            $('.open-btn').on('click', function () {
-                $('.sidebar').toggleClass('active');
-            });
-        });
-    </script>
+ 
 </body>
 
 </html>

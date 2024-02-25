@@ -6,7 +6,7 @@ if (isset($_POST['rowId'])) {
     $docId = $_POST['rowId'];
 
     $doctorsdata = mysqli_query($conn, "SELECT * FROM `doctorlist` WHERE id = '$docId'");
-    
+
     if ($doctorsdata) {
         $data = mysqli_fetch_assoc($doctorsdata);
 

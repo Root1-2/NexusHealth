@@ -47,6 +47,7 @@ $bloodbank = 1;
                 <table id="dataTable" class="table border border-1 border-secondary-subtle p-3 shadow-lg">
                     <thead class="bg-light">
                         <tr>
+                            <th>ID</th>
                             <th>Name</th>
                             <th>Blood Group</th>
                             <th>Address</th>
@@ -61,6 +62,9 @@ $bloodbank = 1;
                         while ($row = mysqli_fetch_array($doctorsdata)) {
                             echo "
                                 <tr>
+                                    <td>
+                                        <p>" . $row['id'] . "</p>
+                                    </td>
                                     <td>
                                         <div class='d-flex align-items-center'>
                                             <div>
@@ -94,7 +98,6 @@ $bloodbank = 1;
             </div>
 
             <!-- Delete Popup -->
-            <!-- Modal -->
             <div class="modal fade" id="deleteModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -107,7 +110,11 @@ $bloodbank = 1;
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                            <button type="button" class="btn btn-danger">Yes</button>
+                            <form action="blood-Action.php" METHOD="POST">
+                                <input type="hidden" id="deleteID" name="deleteID" value="">
+                                <button type="submit" name="deleteDonor" class="btn btn-danger">Yes</button>
+                            </form>
+
                         </div>
                     </div>
                 </div>
@@ -246,6 +253,11 @@ $bloodbank = 1;
                     console.error(error);
                 }
             });
+        }
+
+        // Delete Function
+        function openDelete(ID) {
+            $("#deleteID").val(ID);
         }
     </script>
 </body>

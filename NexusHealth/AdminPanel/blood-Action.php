@@ -20,6 +20,7 @@ if (isset($_POST['addBlood'])) {
     }
 }
 
+// Update Donor Data
 if (isset($_POST['update'])) {
     $id = $_POST['id'];
     $donorname = $_POST['dname'];
@@ -38,7 +39,22 @@ if (isset($_POST['update'])) {
         echo "<script>alert('Information Updated Successfully!')</script>";
         echo "<script>location.href='blood-donorList.php'</script>";
     }
-} else {
+}
+
+if(isset($_POST['deleteDonor'])) {
+    $id = $_POST['deleteID'];
+
+    $deleteQuery = "DELETE FROM `donor_list` WHERE id = '$id'";
+    if (!mysqli_query($conn, $deleteQuery)) {
+        echo "<script>alert('Not Delete!')</script>";
+        echo "<script>location.href='blood-donorList.php'</script>";
+    } else {
+        echo "<script>alert('Data Deleted!')</script>";
+        echo "<script>location.href='blood-donorList.php'</script>";
+    }
+}
+
+else {
     echo "<script>alert('Not Accessible!')</script>";
     echo "<script>location.href='../index.php'</script>";
 }

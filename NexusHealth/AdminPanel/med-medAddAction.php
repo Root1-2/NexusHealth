@@ -32,5 +32,3 @@ if (isset($_POST['submit'])) {
     echo "<script>alert('Not Accessible!')</script>";
     echo "<script>location.href='med-addMed.php'</script>";
 }
-
-?>

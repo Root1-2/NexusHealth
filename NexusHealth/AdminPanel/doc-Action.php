@@ -2,7 +2,37 @@
 
 include '../Database/connection.php';
 
-// Doctor Data Edit
+if (isset($_POST['doctor_add'])) {
+    $doctorName = $_POST['doctorName'];
+    $phone = $_POST['phoneNumber'];
+    $address = $_POST['hospital'];
+    $department = $_POST['department'];
+    $qualification = $_POST['qualification'];
+    $time1 = $_POST['time1'];
+    $time2 = $_POST['time2'];
+    $time3 = $_POST['time3'];
+    $time4 = $_POST['time4'];
+    $tempLoc = $_FILES['photo']['tmp_name'];
+    $imgName = $_FILES['photo']['name'];
+    $imageDestination = "../DoctorPhotos/" . $imgName;
+
+    move_uploaded_file($tempLoc, $imageDestination);
+
+
+
+    $insert_query="INSERT INTO `doctorlist`( `doctorName`, `department`, `hospital/chamber`, `qualification`, `phoneNumber`, `time1`, `time2`, `time3`, `time4`,`doctorPhoto`) VALUES ('$doctorName','$department','$address',
+    '$qualification','$phone','$time1','$time2','$time3','$time4','$imageDestination')";
+
+   
+    if (!mysqli_query($conn, $insert_query)) {
+        die("Not Inserted!!");
+    } else {
+        echo "<script>alert('Information Stored Successfully!')</script>";
+        echo "<script>location.href='doctor_add.php'</script>";
+    }
+}
+
+
 if (isset($_POST['update'])) {
     $id = $_POST['id'];
     $docname = $_POST['dname'];
@@ -28,7 +58,6 @@ if (isset($_POST['update'])) {
 
 }
 
-// Doctor Data Delete
 if (isset($_GET['deleteid'])) {
     $id = $_GET['deleteid'];
 

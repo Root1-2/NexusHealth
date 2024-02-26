@@ -2,11 +2,11 @@
 
 session_start();
 if (!isset($_SESSION['userName'])) {
-    echo "<script>alert('You have to Login First!!!')</script>";
+    echo "<script>alert('You have to Login First!!!1')</script>";
     echo "<script>location.href='../Authentication/login.php'</script>";
 }
-include '../Database/connection.php';
-?>
+include '../Database/connection.php'
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -73,38 +73,36 @@ include '../Database/connection.php';
 
     <!-- Features Section -->
     <section id="features">
-        <div class="container2" style="height: 50vh;">
-            <a class="card1" href="donorList.php">
-                <h3>Donor List</h3>
-                <p class="small">Card description with lots of great facts and interesting details.</p>
-                <div class="go-corner" href="#">
-                    <div class="go-arrow">
-                        →
+        <div class="ms-5 d-flex justify-content-center container2" style="height: 50vh; background: #hbfbfb;">
+            <div class="col-lg-3">
+                <a class="card1 d-flex flex-column justify-content-center align-items-center" href="donorList.php"
+                    href="donorList.php">
+                    <img class="rounded-circle mb-2" src="../logo/find-a-donor.jpg" alt="" style="width: 5rem;">
+                    <p class="small">Find a donor.</p>
+                    <div class="go-corner" href="#">
+                        <div class="go-arrow">
+                            →
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
 
-            <a class="card2" href="#">
-                <h3>This is option 2</h3>
-                <p class="small">Card description with lots of great facts and interesting details.</p>
+          
 
-                <div class="go-corner" href="#">
-                    <div class="go-arrow">
-                        →
+            <div class="col-lg-3">
+                <a class="card2 d-flex flex-column justify-content-center align-items-center" href="newdonor.php">
+                    <img class="rounded-circle mb-2" src="../logo/become-a-donor.png" alt="" style="width: 5rem;">
+                    <p class="small">Become a donor.</p>
+                    <div class="go-corner" href="#">
+                        <div class="go-arrow">
+                            →
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
 
-            <a class="card3" href="newdonor.php">
-                <h3>Make A Request</h3>
-                <p class="small">Card description with lots of great facts and interesting details.</p>
-                <div class="dimmer"></div>
-                <div class="go-corner" href="#">
-                    <div class="go-arrow">
-                        →
-                    </div>
-                </div>
-            </a>
+
+
         </div>
     </section>
 
@@ -163,6 +161,11 @@ include '../Database/connection.php';
 
         </div>
     </div>
+
+
+    <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
 
 </body>
 

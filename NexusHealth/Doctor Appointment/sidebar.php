@@ -39,7 +39,7 @@
             <li>
                 <hr class="dropdown-divider">
             </li>
-            <?php if (isset($_SESSION['userName']) == "admin") {
+            <?php if ($_SESSION['userName'] == "admin") {
                 echo "<li><a class='dropdown-item' href='../AdminPanel'>Admin Panel</a></li>";
             } ?>
             <li><a class="dropdown-item" href="../Authentication/logout.php">Sign out</a></li>

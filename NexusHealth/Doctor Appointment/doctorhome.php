@@ -11,21 +11,40 @@ $doctorHome = 1;
 
 // Total Appointment Query
 $totalApp = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM appointments WHERE patientUsername = '{$_SESSION['userName']}'"));
+
 // Upcoming Appointment
 $upApp = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM appointments WHERE patientUsername = '{$_SESSION['userName']}' AND appointmentDate >= CURDATE()"));
 $upAppNum = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM appointments WHERE patientUsername = '{$_SESSION['userName']}' AND appointmentDate >= CURDATE()"));
+
 // Upcoming Doctor Information
-$upcomingAppDoc = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM doctorlist WHERE id = '{$upApp['doctorID']}'"));
+$upcomingAppDoc = null;
+if ($upApp !== null) {
+    $upcomingAppDocResult = mysqli_query($conn, "SELECT * FROM doctorlist WHERE id = '{$upApp['doctorID']}'");
+    if ($upcomingAppDocResult !== false) {
+        $upcomingAppDoc = mysqli_fetch_assoc($upcomingAppDocResult);
+    }
+}
+
 // Closest Appointment
 $upcomingAppointment = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM appointments WHERE patientUsername = '{$_SESSION['userName']}' 
                                                                 AND appointmentDate >= CURDATE() ORDER BY appointmentDate, appointmentTime LIMIT 1"));
-// Top Doctors
-$topDoc = mysqli_fetch_assoc(mysqli_query($conn, "SELECT doctorID, COUNT(*) AS appointment_count FROM appointments WHERE patientUsername = '{$_SESSION['userName']}' 
-                                                    GROUP BY doctorID ORDER BY appointment_count DESC LIMIT 1"));
-// Top Doctor Information
-$topDocInfo = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM doctorlist WHERE id = '{$topDoc['doctorID']}'"));
 
+// Top Doctor
+if ($totalApp > 0) {
+    $topDocQuery = "SELECT doctorID, COUNT(*) AS appointment_count FROM appointments WHERE patientUsername = '{$_SESSION['userName']}' 
+                    GROUP BY doctorID ORDER BY appointment_count DESC LIMIT 1";
+    $topDocResult = mysqli_query($conn, $topDocQuery);
+    $topDoc = mysqli_fetch_assoc($topDocResult);
+    if ($topDoc !== null) {
+        $topDocInfoResult = mysqli_query($conn, "SELECT * FROM doctorlist WHERE id = '{$topDoc['doctorID']}'");
+        if ($topDocInfoResult !== false) {
+            $topDocInfo = mysqli_fetch_assoc($topDocInfoResult);
+        }
+    }
+}
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -110,7 +129,9 @@ $topDocInfo = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM doctorlist W
                                         <h3>
                                             <?php echo $upcomingAppointment['doctorName'] ?>
                                         </h3>
-                                        <h4><?php echo $upcomingAppDoc['department'] ?></h4>
+                                        <h4>
+                                            <?php echo $upcomingAppDoc['department'] ?>
+                                        </h4>
                                     </div>
                                     <div class="col-lg-4">
                                         <p class="fs-4 mt-3 mb-0">
@@ -137,14 +158,28 @@ $topDocInfo = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM doctorlist W
                                 </span>
                             </div>
                         <?php } else { ?>
-                            <p class="fs-4">You don't have any upcoming appointments.</p>
+                            <div class="d-flex justify-content-center mt-5">
+                                <p class="mt-5 pt-3 fs-4">You don't have any upcoming appointments.</p>
+                            </div>
+
                         <?php } ?>
                     </div>
+                </div>
 
-
-                    <!-- Top Doctor -->
-                    <div class="d-flex justify-content-center">
-                        <div class="col-lg-5 card border rounded ms-3 me-5 mt-4" style="background-color: #fff;">
+                <!-- Top Doctor -->
+                <!-- Top Doctor -->
+                <div class="d-flex justify-content-center">
+                    <?php if ($totalApp == 0) { ?>
+                        <div class="col-lg-5 col-xl-5 card border rounded ms-3 me-5 mt-4" style="background-color: #fff;">
+                            <p class="fw-bold fs-4 d-flex mx-auto mt-2">Appoint a Doctor</p>
+                            <hr class="mt-0 pt-0">
+                            <div class="text-center mt-3">
+                                <p class="fs-5">You need to appoint a doctor first.</p>
+                            </div>
+                        </div>
+                    <?php } else { ?>
+                        <!-- Your existing code for displaying top doctor information -->
+                        <div class="col-lg-5 col-xl-5 card border rounded ms-3 me-5 mt-4" style="background-color: #fff;">
                             <p class="fw-bold fs-4 d-flex mx-auto mt-2">Top Doctor</p>
                             <hr class="mt-0 pt-0">
                             <div class="d-flex justify-content-around">
@@ -181,7 +216,7 @@ $topDocInfo = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM doctorlist W
                                 <span class="fs-3">Times</span>
                             </div>
                         </div>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>

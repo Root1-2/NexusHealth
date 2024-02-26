@@ -203,7 +203,7 @@
                         result += "<ul>";
                         diseases.forEach(disease => {
                             const doctorType = getDoctorType(disease);
-                            result += `<li>${disease}: <a href="../Doctor Appointment/doctorList.php?doctor=${doctorType}" target="_blank">You might refer to ${doctorType} Doctor</a></li>`;
+                            result += `<li>${disease}: <a href="../Doctor Appointment/doctorList.php?doctor=${doctorType}">You might refer to ${doctorType} Doctor</a></li>`;
                         });
                         result += "</ul>";
                     }

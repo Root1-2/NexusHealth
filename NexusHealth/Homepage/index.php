@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "../Database/connection.php";
+echo $_SESSION['userName'];
 ?>
 
 <!DOCTYPE html>
@@ -70,7 +71,7 @@ include "../Database/connection.php";
                                         <li><a class='dropdown-item' href='profile.php'>Profile</a></li>
                                         <li><hr class='dropdown-divider'></li>";
 
-                            if (isset($_SESSION['userName']) == "admin") {
+                            if ($_SESSION['userName'] == "admin") { // Check if the user is an admin
                                 echo "<li><a class='dropdown-item' href='../AdminPanel'>Admin Panel</a></li>";
                             }
 

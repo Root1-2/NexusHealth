@@ -166,7 +166,6 @@ $doctorList = 1;
                         success: function (response) {
                             // Parse the response as HTML
                             var parsedHtml = $.parseHTML(response);
-
                             // Find the doctor-list-container in the parsed HTML
                             var doctorListContainer = $(parsedHtml).find('.doctor-list-container');
 
@@ -180,7 +179,6 @@ $doctorList = 1;
                 }
             });
         });
-
 
     </script>
 </body>

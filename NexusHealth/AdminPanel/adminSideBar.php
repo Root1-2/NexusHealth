@@ -66,7 +66,7 @@
                     <ul class="btn-toggle-nav list-unstyled fw-normal px-4 small">
                         <li><a href="doc-docList.php" class="link-body-emphasis d-inline-flex p-1 text-decoration-none rounded"><span>Doctor List</span></a></li>
                         <li><a href="#" class="link-body-emphasis d-inline-flex p-1 text-decoration-none rounded"><span>Appointments List</span></a></li>
-                        <li><a href="#" class="link-body-emphasis d-inline-flex p-1 text-decoration-none rounded"><span>Add Doctors</span></a></li>
+                        <li><a href="doc-docAdd.php" class="link-body-emphasis d-inline-flex p-1 text-decoration-none rounded"><span>Add Doctors</span></a></li>
                     </ul>
                 </div>
             </li>

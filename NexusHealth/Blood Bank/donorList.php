@@ -59,7 +59,7 @@ include '../Database/connection.php';
 
 
     <div class="container">
-        <table id="dataTable" class="table align-middle mb-0 bg-white">
+        <table id="donorTable" class="table align-middle mb-0 bg-white">
             <thead class="bg-light">
                 <tr>
                     <th>Name</th>
@@ -93,7 +93,7 @@ include '../Database/connection.php';
                         </td>
                         <td>" . $row['Address'] . "</td>
                         <td>
-                            <span class='badge text-bg-success rounded-pill d-inline'>" .$row['status'] . "</span>
+                            <span class='badge text-bg-success rounded-pill d-inline'>" . $row['status'] . "</span>
                         </td>
                     </tr> ";
                 }
@@ -103,8 +103,17 @@ include '../Database/connection.php';
         </table>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
 
     <script>
+        $(document).ready(function () {
+            $('#donorTable').DataTable();
+        });
+
         document.addEventListener("DOMContentLoaded", function () {
             const filterButtons = document.querySelectorAll('.filter-button');
 
@@ -135,10 +144,6 @@ include '../Database/connection.php';
             }
         });
     </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-        crossorigin="anonymous"></script>
 </body>
 
 </html>

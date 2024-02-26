@@ -111,6 +111,9 @@ $doctorList = 1;
                     if (isset($_POST['selectedDepartment'])) {
                         $selectedDepartment = $_POST['selectedDepartment'];
                         $doctordata = mysqli_query($conn, "SELECT * FROM `doctorlist` WHERE `department` = '$selectedDepartment'");
+                    } else if (isset($_GET['doctor'])) {
+                        $selectedDepartment = $_GET['doctor'];
+                        $doctordata = mysqli_query($conn, "SELECT * FROM `doctorlist` WHERE `department` = '$selectedDepartment'");
                     } else {
                         // If no department is selected, retrieve all doctors
                         $doctordata = mysqli_query($conn, "SELECT * FROM `doctorlist`");

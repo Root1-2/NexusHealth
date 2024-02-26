@@ -25,7 +25,7 @@
 <body>
     <div class="d-flex justify-content-center container-fluid">
         <div>
-           <a href="../Homepage/index.php" ><img src="../logo/reglogo.png" alt="" style="width: 250px;"> </a>
+            <a href="../Homepage/index.php"><img src="../logo/reglogo.png" alt="" style="width: 250px;"> </a>
             <div class="mt-3 p-3" style="width: 30rem; align-items-start;">
                 <div class="px-3 py-1 rounded" style="background-color: #F2F6FD">
                     <h4 class="mt-3">Symptom Checker</h4>
@@ -110,19 +110,37 @@
                         <label for="difficultySwallowingCheckbox" class="ms-2">Difficulty swallowing</label>
                     </div>
 
-                    <button class="mt-2" type="button" onclick="checkSymptoms()">Check</button>
+                    <button class="btn btn-primary mt-2" type="button" data-bs-toggle="modal" onclick="checkSymptoms()"
+                        data-bs-target="#resultModal">Check</button>
                 </form>
-
-                <div id="result"></div>
             </div>
 
+            <!-- Modal -->
+            <div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="resultModalLabel">Symptom Checker Result</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="resultBody">
+                            <!-- Result will be displayed here -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <script>
-            function toggleCheckbox(id) {
-                var checkbox = document.getElementById(id + 'Checkbox');
-                checkbox.checked = !checkbox.checked;
-            }
 
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+            crossorigin="anonymous"></script>
+
+        <script>
             function checkSymptoms() {
                 const form = document.getElementById("symptomForm");
                 const symptoms = form.querySelectorAll('input[name="symptom"]:checked');
@@ -132,155 +150,95 @@
                     result += "<p>No symptoms selected</p>";
                 } else {
                     // Logic to determine possible diseases based on selected symptoms
-                    const diseases = [];
+                    const diseases = new Set();
 
                     symptoms.forEach(symptom => {
                         switch (symptom.value) {
                             case "Fever":
-                                diseases.push("Tuberculosis");
-                                diseases.push("Japanese encephalitis");
-                                diseases.push("Pneumonia");
-                                diseases.push("Rabies");
-                                diseases.push("Anthrax");
-                                diseases.push("Avian influenza");
-                                diseases.push("Cholera");
-                                diseases.push("Malaria");
-                                diseases.push("Typhoid");
+                                diseases.add("Infectious Diseases");
                                 break;
                             case "Cough":
-                                diseases.push("Tuberculosis");
-                                diseases.push("Pneumonia");
-                                diseases.push("Avian influenza");
-                                diseases.push("Cholera");
-                                diseases.push("Pneumonia");
-                                diseases.push("Dysentery");
-                                diseases.push("Leptospirosis");
+                                diseases.add("Respiratory Infections");
                                 break;
                             case "Headache":
-                                diseases.push("Japanese encephalitis");
-                                diseases.push("Meningitis");
-                                diseases.push("Migraine");
+                                diseases.add("Headache Disorders");
                                 break;
                             case "Sore throat":
-                                diseases.push("Tuberculosis");
-                                diseases.push("Strep throat");
-                                diseases.push("Tonsillitis");
+                                diseases.add("Upper Respiratory Tract Infections");
                                 break;
                             case "Fatigue":
-                                diseases.push("Anemia");
-                                diseases.push("Chronic fatigue syndrome");
-                                diseases.push("Neonatal sepsis");
+                                diseases.add("General Fatigue");
                                 break;
                             case "Shortness of breath":
-                                diseases.push("Pneumonia");
-                                diseases.push("Asthma");
-                                diseases.push("Chronic obstructive pulmonary disease (COPD)");
-                                diseases.push("Neonatal sepsis");
+                                diseases.add("Respiratory Conditions");
                                 break;
                             case "Chest pain":
-                                diseases.push("Heart diseases");
-                                diseases.push("Pneumonia");
-                                diseases.push("Stroke");
+                                diseases.add("Cardiovascular Diseases");
                                 break;
                             case "Joint pain":
-                                diseases.push("Rheumatoid arthritis");
-                                diseases.push("Osteoarthritis");
+                                diseases.add("Arthritis");
                                 break;
                             case "Nausea":
-                                diseases.push("Neonatal sepsis");
-                                diseases.push("Pneumonia");
-                                diseases.push("Cholera");
-                                diseases.push("Typhoid");
-                                break;
                             case "Vomiting":
-                                diseases.push("Neonatal sepsis");
-                                diseases.push("Pneumonia");
-                                diseases.push("Cholera");
-                                diseases.push("Typhoid");
-                                break;
                             case "Diarrhea":
-                                diseases.push("Cholera");
-                                diseases.push("Diarrhea");
-                                diseases.push("Dysentery");
-                                diseases.push("Leptospirosis");
-                                break;
                             case "Abdominal pain":
-                                diseases.push("Appendicitis");
-                                diseases.push("Gastritis");
-                                diseases.push("Cholera");
-                                diseases.push("Leptospirosis");
+                                diseases.add("Gastrointestinal Disorders");
                                 break;
                             case "Rash":
-                                diseases.push("Allergic reaction");
-                                diseases.push("Eczema");
-                                diseases.push("Meningitis");
+                                diseases.add("Skin Conditions");
                                 break;
                             case "Dizziness":
-                                diseases.push("Stroke");
-                                diseases.push("Vertigo");
+                                diseases.add("Dizziness and Vertigo");
                                 break;
                             case "Difficulty swallowing":
-                                diseases.push("Stroke");
-                                diseases.push("Esophageal stricture");
-                                diseases.push("Meningitis");
+                                diseases.add("Swallowing Disorders");
                                 break;
                             // Add more cases as needed
                         }
                     });
 
-                    // Remove duplicates from diseases array
-                    const uniqueDiseases = [...new Set(diseases)];
-
-                    if (uniqueDiseases.length === 0) {
+                    if (diseases.size === 0) {
                         result += "<p>No matching diseases found</p>";
                     } else {
                         result += "<ul>";
-                        uniqueDiseases.forEach(disease => {
-                            // Map diseases to corresponding departments or specialties
-                            const department = mapDiseaseToDepartment(disease);
-                            result += `<li>${disease}: ${department}</li>`;
+                        diseases.forEach(disease => {
+                            const doctorType = getDoctorType(disease);
+                            result += `<li>${disease}: <a href="../Doctor Appointment/doctorList.php?doctor=${doctorType}" target="_blank">You might refer to ${doctorType} Doctor</a></li>`;
                         });
                         result += "</ul>";
                     }
                 }
 
-                document.getElementById("result").innerHTML = result;
+                // Update the modal body with the result
+                document.getElementById("resultBody").innerHTML = result;
             }
 
-            // Function to map diseases to corresponding departments or specialties
-            function mapDiseaseToDepartment(disease) {
+            function getDoctorType(disease) {
                 switch (disease) {
-                    case "Tuberculosis":
-                    case "Japanese encephalitis":
-                    case "Pneumonia":
-                    case "Rabies":
-                    case "Anthrax":
-                    case "Avian influenza":
-                    case "Cholera":
-                    case "Malaria":
-                    case "Typhoid":
-                    case "Dysentery":
-                    case "Leptospirosis":
-                        return "Infectious Diseases";
-                    case "Diabetes":
-                        return "Endocrinology";
-                    case "Heart diseases":
-                    case "Stroke":
-                        return "Cardiology";
-                    case "Neonatal sepsis":
-                        return "Pediatrics";
-                    case "Cancer":
-                        return "Oncology";
-                    case "Dizziness":
-                    case "Vertigo":
+                    case "Infectious Diseases":
+                        return "Medicine";
+                    case "Respiratory Infections":
+                        return "Medicine";
+                    case "Headache Disorders":
                         return "Neurology";
-                    case "Abdominal pain":
+                    case "Upper Respiratory Tract Infections":
+                        return "ENT";
+                    case "General Fatigue":
+                        return "Medicine";
+                    case "Respiratory Conditions":
+                        return "Pulmonology";
+                    case "Cardiovascular Diseases":
+                        return "Cardiology";
+                    case "Arthritis":
+                        return "Orthopedics";
+                    case "Gastrointestinal Disorders":
                         return "Gastroenterology";
-                    case "Rash":
+                    case "Skin Conditions":
                         return "Dermatology";
-                    case "Difficulty swallowing":
+                    case "Dizziness and Vertigo":
+                        return "Neurology";
+                    case "Swallowing Disorders":
                         return "Otorhinolaryngology (ENT)";
-                    // Add more cases as needed
                     default:
                         return "General Medicine";
                 }

@@ -85,20 +85,6 @@
                 </div>
             </li>
 
-            <li class="mb-1">
-                <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#diag-collapse">
-                    <span><i class="fa-solid fa-stethoscope me-3"></i>Self-Diagnosis</span>
-                </button>
-                <div class="collapse <?php if (isset($selfDiagnosis)) echo "show" ?>" id="diag-collapse" style="">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal px-4 small">
-                        <li><a href="#" class="link-body-emphasis d-inline-flex p-1 text-decoration-none rounded"><span>1</span></a></li>
-                        <li><a href="#" class="link-body-emphasis d-inline-flex p-1 text-decoration-none rounded"><span>2</span></a></li>
-                        <li><a href="#" class="link-body-emphasis d-inline-flex p-1 text-decoration-none rounded"><span>3</span></a></li>
-                        <li><a href="#" class="link-body-emphasis d-inline-flex p-1 text-decoration-none rounded"><span>4</span></a></li>
-                    </ul>
-                </div>
-            </li>
-
             <li class="border-top my-3"></li>
 
             <li class="mb-1">

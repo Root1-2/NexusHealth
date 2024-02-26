@@ -28,26 +28,6 @@ include '../Database/connection.php';
             background-color: #f5f7fb;
         }
 
-        #side_nav p,
-        #side_nav a,
-        #side_nav span {
-            color: rgba(233, 236, 239, 1);
-        }
-
-        #side_nav {
-            transition: all 0.3s;
-        }
-
-        #side_nav.active {
-            margin-left: -16rem;
-            /* position: absolute; */
-            min-height: 100vh;
-            z-index: 1;
-        }
-
-        #side_nav {
-            margin-left: 0;
-        }
     </style>
 </head>
 

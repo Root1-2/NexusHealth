@@ -21,7 +21,7 @@ $upcomingAppointment = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM app
                                                                 AND appointmentDate >= CURDATE() ORDER BY appointmentDate, appointmentTime LIMIT 1"));
 // Top Doctors
 $topDoc = mysqli_fetch_assoc(mysqli_query($conn, "SELECT doctorID, COUNT(*) AS appointment_count FROM appointments WHERE patientUsername = '{$_SESSION['userName']}' 
-                                                    GROUP BY doctorID ORDER BY appointment_count DESC LIMIT 1")); 
+                                                    GROUP BY doctorID ORDER BY appointment_count DESC LIMIT 1"));
 // Top Doctor Information
 $topDocInfo = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM doctorlist WHERE id = '{$topDoc['doctorID']}'"));
 
@@ -102,81 +102,93 @@ $topDocInfo = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM doctorlist W
                     </div>
 
                     <div class="col-lg-5 p-2 card border rounded">
-                        <span class="fs-2">Closest Appointment</span>
-                        <div class="rounded p-3 my-3" style="background-color: #f2f5fa">
-                            <div class="d-flex justify-content-between">
-                                <div class="col-lg-8 mt-4 pt-1">
-                                    <h3>
-                                        <?php echo $upcomingAppointment['doctorName'] ?>
-                                    </h3>
-                                    <h4>Cardiology</h4>
+                        <?php if (isset($upcomingAppointment)) { ?>
+                            <span class="fs-2">Closest Appointment</span>
+                            <div class="rounded p-3 my-3" style="background-color: #f2f5fa">
+                                <div class="d-flex justify-content-between">
+                                    <div class="col-lg-8 mt-4 pt-1">
+                                        <h3>
+                                            <?php echo $upcomingAppointment['doctorName'] ?>
+                                        </h3>
+                                        <h4><?php echo $upcomingAppDoc['department'] ?></h4>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <p class="fs-4 mt-3 mb-0">
+                                            <?php echo $upcomingAppointment['appointmentTime'] ?>
+                                        </p>
+                                        <p class="fs-4">
+                                            <?php
+                                            $formattedDate = date("F jS, l", strtotime($upcomingAppointment['appointmentDate']));
+                                            echo $formattedDate;
+                                            ?>
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="col-lg-4">
-                                    <p class="fs-4 mt-3 mb-0">
-                                        <?php echo $upcomingAppointment['appointmentTime'] ?>
-                                    </p>
-                                    <p class="fs-4">
-                                        <?php
-                                        $formattedDate = date("F jS, l", strtotime($upcomingAppointment['appointmentDate']));
-                                        echo $formattedDate;
-                                        ?>
-
-                                    </p>
-                                </div>
+                                <h2></h2>
                             </div>
-                            <h2></h2>
-                        </div>
-                        <p class="fw-bold fs-4 m-0">Address Information</p>
-                        <p class="fs-5">
-                            <?php echo $upcomingAppDoc['hospital/chamber'] ?>
-                        </p>
-                        <div>
-                            <i class="bi bi-telephone-plus dashicon fs-4 me-2"></i>
-                            <span>
-                                <?php echo $upcomingAppDoc['phoneNumber'] ?>
-                            </span>
-                        </div>
+                            <p class="fw-bold fs-4 m-0">Address Information</p>
+                            <p class="fs-5">
+                                <?php echo $upcomingAppDoc['hospital/chamber'] ?>
+                            </p>
+                            <div>
+                                <i class="bi bi-telephone-plus dashicon fs-4 me-2"></i>
+                                <span>
+                                    <?php echo $upcomingAppDoc['phoneNumber'] ?>
+                                </span>
+                            </div>
+                        <?php } else { ?>
+                            <p class="fs-4">You don't have any upcoming appointments.</p>
+                        <?php } ?>
                     </div>
-                </div>
 
-                <!-- Top Doctor -->
-                <div class="d-flex justify-content-center">
-                    <div class="col-lg-5 card border rounded ms-3 me-5 mt-4" style="background-color: #fff;">
-                        <p class="fw-bold fs-4 d-flex mx-auto mt-2">Top Doctor</p>
-                        <hr class="mt-0 pt-0">
-                        <div class="d-flex justify-content-around">
-                            <div class="">
-                                <img src="<?php echo $topDocInfo['doctorPhoto'] ?>" alt="" width="150" height="200" class="img-fluid" style="">
+
+                    <!-- Top Doctor -->
+                    <div class="d-flex justify-content-center">
+                        <div class="col-lg-5 card border rounded ms-3 me-5 mt-4" style="background-color: #fff;">
+                            <p class="fw-bold fs-4 d-flex mx-auto mt-2">Top Doctor</p>
+                            <hr class="mt-0 pt-0">
+                            <div class="d-flex justify-content-around">
+                                <div class="">
+                                    <img src="<?php echo $topDocInfo['doctorPhoto'] ?>" alt="" width="150" height="200"
+                                        class="img-fluid" style="">
+                                </div>
+                                <div class="mt-5 pt-1">
+                                    <div class="d-flex">
+                                        <i class="fa-solid fa-user-doctor mt-1 me-2"></i>
+                                        <p class="fw-bold fs-5 mb-2">
+                                            <?php echo $topDocInfo['doctorName'] ?>
+                                        </p>
+                                    </div>
+                                    <div class="d-flex">
+                                        <i class="fa-solid fa-stethoscope mt-1 me-2"></i>
+                                        <p class="fs-6">
+                                            <?php echo $topDocInfo['department'] ?>
+                                        </p>
+                                    </div>
+                                    <div class="d-flex">
+                                        <i class="fa-solid fa-hospital mt-1 me-2"></i>
+                                        <p class="fs-6">
+                                            <?php echo $topDocInfo['hospital/chamber'] ?>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="mt-5 pt-1">
-                                <div class="d-flex">
-                                    <i class="fa-solid fa-user-doctor mt-1 me-2"></i>
-                                    <p class="fw-bold fs-5 mb-2"><?php echo $topDocInfo['doctorName'] ?></p>
-                                </div>
-                                <div class="d-flex">
-                                    <i class="fa-solid fa-stethoscope mt-1 me-2"></i>
-                                    <p class="fs-6"><?php echo $topDocInfo['department'] ?></p>
-                                </div>
-                                <div class="d-flex">
-                                <i class="fa-solid fa-hospital mt-1 me-2"></i>
-                                    <p class="fs-6"><?php echo $topDocInfo['hospital/chamber'] ?></p>
-                                </div>
+                            <div class="ms-4 mt-4 mb-5">
+                                <span class="fs-3">You Have Appointed This Doctor: </span>
+                                <span class="fs-3">
+                                    <?php echo $topDoc['appointment_count']; ?>
+                                </span>
+                                <span class="fs-3">Times</span>
                             </div>
-                        </div>
-                        <div class="ms-4 mt-4 mb-5">
-                            <span class="fs-3">You Have Appointed This Doctor: </span>
-                            <span class="fs-3"><?php echo $topDoc['appointment_count']; ?></span>
-                            <span class="fs-3">Times</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+            crossorigin="anonymous"></script>
 </body>
 
 </html>

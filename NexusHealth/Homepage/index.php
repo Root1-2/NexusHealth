@@ -1,7 +1,7 @@
 <?php
 session_start();
 include "../Database/connection.php";
-echo $_SESSION['userName'];
+
 ?>
 
 <!DOCTYPE html>

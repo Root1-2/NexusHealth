@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 if (!isset($_SESSION['userName']) && $_SESSION['userName'] !== 'admin') {
     echo "<script>alert('You have to Login First!!!')</script>";

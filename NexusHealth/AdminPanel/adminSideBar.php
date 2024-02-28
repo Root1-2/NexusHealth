@@ -75,7 +75,7 @@
                         <li><a href="doc-docList.php"
                                 class="link-body-emphasis d-inline-flex p-1 text-decoration-none rounded"><span>Doctor
                                     List</span></a></li>
-                        <li><a href="#"
+                        <li><a href="doc-appList.php"
                                 class="link-body-emphasis d-inline-flex p-1 text-decoration-none rounded"><span>Appointments
                                     List</span></a></li>
                         <li><a href="doc-docAdd.php"

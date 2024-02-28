@@ -56,14 +56,25 @@ include "../Database/sessionUserData.php";
 <body>
 
     <div class="container-fluid">
-        <?php include "../Blood Bank/header.php"; ?>
+    <header class="p-3 position-relative">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-between justify-content-lg-start">
+            
+            <div class="">
+                <a href="../Med Corner/medhome.php">
+                    <img src="../logo/reglogo.png" alt="logo1" style="width: 250px;">
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
         
 
         <div class="px-5 py-3" style="width: 100%;">
             <div>
                 
                 
-                <span class="display-5 slide-in-from-left">Recipts</span>
+                <span class="display-5 ms-5 px-3">Recipts</span>
                 <i class="bi bi-receipt dashicon display-6 me-2"></i>
                 <hr class="bg-primary">
             </div>

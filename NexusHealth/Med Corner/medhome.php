@@ -226,6 +226,8 @@ $meddata = mysqli_query($conn, "SELECT * FROM `medcorner`");
                                     </tr>
                                 </tfoot>
                             </table>
+
+                        
                             <a href="../payment/checkoutpage.php"><button id="buyNowButton"
                                     class="btn btn-primary btn-block">Buy Now</button></a>
                         </div>

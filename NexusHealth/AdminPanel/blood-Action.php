@@ -41,6 +41,7 @@ if (isset($_POST['update'])) {
     }
 }
 
+// Delete Donor
 if(isset($_POST['deleteDonor'])) {
     $id = $_POST['deleteID'];
 

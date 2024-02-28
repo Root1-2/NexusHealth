@@ -2,6 +2,7 @@
 
 include '../Database/connection.php';
 
+// Doctor Add
 if (isset($_POST['doctor_add'])) {
     $doctorName = $_POST['doctorName'];
     $phone = $_POST['phoneNumber'];
@@ -12,13 +13,11 @@ if (isset($_POST['doctor_add'])) {
     $time2 = $_POST['time2'];
     $time3 = $_POST['time3'];
     $time4 = $_POST['time4'];
+
     $tempLoc = $_FILES['photo']['tmp_name'];
     $imgName = $_FILES['photo']['name'];
     $imageDestination = "../DoctorPhotos/" . $imgName;
-
     move_uploaded_file($tempLoc, $imageDestination);
-
-
 
     $insert_query="INSERT INTO `doctorlist`( `doctorName`, `department`, `hospital/chamber`, `qualification`, `phoneNumber`, `time1`, `time2`, `time3`, `time4`,`doctorPhoto`) VALUES ('$doctorName','$department','$address',
     '$qualification','$phone','$time1','$time2','$time3','$time4','$imageDestination')";
@@ -32,7 +31,7 @@ if (isset($_POST['doctor_add'])) {
     }
 }
 
-
+// Doctor Details Update
 if (isset($_POST['update'])) {
     $id = $_POST['id'];
     $docname = $_POST['dname'];
@@ -55,9 +54,9 @@ if (isset($_POST['update'])) {
         echo "<script>alert('Information Updated Successfully!')</script>";
         echo "<script>location.href='doc-docList.php'</script>";
     }
-
 }
 
+// Doctor Delete
 if (isset($_GET['deleteid'])) {
     $id = $_GET['deleteid'];
 

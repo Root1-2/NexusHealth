@@ -114,9 +114,8 @@ $medcorners = 1;
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
                             <form action="med-Action.php" METHOD="POST">
                                 <input type="hidden" id="deleteID" name="deleteID" value="">
-                                <button type="submit" name="deleteDonor" class="btn btn-danger">Yes</button>
+                                <button type="submit" name="deleteMed" class="btn btn-danger">Yes</button>
                             </form>
-
                         </div>
                     </div>
                 </div>
@@ -133,36 +132,36 @@ $medcorners = 1;
                         <div class="modal-body">
                             <form action="med-Action.php" method="POST">
                                 <div class="d-flex justify-content-around">
-                                    <div>
-                                        <img src="" alt="pew">
+                                    <div class="col-6 mt-4 d-flex justify-content-center">
+                                        <img class="rounded-pill" src="" alt="pew" id="medImage" height="150" width="150">
                                     </div>
-                                    <div>
+                                    <div class="col-6 ms-3">
                                         <div class="col-12">
-                                            <label for="Name" class="form-label">Medicine Name</label>
-                                            <input type="text" class="form-control" name="dname" required>
+                                            <label class="form-label">Medicine Name</label>
+                                            <input type="text" class="form-control" name="mname" required>
                                         </div>
 
                                         <div class="col-12">
-                                            <label for="Name" class="form-label">Medicine Group</label>
-                                            <input type="text" class="form-control" name="dname" required>
+                                            <label class="form-label">Medicine Group</label>
+                                            <input type="text" class="form-control" name="medgroup" required>
                                         </div>
 
                                         <div class="col-12">
-                                            <label for="phone" class="form-label">Medicine Category</label>
-                                            <input type="tel" class="form-control" name="phone" required>
+                                            <label class="form-label">Medicine Category</label>
+                                            <input type="tel" class="form-control" name="medcategory" required>
                                         </div>
                                     </div>
 
                                 </div>
                                 <div class="row g-3">
                                     <div class="col-6">
-                                        <label for="address" class="form-label">Med Company</label>
-                                        <input type="address" class="form-control" name="address" required>
+                                        <label class="form-label">Med Company</label>
+                                        <input type="address" class="form-control" name="medcompany" required>
                                     </div>
 
                                     <div class="col-6">
-                                        <label for="address" class="form-label">Med Company</label>
-                                        <input type="address" class="form-control" name="address" required>
+                                        <label class="form-label">Price</label>
+                                        <input type="digit" class="form-control" name="price" required>
                                     </div>
                                 </div>
 
@@ -209,12 +208,13 @@ $medcorners = 1;
                         console.log("Medicine Data:", response);
 
                         // Set values in the form fields based on the response
-                        $("#popupForm [name=dname]").val(response.Name);
-                        $("#popupForm [name=phone]").val(response['Phone number']);
-                        $("#popupForm [name=address]").val(response.Address);
+                        $("#popupForm [name=mname]").val(response.medname);
+                        $("#popupForm [name=medgroup]").val(response.medgroup);
+                        $("#popupForm [name=medcategory]").val(response.medcategory);
+                        $("#popupForm [name=medcompany]").val(response.medcompany);
+                        $("#popupForm [name=price]").val(response.medprice);
+                        $("#medImage").attr("src", response.medpic);
                         $("#id").val(response.id);
-                        $("#bloodGroup").val(response.BloodGroup);
-                        $("#selectBlood").text(response.BloodGroup);
                     }
                 }, error: function (xhr, status, error) {
                     console.error(error);

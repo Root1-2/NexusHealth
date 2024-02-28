@@ -11,12 +11,18 @@ include '../Database/connection.php';
 $users = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM register"));
 // Total Donor
 $donor = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM donor_list"));
+// Total Donor
+$avail = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM donor_list WHERE `status` = 'Available'"));
+// Total Donor
+$unavail = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM donor_list WHERE `status` ='Unavailable'"));
 // Total Doctors
 $doctors = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM doctorlist"));
-// Total Doctors
+// Total Appointments
 $appointments = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM appointments"));
-// Total Doctors
+// Total Medicines
 $medicines = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM medcorner"));
+// Total Purchases
+$purchases = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM receipt"));
 ?>
 
 <!DOCTYPE html>
@@ -66,16 +72,6 @@ $medicines = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM medcorner"));
 
                 <div class="col-xl-3 col-lg-3 p-0 card shadow ms-5">
                     <div class="p-3">
-                        <h4 class="text-danger">Total Donor:
-                            <?php echo $donor; ?>
-                        </h4>
-                    </div>
-
-                    <img src="download.png" alt="" width="100%" style="position: relative; bottom: 0;">
-                </div>
-
-                <div class="col-xl-3 col-lg-3 p-0 card shadow ms-5">
-                    <div class="p-3">
                         <h4 class="text-primary">Total Doctor:
                             <?php echo $doctors; ?>
                         </h4>
@@ -84,7 +80,7 @@ $medicines = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM medcorner"));
                     <img src="download.png" alt="" width="100%" style="position: relative; bottom: 0;">
                 </div>
 
-                <div class="col-xl-3 col-lg-3 p-0 card shadow mt-5">
+                <div class="col-xl-3 col-lg-3 p-0 card shadow ms-5">
                     <div class="p-3">
                         <h4 class="text-primary">Total Appointment:
                             <?php echo $appointments; ?>
@@ -94,7 +90,37 @@ $medicines = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM medcorner"));
                     <img src="download.png" alt="" width="100%" style="position: relative; bottom: 0;">
                 </div>
 
+                <div class="col-xl-3 col-lg-3 p-0 card shadow mt-5">
+                    <div class="p-3">
+                        <h4 class="text-danger">Total Donor:
+                            <?php echo $donor; ?>
+                        </h4>
+                    </div>
+
+                    <img src="download.png" alt="" width="100%" style="position: relative; bottom: 0;">
+                </div>
+
                 <div class="col-xl-3 col-lg-3 p-0 card shadow mt-5 ms-5">
+                    <div class="p-3">
+                        <h4 class="text-danger">Total Available Donor:
+                            <?php echo $avail; ?>
+                        </h4>
+                    </div>
+
+                    <img src="download.png" alt="" width="100%" style="position: relative; bottom: 0;">
+                </div>
+
+                <div class="col-xl-3 col-lg-3 p-0 card shadow mt-5 ms-5">
+                    <div class="p-3">
+                        <h4 class="text-danger">Total Unavailable Donor:
+                            <?php echo $unavail; ?>
+                        </h4>
+                    </div>
+
+                    <img src="download.png" alt="" width="100%" style="position: relative; bottom: 0;">
+                </div>
+
+                <div class="col-xl-3 col-lg-3 p-0 card shadow mt-5">
                     <div class="p-3">
                         <h4 class="text-success">Total Medicine:
                             <?php echo $medicines;?>
@@ -107,7 +133,7 @@ $medicines = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM medcorner"));
                 <div class="col-xl-3 col-lg-3 p-0 card shadow mt-5 ms-5">
                     <div class="p-3">
                         <h4 class="text-success">Total Purchases:
-                            <?php ?>
+                            <?php echo $purchases;?>
                         </h4>
                     </div>
 

@@ -113,7 +113,7 @@
                 <div class="collapse  <?php if (isset($profile))
                     echo "show"; ?>" id="users-collapse" style="">
                     <ul class="btn-toggle-nav list-unstyled fw-normal px-4 small">
-                        <li><a href="med-addMed.php"
+                        <li><a href="#"
                                 class="d-inline-flex p-1 text-decoration-none"><span>Profiles</span></a></li>
                     </ul>
                 </div>

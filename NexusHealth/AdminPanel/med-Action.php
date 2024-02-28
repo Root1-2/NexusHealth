@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) {
     $photo = $_FILES['photo'];
     $imageLoc = $_FILES['photo']['tmp_name'];
     $imageName = $_FILES['photo']['name'];
-    $imageDestination = "../MedicinePhoto/" . $imageName;
+    $imageDestination = "../MedPhotos/" . $imageName;
     // Change the path to appropriate location from your computer, Aiman.
     move_uploaded_file($imageLoc, $imageDestination);
 

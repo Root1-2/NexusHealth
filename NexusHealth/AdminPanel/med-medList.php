@@ -132,33 +132,38 @@ $medcorners = 1;
                         </div>
                         <div class="modal-body">
                             <form action="med-Action.php" method="POST">
-                                <div class="row g-3">
-                                    <div class="col-12">
-                                        <label for="Name" class="form-label">Medicine Name</label>
-                                        <input type="text" class="form-control" name="dname" required>
+                                <div class="d-flex justify-content-around">
+                                    <div>
+                                        <img src="" alt="pew">
                                     </div>
+                                    <div>
+                                        <div class="col-12">
+                                            <label for="Name" class="form-label">Medicine Name</label>
+                                            <input type="text" class="form-control" name="dname" required>
+                                        </div>
 
-                                    <div class="col-12">
-                                        <label for="Name" class="form-label">Medicine Name</label>
-                                        <input type="text" class="form-control" name="dname" required>
-                                    </div>
+                                        <div class="col-12">
+                                            <label for="Name" class="form-label">Medicine Group</label>
+                                            <input type="text" class="form-control" name="dname" required>
+                                        </div>
 
-                                    <div class="col-6">
-                                        <label for="phone" class="form-label">Contact Number</label>
-                                        <input type="tel" class="form-control" name="phone" required>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <label for="address" class="form-label">Address</label>
-                                        <input type="address" class="form-control" name="address" required>
+                                        <div class="col-12">
+                                            <label for="phone" class="form-label">Medicine Category</label>
+                                            <input type="tel" class="form-control" name="phone" required>
+                                        </div>
                                     </div>
 
                                 </div>
+                                <div class="row g-3">
+                                    <div class="col-6">
+                                        <label for="address" class="form-label">Med Company</label>
+                                        <input type="address" class="form-control" name="address" required>
+                                    </div>
 
-                                <div class="mt-3 form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="switchCheck">
-                                    <label class="form-check-label" for="switchCheck">Available
-                                        Status</label>
+                                    <div class="col-6">
+                                        <label for="address" class="form-label">Med Company</label>
+                                        <input type="address" class="form-control" name="address" required>
+                                    </div>
                                 </div>
 
                                 <hr class="my-4">
@@ -191,31 +196,17 @@ $medcorners = 1;
             });
         });
 
-        // BloodGroup Dropdown Item Selected
-        $(document).ready(function () {
-            $(document).ready(function () {
-                $(".dropdown-item").click(function (e) {
-                    e.preventDefault();
-
-                    var bloodGroup = $(this).attr('data-value');
-                    $(".btn.dropdown-toggle").text($(this).text());
-                    // Set the value of the hidden input
-                    $("#bloodGroup").val(bloodGroup);
-                });
-            });
-        });
-
         // Edit Profile Popup
         function openPopup(medId) {
             $.ajax({
                 type: "POST",
-                url: "donorDataFetch.php",
+                url: "medDataFetch.php",
                 data: { medId: medId },
                 success: function (response) {
                     if (response && response.error) {
                         console.error("Error from server:", response.error);
                     } else {
-                        console.log("Donor Data:", response);
+                        console.log("Medicine Data:", response);
 
                         // Set values in the form fields based on the response
                         $("#popupForm [name=dname]").val(response.Name);

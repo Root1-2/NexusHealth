@@ -2,7 +2,7 @@
 
 include '../Database/connection.php';
 
-if (isset($_POST['donorId'])) {
+if (isset($_POST['medId'])) {
     $medId = $_POST['medId'];
 
     $meddata = mysqli_query($conn, "SELECT * FROM `medcorner` WHERE id = '$medId'");

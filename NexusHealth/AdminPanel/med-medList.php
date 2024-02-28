@@ -58,8 +58,7 @@ $medcorners = 1;
                         <?php
                         $meddata = mysqli_query($conn, "SELECT * FROM `medcorner`");
 
-                        while ($row = mysqli_fetch_array($meddata)) 
-                        {
+                        while ($row = mysqli_fetch_array($meddata)) {
                             echo "
                                 <tr>
                                     <td>
@@ -139,17 +138,9 @@ $medcorners = 1;
                                         <input type="text" class="form-control" name="dname" required>
                                     </div>
 
-                                    <div class="col-6 btn-group shadow-0">
-                                        <button type="button" class="btn dropdown-toggle"
-                                            data-bs-toggle='dropdown'><span id="selectBlood" value=""></span></button>
-                                        <ul class="dropdown-menu" style="max-height: 20rem; width: 15rem;">
-                                            <li><a class="dropdown-item" data-value="A+">A+</a></li>
-                                            <li><a class="dropdown-item" data-value="A-">A-</a></li>
-                                            <li><a class="dropdown-item" data-value="B+">B+</a></li>
-                                            <li><a class="dropdown-item" data-value="B-">B-</a></li>
-                                            <li><a class="dropdown-item" data-value="AB+">AB+</a></li>
-                                            <li><a class="dropdown-item" data-value="AB-">AB-</a></li>
-                                        </ul>
+                                    <div class="col-12">
+                                        <label for="Name" class="form-label">Medicine Name</label>
+                                        <input type="text" class="form-control" name="dname" required>
                                     </div>
 
                                     <div class="col-6">
@@ -177,7 +168,6 @@ $medcorners = 1;
                                 </div>
 
                                 <input type="hidden" id="id" name="id" value="">
-                                <input type="hidden" name="availability_status" id="availability_status" value="">
                             </form>
                         </div>
                     </div>

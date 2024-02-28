@@ -96,7 +96,7 @@
                         <li><a href="med-addMed.php"
                                 class="link-body-emphasis d-inline-flex p-1 text-decoration-none rounded"><span>Add
                                     Medicine</span></a></li>
-                        <li><a href="#"
+                        <li><a href="med-medList.php"
                                 class="link-body-emphasis d-inline-flex p-1 text-decoration-none rounded"><span>Medicine
                                     List</span></a></li>
                     </ul>
@@ -110,11 +110,11 @@
                     data-bs-toggle="collapse" data-bs-target="#users-collapse">
                     <span><i class="fa-solid fa-users-rays me-3"></i>Users</span>
                 </button>
-                <div class="collapse  <?php if (isset($medcorners))
+                <div class="collapse  <?php if (isset($profile))
                     echo "show"; ?>" id="users-collapse" style="">
                     <ul class="btn-toggle-nav list-unstyled fw-normal px-4 small">
-                        <li><a href="med-addMed.php" class="d-inline-flex p-1 text-decoration-none"><span>Add
-                                    Medicine</span></a></li>
+                        <li><a href="med-addMed.php"
+                                class="d-inline-flex p-1 text-decoration-none"><span>Profiles</span></a></li>
                     </ul>
                 </div>
             </li>

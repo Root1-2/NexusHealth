@@ -2,6 +2,7 @@
 
 include '../Database/connection.php';
 
+// Add Medicine
 if (isset($_POST['submit'])) {
 
     $medname = $_POST['mname'];

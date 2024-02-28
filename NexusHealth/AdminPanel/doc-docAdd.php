@@ -7,7 +7,8 @@ if (!isset($_SESSION['userName']) || $_SESSION['userName'] !== 'admin') {
 }
 include '../Database/connection.php';
 
-$bloodbank = 1;
+$doctorappointment = 1;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +39,7 @@ $bloodbank = 1;
             <!-- Form Section -->
             <div>
                 <br><br>
-                <div class="my-5 col-lg-7 container-fluid border border-danger-subtle rounded p-4 shadow-lg">
+                <div class="my-5 col-lg-7 container-fluid border border-primary-subtle rounded p-4 shadow-lg">
                     <form action="doc-docAction.php" method="POST"   enctype="multipart/form-data">
                         <div class="mb-4">
                             <p>Doctor Name</p>

@@ -7,7 +7,7 @@ if (!isset($_SESSION['userName']) && $_SESSION['userName'] !== 'admin') {
 }
 include '../Database/connection.php';
 
-$medcorner = 1;
+$medcorners = 1;
 
 ?>
 

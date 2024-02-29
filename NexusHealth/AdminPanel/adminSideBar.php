@@ -37,7 +37,7 @@
                 <a href="index.php">
                     <div class="p-2">
                         <i class="fa-solid fa-house"></i>
-                        <button class="btn btn-toggle d-inline-flex rounded border-0 collapsed">
+                        <button class="btn btn-toggle rounded border-0 collapsed">
                             <span>Home</span>
                         </button>
                     </div>
@@ -47,7 +47,7 @@
             <li class="border-top mb-3"></li>
 
             <li class="mb-1">
-                <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                <button class="btn btn-toggle align-items-center rounded border-0 collapsed"
                     data-bs-toggle="collapse" data-bs-target="#blood-collapse">
                     <span><i class="fa-solid fa-droplet me-3"></i>Blood Bank</span>
                 </button>
@@ -55,17 +55,17 @@
                     echo "show"; ?>" id="blood-collapse">
                     <ul class="btn-toggle-nav list-unstyled fw-normal px-4 small">
                         <li><a href="blood-donorList.php"
-                                class="link-body-emphasis d-inline-flex p-1 text-decoration-none rounded"><span>Donor
+                                class="link-body-emphasis p-1 text-decoration-none rounded"><span>Donor
                                     List</span></a></li>
                         <li><a href="blood-addBlood.php"
-                                class="link-body-emphasis d-inline-flex p-1 text-decoration-none rounded"><span>Add
+                                class="link-body-emphasis p-1 text-decoration-none rounded"><span>Add
                                     Donor</span></a></li>
                     </ul>
                 </div>
             </li>
 
             <li class="mb-1">
-                <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                <button class="btn btn-toggle align-items-center rounded border-0 collapsed"
                     data-bs-toggle="collapse" data-bs-target="#orders-collapse">
                     <span><i class="fa-solid fa-user-doctor me-3"></i>Doctor Appointment</span>
                 </button>
@@ -73,20 +73,20 @@
                     echo "show"; ?>" id="orders-collapse">
                     <ul class="btn-toggle-nav list-unstyled fw-normal px-4 small">
                         <li><a href="doc-docList.php"
-                                class="link-body-emphasis d-inline-flex p-1 text-decoration-none rounded"><span>Doctor
+                                class="link-body-emphasis p-1 text-decoration-none rounded"><span>Doctor
                                     List</span></a></li>
                         <li><a href="doc-appList.php"
-                                class="link-body-emphasis d-inline-flex p-1 text-decoration-none rounded"><span>Appointments
+                                class="link-body-emphasis p-1 text-decoration-none rounded"><span>Appointments
                                     List</span></a></li>
                         <li><a href="doc-docAdd.php"
-                                class="link-body-emphasis d-inline-flex p-1 text-decoration-none rounded"><span>Add
+                                class="link-body-emphasis p-1 text-decoration-none rounded"><span>Add
                                     Doctors</span></a></li>
                     </ul>
                 </div>
             </li>
 
             <li class="mb-1">
-                <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                <button class="btn btn-toggle align-items-center rounded border-0 collapsed"
                     data-bs-toggle="collapse" data-bs-target="#med-collapse">
                     <span><i class="fa-solid fa-pills me-3"></i>Med Corner</span>
                 </button>
@@ -94,10 +94,10 @@
                     echo "show"; ?>" id="med-collapse" style="">
                     <ul class="btn-toggle-nav list-unstyled fw-normal px-4 small">
                         <li><a href="med-addMed.php"
-                                class="link-body-emphasis d-inline-flex p-1 text-decoration-none rounded"><span>Add
+                                class="link-body-emphasis p-1 text-decoration-none rounded"><span>Add
                                     Medicine</span></a></li>
                         <li><a href="med-medList.php"
-                                class="link-body-emphasis d-inline-flex p-1 text-decoration-none rounded"><span>Medicine
+                                class="link-body-emphasis p-1 text-decoration-none rounded"><span>Medicine
                                     List</span></a></li>
                     </ul>
                 </div>
@@ -106,7 +106,7 @@
             <li class="border-top my-3"></li>
 
             <li class="mb-1">
-                <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                <button class="btn btn-toggle align-items-center rounded border-0 collapsed"
                     data-bs-toggle="collapse" data-bs-target="#users-collapse">
                     <span><i class="fa-solid fa-users-rays me-3"></i>Users</span>
                 </button>

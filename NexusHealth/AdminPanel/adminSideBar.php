@@ -23,16 +23,15 @@
 </style>
 
 <div class="ps-3 py-3 border-end sidebar" id="side_nav" style="width: 16rem; height: 100vh; background-color: #222e3c;">
-    <div class="pb-3 mb-3  text-decoration-none border-bottom">
+    <div class="pb-3 mb-3 text-decoration-none border-bottom">
         <div class="d-flex flex-wrap">
             <i class="fa-solid fa-user-gear fs-4"></i>
             <p class="ms-3 fs-5 fw-semibold">Admin Panel</p>
         </div>
-        <p>admin@gmail.com</p>
     </div>
     <div>
         <ul class="list-unstyled ps-0">
-            <li class="mb-1">
+            <li class="mb-3">
                 <a href="index.php">
                     <div class="p-2">
                         <i class="fa-solid fa-house"></i>
@@ -45,7 +44,7 @@
 
             <li class="border-top mb-3"></li>
 
-            <li class="mb-1">
+            <li class="mb-3">
                 <button class="btn btn-toggle align-items-center rounded border-0 collapsed" data-bs-toggle="collapse"
                     data-bs-target="#blood-collapse">
                     <span><i class="fa-solid fa-droplet me-3"></i>Blood Bank</span>
@@ -61,7 +60,7 @@
                 </div>
             </li>
 
-            <li class="mb-1">
+            <li class="mb-3">
                 <button class="btn btn-toggle align-items-center rounded border-0 collapsed" data-bs-toggle="collapse"
                     data-bs-target="#orders-collapse">
                     <span><i class="fa-solid fa-user-doctor me-3"></i>Doctor Appointment</span>
@@ -79,7 +78,7 @@
                 </div>
             </li>
 
-            <li class="mb-1">
+            <li class="mb-3">
                 <button class="btn btn-toggle align-items-center rounded border-0 collapsed" data-bs-toggle="collapse"
                     data-bs-target="#med-collapse">
                     <span><i class="fa-solid fa-pills me-3"></i>Med Corner</span>

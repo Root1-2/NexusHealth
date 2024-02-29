@@ -49,7 +49,7 @@
                     data-bs-target="#blood-collapse">
                     <span><i class="fa-solid fa-droplet me-3"></i>Blood Bank</span>
                 </button>
-                <div class="p-1 collapse <?php if (isset($bloodbank))
+                <div class="p-1 mt-2 collapse <?php if (isset($bloodbank))
                     echo "show"; ?>" id="blood-collapse">
                     <ul class="btn-toggle-nav list-unstyled fw-normal px-3 small">
                         <li class="mb-2"><a href="blood-donorList.php" class="p-2 text-decoration-none rounded">
@@ -65,7 +65,7 @@
                     data-bs-target="#orders-collapse">
                     <span><i class="fa-solid fa-user-doctor me-3"></i>Doctor Appointment</span>
                 </button>
-                <div class="p-1 collapse <?php if (isset($doctorappointment))
+                <div class="p-1 mt-2 collapse <?php if (isset($doctorappointment))
                     echo "show"; ?>" id="orders-collapse">
                     <ul class="btn-toggle-nav list-unstyled fw-normal px-3 small">
                         <li class="mb-2"><a href="doc-docList.php" class="p-1 text-decoration-none rounded">
@@ -83,7 +83,7 @@
                     data-bs-target="#med-collapse">
                     <span><i class="fa-solid fa-pills me-3"></i>Med Corner</span>
                 </button>
-                <div class="p-1 collapse <?php if (isset($medcorners))
+                <div class="p-1 mt-2 collapse <?php if (isset($medcorners))
                     echo "show"; ?>" id="med-collapse" style="">
                     <ul class="btn-toggle-nav list-unstyled fw-normal px-3 small">
                         <li class="mb-2"><a href="med-addMed.php" class=" p-1 text-decoration-none rounded">

@@ -34,93 +34,16 @@ $doctorappointment = 1;
         body {
             background-color: #f5f7fb;
         }
-
-        /* Timeline */
-        .timeline {
-            border-left: 1px solid #0388fc;
-            position: relative;
-            list-style: none;
-        }
-
-        .timeline p,
-        .timeline span {
-            font-size: 0.8rem;
-        }
-
-        .timeline .timeline-item {
-            position: relative;
-        }
-
-        .timeline .timeline-item:after {
-            position: absolute;
-            display: block;
-            top: 0;
-        }
-
-        .timeline .timeline-item:after {
-            background-color: #0388fc;
-            left: -38px;
-            border-radius: 50%;
-            height: 11px;
-            width: 11px;
-            content: "";
-        }
-
-        /* Blurred Background Overlay */
-        .popupOverlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 99;
-            display: none;
-            backdrop-filter: blur(5px);
-        }
-
-        /* Popup Form*/
-        .popupForm {
-            background-color: #fff;
-            transform: scale(0.01);
-            visibility: hidden;
-            position: absolute;
-            top: 5%;
-            left: 20%;
-            z-index: 100;
-            transition: all 0.3s;
-        }
-
-        .open-popup {
-            visibility: visible;
-            transform: scale(1);
-        }
-
-        /* Popup Delete */
-        .popupDel {
-            background-color: #fff;
-            position: absolute;
-            visibility: hidden;
-            top: 33%;
-            left: 38%;
-            z-index: 100;
-            transform: scale(0.01);
-            transition: all 0.3s;
-        }
-
-        .open-popupDel {
-            visibility: visible;
-            transform: scale(1);
-        }
     </style>
 </head>
 
 <body>
-    <div class='d-flex flex-nowrap'>
+    <div class='d-flex flex-nowrap' style="height: 100vh;">
 
         <?php include 'adminSideBar.php'; ?>
 
-        <div class="" style="width: 100%;">
-            <button class="btn open-btn position-fixed"><i class="fa-solid fa-bars-staggered"></i></button> <br>
+        <div class="" style="width: 100%; overflow-y: auto;">
+            <button class="btn open-btn position-fixed"><i class="fa-solid fa-bars-staggered"></i></button><br>
             <div class="d-flex flex-wrap">
                 <!-- Table Section -->
                 <div class="container mt-5">
@@ -174,7 +97,6 @@ $doctorappointment = 1;
                                     </tr> 
                                 ";
                             }
-
                             ?>
                         </tbody>
                     </table>

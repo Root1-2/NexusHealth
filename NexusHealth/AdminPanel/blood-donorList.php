@@ -34,11 +34,11 @@ $bloodbank = 1;
 </head>
 
 <body>
-    <div class='d-flex flex-nowrap'>
+    <div class='d-flex flex-nowrap' style="height: 100vh;">
 
         <?php include 'adminSideBar.php'; ?>
 
-        <div class="" style="width: 100%;">
+        <div class="" style="width: 100%; overflow-y: auto;">
             <button class="btn open-btn"><i class="fa-solid fa-bars-staggered"></i></button>
 
             <!-- Table Section -->

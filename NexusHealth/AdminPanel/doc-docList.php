@@ -35,37 +35,6 @@ $doctorappointment = 1;
             background-color: #f5f7fb;
         }
 
-        /* Timeline */
-        .timeline {
-            border-left: 1px solid #0388fc;
-            position: relative;
-            list-style: none;
-        }
-
-        .timeline p,
-        .timeline span {
-            font-size: 0.8rem;
-        }
-
-        .timeline .timeline-item {
-            position: relative;
-        }
-
-        .timeline .timeline-item:after {
-            position: absolute;
-            display: block;
-            top: 0;
-        }
-
-        .timeline .timeline-item:after {
-            background-color: #0388fc;
-            left: -38px;
-            border-radius: 50%;
-            height: 11px;
-            width: 11px;
-            content: "";
-        }
-
         /* Blurred Background Overlay */
         .popupOverlay {
             position: fixed;
@@ -115,12 +84,12 @@ $doctorappointment = 1;
 </head>
 
 <body>
-    <div class='d-flex flex-nowrap'>
+    <div class='d-flex flex-nowrap' style="height: 100vh;">
 
         <?php include 'adminSideBar.php'; ?>
 
-        <div class="" style="width: 100%;">
-            <button class="btn open-btn position-fixed"><i class="fa-solid fa-bars-staggered"></i></button> <br>
+        <div class="" style="width: 100%; overflow-y: auto;">
+            <button class="btn open-btn position-fixed"><i class="fa-solid fa-bars-staggered"></i></button><br>
             <div class="d-flex flex-wrap">
                 <!-- Table Section -->
                 <div class="col-lg-8 px-5">
@@ -229,32 +198,6 @@ $doctorappointment = 1;
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
-                    <div>
-                        <p class="fw-bold">Appointments</p>
-                        <ul class="timeline">
-                            <li class="timeline-item mb-1">
-                                <p class="fw-bold m-0">Appointee Name</p>
-                                <p class="text-muted fw-bold">Appointment Date</p>
-                            </li>
-
-                            <li class="timeline-item mb-1">
-                                <p class="fw-bold m-0">Appointee Name</p>
-                                <p class="text-muted fw-bold">Appointment Date</p>
-                            </li>
-                            <li class="timeline-item mb-1">
-                                <p class="fw-bold m-0">Appointee Name</p>
-                                <p class="text-muted fw-bold">Appointment Date</p>
-                            </li>
-                            <li class="timeline-item mb-1">
-                                <p class="fw-bold m-0">Appointee Name</p>
-                                <p class="text-muted fw-bold">Appointment Date</p>
-                            </li>
-                            <li class="timeline-item mb-1">
-                                <p class="fw-bold m-0">Appointee Name</p>
-                                <p class="text-muted fw-bold">Appointment Date</p>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>

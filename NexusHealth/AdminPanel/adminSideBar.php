@@ -23,7 +23,7 @@
 </style>
 
 <div class="ps-3 py-3 border-end sidebar" id="side_nav"
-    style="width: 16rem; min-height: 100vh; max-height: auto; background-color: #222e3c;">
+    style="width: 16rem; height: 100vh; background-color: #222e3c;">
     <div class="pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
         <div class="d-flex flex-wrap">
             <i class="fa-solid fa-user-gear fs-4"></i>
@@ -129,10 +129,10 @@
                 </a>
             </li>
 
-            <li class="border-bottom" style="position: absolute; bottom: 0px; width: 13rem;">
+            <li class="" style="position: absolute; bottom: 0px; width: 13rem;">
                 <a href="../Authentication/logout.php" class="text-decoration-none">
                     <button class="btn rounded border-0">
-                        <p><i class="d-inline-flex fa-solid fa-users-rays"></i>Log Out</p>
+                        <p class=""><i class="me-3 fa-solid fa-door-open"></i>Log Out</p>
                     </button>
                 </a>
             </li>

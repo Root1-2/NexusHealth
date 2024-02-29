@@ -30,17 +30,16 @@ $doctorappointment = 1;
 </head>
 
 <body>
-    <div class='d-flex flex-nowrap'>
+    <div class='d-flex flex-nowrap' style="height: 100vh;">
 
         <?php include 'adminSideBar.php'; ?>
 
-        <div class="" style="width: 100%;">
+        <div class="" style="width: 100%; overflow-y: auto;">
             <button class="btn open-btn"><i class="fa-solid fa-bars-staggered"></i></button>
             <!-- Form Section -->
             <div>
-                <br><br>
-                <div class="my-5 col-lg-7 container-fluid border border-primary-subtle rounded p-4 shadow-lg">
-                    <form action="doc-docAction.php" method="POST"   enctype="multipart/form-data">
+                <div class="mt-5 col-lg-7 container-fluid border border-primary-subtle rounded p-4 shadow-lg">
+                    <form action="doc-docAction.php" method="POST" enctype="multipart/form-data">
                         <div class="mb-4">
                             <p>Doctor Name</p>
                             <input type="text" name="doctorName" class="form-control" required>
@@ -92,24 +91,26 @@ $doctorappointment = 1;
                             <input type="tel" pattern="(\+88)?-?01[3-9]\d{8}" name="phoneNumber" class="form-control"
                                 required>
                         </div>
-                        <div class="mb-4">
-                            <p>Time 1</p>
-                            <input type="text" name="time1" class="form-control" required>
-                        </div>
 
-                        <div class="mb-4">
-                            <p>Time 2</p>
-                            <input type="text" name="time2" class="form-control" required>
-                        </div>
-                        <div class="mb-4">
-                            <p>Time 3</p>
-                            <input type="text" name="time3" class="form-control" required>
-                        </div>
-                        <div class="mb-4">
-                            <p>Time 4</p>
-                            <input type="text" name="time4" class="form-control" required>
-                        </div>
+                        <div class="row mb-4">
+                            <div class="col-xl-3 col-lg-3">
+                                <p>Time 1</p>
+                                <input type="text" name="time1" class="form-control" required>
+                            </div>
 
+                            <div class="col-xl-3 col-lg-3">
+                                <p>Time 2</p>
+                                <input type="text" name="time2" class="form-control" required>
+                            </div>
+                            <div class="col-xl-3 col-lg-3">
+                                <p>Time 3</p>
+                                <input type="text" name="time3" class="form-control" required>
+                            </div>
+                            <div class="col-xl-3 col-lg-3">
+                                <p>Time 4</p>
+                                <input type="text" name="time4" class="form-control" required>
+                            </div>
+                        </div>
 
                         <div class="mb-4">
                             <p>Doctor Photo</p>

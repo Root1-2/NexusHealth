@@ -48,15 +48,15 @@
             <li class="mb-1">
                 <button class="btn btn-toggle align-items-center rounded border-0 collapsed" data-bs-toggle="collapse"
                     data-bs-target="#blood-collapse">
-                    <span class="link-danger"><i class="fa-solid fa-droplet me-3"></i>Blood Bank</span>
+                    <span><i class="fa-solid fa-droplet me-3"></i>Blood Bank</span>
                 </button>
                 <div class="p-1 collapse <?php if (isset($bloodbank))
                     echo "show"; ?>" id="blood-collapse">
                     <ul class="btn-toggle-nav list-unstyled fw-normal px-3 small">
                         <li class="mb-2"><a href="blood-donorList.php" class="p-2 text-decoration-none rounded">
-                                <span class="link-danger"><i class="fa-regular me-2 fa-circle-dot"></i>Donor List</span></a></li>
+                                <span><i class="fa-regular me-2 fa-circle-dot"></i>Donor List</span></a></li>
                         <li><a href="blood-addBlood.php" class="p-2 text-decoration-none rounded">
-                            <span class="link-danger"><i class="fa-regular me-2 fa-circle-dot"></i>Add Donor</span></a></li>
+                            <span><i class="fa-regular me-2 fa-circle-dot"></i>Add Donor</span></a></li>
                     </ul>
                 </div>
             </li>
@@ -64,17 +64,17 @@
             <li class="mb-1">
                 <button class="btn btn-toggle align-items-center rounded border-0 collapsed" data-bs-toggle="collapse"
                     data-bs-target="#orders-collapse">
-                    <span class="link-primary"><i class="fa-solid fa-user-doctor me-3"></i>Doctor Appointment</span>
+                    <span><i class="fa-solid fa-user-doctor me-3"></i>Doctor Appointment</span>
                 </button>
                 <div class="p-1 collapse <?php if (isset($doctorappointment))
                     echo "show"; ?>" id="orders-collapse">
                     <ul class="btn-toggle-nav list-unstyled fw-normal px-3 small">
                         <li class="mb-2"><a href="doc-docList.php" class="p-1 text-decoration-none rounded">
-                            <span class="link-primary"><i class="fa-regular me-2 fa-circle-dot"></i>Doctor List</span></a></li>
+                            <span><i class="fa-regular me-2 fa-circle-dot"></i>Doctor List</span></a></li>
                         <li class="mb-2"><a href="doc-appList.php" class="p-1 text-decoration-none rounded">
-                            <span class="link-primary"><i class="fa-regular me-2 fa-circle-dot"></i>Appointments List</span></a></li>
+                            <span><i class="fa-regular me-2 fa-circle-dot"></i>Appointments List</span></a></li>
                         <li><a href="doc-docAdd.php" class="p-1 text-decoration-none rounded">
-                            <span class="link-primary"><i class="fa-regular me-2 fa-circle-dot"></i>Add Doctors</span></a></li>
+                            <span><i class="fa-regular me-2 fa-circle-dot"></i>Add Doctors</span></a></li>
                     </ul>
                 </div>
             </li>
@@ -82,15 +82,15 @@
             <li class="mb-1">
                 <button class="btn btn-toggle align-items-center rounded border-0 collapsed" data-bs-toggle="collapse"
                     data-bs-target="#med-collapse">
-                    <span class="link-success"><i class="fa-solid fa-pills me-3"></i>Med Corner</span>
+                    <span><i class="fa-solid fa-pills me-3"></i>Med Corner</span>
                 </button>
                 <div class="p-1 collapse <?php if (isset($medcorners))
                     echo "show"; ?>" id="med-collapse" style="">
                     <ul class="btn-toggle-nav list-unstyled fw-normal px-3 small">
                         <li class="mb-2"><a href="med-addMed.php" class=" p-1 text-decoration-none rounded">
-                                <span class="link-success"><i class="fa-regular me-2 fa-circle-dot"></i>Add Medicine</span></a></li>
+                                <span><i class="fa-regular me-2 fa-circle-dot"></i>Add Medicine</span></a></li>
                         <li><a href="med-medList.php" class=" p-1 text-decoration-none rounded">
-                                <span class="link-success"><i class="fa-regular me-2 fa-circle-dot"></i>Medicine List</span></a></li>
+                                <span><i class="fa-regular me-2 fa-circle-dot"></i>Medicine List</span></a></li>
                     </ul>
                 </div>
             </li>
@@ -100,7 +100,7 @@
             <li class="mb-1">
                 <a href="../Homepage/" class="text-decoration-none">
                     <button class="btn rounded border-0">
-                        <span class="link-info"><i class="fa-solid fa-users-rays me-3"></i>NexusHealth</span>
+                        <span><i class="fa-solid fa-users-rays me-3"></i>NexusHealth</span>
                     </button>
                 </a>
             </li>
@@ -108,7 +108,7 @@
             <li class="" style="position: absolute; bottom: 0px; width: 13rem;">
                 <a href="../Authentication/logout.php" class="text-decoration-none">
                     <button class="btn rounded border-0">
-                        <p class=""><i class="me-3 fa-solid fa-door-open"></i>Log Out</p>
+                        <p><i class="me-3 fa-solid fa-door-open"></i>Log Out</p>
                     </button>
                 </a>
             </li>

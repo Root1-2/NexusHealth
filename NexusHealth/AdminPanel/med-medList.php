@@ -76,7 +76,7 @@ $medcorners = 1;
                                         </div>
                                     </td>
                                     <td>
-                                        <p class='fw-normal badge text-bg-success rounded-pill'>" . $row['medcategory'] . " </p>
+                                        <p class='fw-normal mt-3 badge text-bg-success rounded-pill'>" . $row['medcategory'] . " </p>
                                     </td>
                                     <td>" . $row['medcompany'] . "</td>
                                     <td>

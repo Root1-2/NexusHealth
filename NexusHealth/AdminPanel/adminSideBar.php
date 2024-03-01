@@ -12,7 +12,6 @@
 
     #side_nav.active {
         margin-left: -16rem;
-        /* position: absolute; */
         min-height: 100vh;
         z-index: 2;
     }

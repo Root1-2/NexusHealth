@@ -165,7 +165,6 @@ if ($totalApp > 0) {
                 </div>
 
                 <!-- Top Doctor -->
-                <!-- Top Doctor -->
                 <div class="d-flex justify-content-center">
                     <?php if ($totalApp == 0) { ?>
                         <div class="col-lg-5 col-xl-5 card border rounded ms-3 me-5 mt-4" style="background-color: #fff;">
@@ -176,7 +175,6 @@ if ($totalApp > 0) {
                             </div>
                         </div>
                     <?php } else { ?>
-                        <!-- Your existing code for displaying top doctor information -->
                         <div class="col-lg-5 col-xl-5 card border rounded ms-3 me-5 mt-4" style="background-color: #fff;">
                             <p class="fw-bold fs-4 d-flex mx-auto mt-2">Top Doctor</p>
                             <hr class="mt-0 pt-0">

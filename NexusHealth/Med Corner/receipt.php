@@ -64,7 +64,6 @@ include "../Database/sessionUserData.php";
             </div>
         </header>
 
-
         <div class="px-5 py-3" style="width: 100%;">
             <div>
                 <span class="display-5 ms-5 px-3">Recipts</span>
@@ -110,7 +109,6 @@ include "../Database/sessionUserData.php";
                     </tbody>
                 </table>
             </div>
-
         </div>
     </div>
 

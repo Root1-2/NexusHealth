@@ -44,8 +44,6 @@ if ($totalApp > 0) {
 }
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 

@@ -9,7 +9,6 @@ include "../Database/sessionUserData.php";
 
 $meddata = mysqli_query($conn, "SELECT * FROM `medcorner`");
 
-
 ?>
 
 <!DOCTYPE html>
@@ -181,8 +180,6 @@ $meddata = mysqli_query($conn, "SELECT * FROM `medcorner`");
             <!-- Dashboard Section -->
             <div class="px-5 py-3" style="width: 100%;">
                 <div>
-
-
                     <div class="d-flex justify-content-between">
                         <div>
                             <i class="bi bi-capsule-pill dashicon display-6 me-2"></i>
@@ -194,11 +191,9 @@ $meddata = mysqli_query($conn, "SELECT * FROM `medcorner`");
                             <a href="receipt.php"><i title="order List" class="fa-solid fa-receipt text-dark"></i></a>
                             <button id="cartButton" class="btn"><i class="fa-solid fa-cart-shopping ms-2"></i></button>
                             <span id="cartCount" class="badge bg-danger">0</span>
-
                         </div>
 
-
-                        <!-- sidebar Design -->
+                        <!-- Sidebar Design -->
                         <div id="sidebar" class="sidebar">
                             <p class="d-flex justify-content-center">Your Order</p>
                             <hr>

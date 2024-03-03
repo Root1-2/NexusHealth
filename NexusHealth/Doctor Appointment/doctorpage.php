@@ -43,7 +43,6 @@ $doctorList = 1;
         .profile-preview {
             width: 12.5rem;
             height: 16rem;
-            /* background-color: grey; */
             background-position: center;
             background-size: cover;
             overflow: hidden;

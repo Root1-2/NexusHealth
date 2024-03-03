@@ -27,22 +27,6 @@ $appointmentlist = 1;
 
     <link rel="stylesheet" href="styles.css">
     <style>
-        .custom-container {
-            outline: 1px solid;
-            /* Add outline to the entire div */
-            padding: 10px;
-            /* Add some padding for better appearance */
-            display: inline-block;
-            /* Keep the div inline with its contents */
-        }
-
-        .custom-container i {
-            font-size: 1.5rem;
-            vertical-align: middle;
-            /* Align the icon vertically in the middle */
-            margin-right: 5px;
-            /* Add some space between the icon and the button */
-        }
 
         .dashicon {
             color: #0d6efd;

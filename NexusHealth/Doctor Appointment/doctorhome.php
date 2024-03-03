@@ -10,11 +10,11 @@ include "../Database/sessionUserData.php";
 $doctorHome = 1;
 
 // Total Appointment Query
-$totalApp = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM appointments WHERE patientUsername = '{$_SESSION['userName']}'"));
+$totalApp = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM appointments WHERE patientUsername = '{$row['userName']}'"));
 
 // Upcoming Appointment
-$upApp = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM appointments WHERE patientUsername = '{$_SESSION['userName']}' AND appointmentDate >= CURDATE()"));
-$upAppNum = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM appointments WHERE patientUsername = '{$_SESSION['userName']}' AND appointmentDate >= CURDATE()"));
+$upApp = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM appointments WHERE patientUsername = '{$row['userName']}' AND appointmentDate >= CURDATE()"));
+$upAppNum = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM appointments WHERE patientUsername = '{$row['userName']}' AND appointmentDate >= CURDATE()"));
 
 // Upcoming Doctor Information
 $upcomingAppDoc = null;
@@ -26,12 +26,12 @@ if ($upApp !== null) {
 }
 
 // Closest Appointment
-$upcomingAppointment = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM appointments WHERE patientUsername = '{$_SESSION['userName']}' 
+$upcomingAppointment = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM appointments WHERE patientUsername = '{$row['userName']}' 
                                                                 AND appointmentDate >= CURDATE() ORDER BY appointmentDate, appointmentTime LIMIT 1"));
 
 // Top Doctor
 if ($totalApp > 0) {
-    $topDocQuery = "SELECT doctorID, COUNT(*) AS appointment_count FROM appointments WHERE patientUsername = '{$_SESSION['userName']}' 
+    $topDocQuery = "SELECT doctorID, COUNT(*) AS appointment_count FROM appointments WHERE patientUsername = '{$row['userName']}' 
                     GROUP BY doctorID ORDER BY appointment_count DESC LIMIT 1";
     $topDocResult = mysqli_query($conn, $topDocQuery);
     $topDoc = mysqli_fetch_assoc($topDocResult);

@@ -28,6 +28,12 @@ $doctorList = 1;
 
     <link rel="stylesheet" href="styles.css">
     <style>
+        .custom-container {
+            outline: 1px solid;
+            padding: 10px;
+            display: inline-block;
+        }
+
         .dashicon {
             color: #0d6efd;
         }

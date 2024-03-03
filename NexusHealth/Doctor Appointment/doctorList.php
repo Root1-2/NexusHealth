@@ -165,7 +165,6 @@ $doctorList = 1;
                 }
             });
         });
-
     </script>
 </body>
 

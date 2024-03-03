@@ -55,6 +55,13 @@ $medcorners = 1;
                                     <option value="">Select Category.....</option>
                                     <option value="OTC Medicine">OTC Medicine</option>
                                     <option value="Sexual Wellness">Sexual Wellness</option>
+                                    <option value="Women's Choice">Women's Choice</option>
+                                    <option value="Diabetic Care">Diabetic Care</option>
+                                    <option value="Baby Care">Baby Care</option>
+                                    <option value="Dental Care">Dental Care</option>
+                                    <option value="Personal Care">Personal Care</option>
+                                    <option value="Prescription Medicine">Prescription Medicine</option>
+                                    <option value="Devices">Devices</option>
                                 </select>
                             </div>
 

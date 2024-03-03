@@ -329,16 +329,12 @@ $doctorappointment = 1;
     <script>
         // Dropdown Item Selected
         $(document).ready(function () {
-            $(document).ready(function () {
-                $(".dropdown-item").click(function (e) {
-                    e.preventDefault();
+            $(".dropdown-item").click(function (e) {
+                e.preventDefault();
 
-                    var selectedDepartment = $(this).attr('data-value');
-                    $(".btn.dropdown-toggle").text($(this).text());
-
-                    // Set the value of the hidden input
-                    $("#selectedDepartment").val(selectedDepartment);
-                });
+                var selectedDepartment = $(this).attr('data-value');
+                $(".btn.dropdown-toggle").text($(this).text());
+                $("#selectedDepartment").val(selectedDepartment);
             });
         });
 

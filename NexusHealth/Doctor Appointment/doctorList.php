@@ -146,11 +146,9 @@ $doctorList = 1;
                 var selectedDepartment = $(this).attr('value');
                 $(".btn.dropdown-toggle").text($(this).text());
 
-                // Update the doctor list based on the selected department using AJAX
                 sendAjaxRequest(selectedDepartment);
 
                 function sendAjaxRequest(selectedDepartment) {
-                    // console.log('Sending AJAX request...');
                     $.ajax({
                         type: 'POST',
                         url: 'doctorList.php',

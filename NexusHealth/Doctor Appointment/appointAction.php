@@ -13,8 +13,6 @@ if (isset($_POST['appoint'])) {
     $appointDate = $_POST['date'];
     $patientAge = $_POST['patientAge'];
 
-    // echo $patientName;
-
     $insert_query = "INSERT INTO `appointments`(`doctorName`,`doctorID`,`appointmentTime`,`appointmentDate`,`patientName`,`patientAge`,`patientNumber`,`patientUsername`) 
         VALUES ('$docName','$doctorID','$appointTime','$appointDate','$patientName','$patientAge','$patientNumber','$patientUserName')";
 

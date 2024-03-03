@@ -156,12 +156,8 @@ $doctorList = 1;
                         url: 'doctorList.php',
                         data: { selectedDepartment: selectedDepartment },
                         success: function (response) {
-                            // Parse the response as HTML
                             var parsedHtml = $.parseHTML(response);
-                            // Find the doctor-list-container in the parsed HTML
                             var doctorListContainer = $(parsedHtml).find('.doctor-list-container');
-
-                            // Update only the doctor-list-container with the new content
                             $('.doctor-list-container').html(doctorListContainer.html());
                         },
                         error: function (error) {

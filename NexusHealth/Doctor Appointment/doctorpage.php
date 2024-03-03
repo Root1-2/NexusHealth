@@ -191,9 +191,6 @@ $doctorList = 1;
             } else {
                 radioContainer.style.display = 'none';
             }
-
-            // Update the value of the input field to the selected date
-            document.getElementById('appointmentDate').setAttribute('value', selectedDate);
         }
     </script>
 </body>

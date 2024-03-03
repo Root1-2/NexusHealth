@@ -17,12 +17,12 @@ if (isset($_POST['donorId'])) {
         echo json_encode($data);
     } else {
         // Handle the case where the query fails
-        header('HTTP/1.1 500 Internal Server Error');
+        header('Server Error');
         echo json_encode(['error' => 'Failed to fetch data']);
     }
 } else {
     // Handle the case where rowId is not set
-    header('HTTP/1.1 400 Bad Request');
+    header('Server Error');
     echo json_encode(['error' => 'rowId not provided in the request.']);
 }
 
